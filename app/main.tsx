@@ -9,6 +9,8 @@ if (process.argv.includes('--package-self-test')) {
   if (native.__napiBindingTarget !== 'native' || typeof native.GpuixRenderer !== 'function') throw new Error('Expected the pinned native renderer binding');
   console.log(JSON.stringify({nativeSelfTest:true,rendererBinding:'native',windowCreated:false,hardwareAccess:false}));
 } else {
+  const { requireNativeDisplay } = await import('./client/runtime-support');
+  requireNativeDisplay(process.platform, process.env);
   const { createSystemAppearanceSource } = await import('./client/system-appearance');
   const { createAppearanceController } = await import('./theme/appearance');
   const appearanceSource = await createSystemAppearanceSource();
