@@ -23,6 +23,7 @@ struct Trace {
 }
 struct FakeState {
     interface: Interface,
+    interface_error: Option<TransportError>,
     id: u32,
     revision: u32,
     profile: u8,
@@ -35,6 +36,7 @@ struct FakeState {
     write_count: usize,
     ignored_write: bool,
     corrupt_neighbor: bool,
+    corrupt_target: Option<Entry>,
     accept_then_timeout: bool,
     latency_ms: u64,
     cancel_after_write: Option<(usize, Cancellation)>,
@@ -57,7 +59,11 @@ impl Clock for FakeClock {
 }
 impl Transport for Fake {
     fn interface(&self) -> std::result::Result<Interface, TransportError> {
-        Ok(self.state.borrow().interface.clone())
+        let state = self.state.borrow();
+        match state.interface_error {
+            Some(error) => Err(error),
+            None => Ok(state.interface.clone()),
+        }
     }
     fn exchange(
         &mut self,
@@ -117,6 +123,9 @@ impl Transport for Fake {
                     state.map.0[usize::from(packet[2])]
                         .0
                         .copy_from_slice(&packet[8..12]);
+                }
+                if let Some(entry) = state.corrupt_target {
+                    state.map.0[usize::from(packet[2])] = entry;
                 }
                 if state.corrupt_neighbor {
                     state.map.0[127] = Entry([0xfa, 0x55, 0x44, 0x33]);
@@ -243,6 +252,7 @@ fn parts(cap: &Capability) -> (Fake, FakeClock, MemoryStore) {
     map.0[13] = Entry([0x99, 0xfe, 0x88, 0x66]);
     let state = FakeState {
         interface: cap.identity.interface.clone(),
+        interface_error: None,
         id: cap.identity.internal_id,
         revision: cap.identity.revision,
         profile: 4,
@@ -255,6 +265,7 @@ fn parts(cap: &Capability) -> (Fake, FakeClock, MemoryStore) {
         write_count: 0,
         ignored_write: false,
         corrupt_neighbor: false,
+        corrupt_target: None,
         accept_then_timeout: false,
         latency_ms: 3,
         cancel_after_write: None,
@@ -1240,4 +1251,116 @@ fn snapshot_duplicate_layer_cannot_hide_an_invalid_earlier_record() {
     let raw = serde_json::to_string(&snapshot).unwrap();
     let duplicate = raw.replace("\"layers\":{", "\"layers\":{\"base\":\"malformed\",");
     assert!(Snapshot::parse(duplicate.as_bytes()).is_err());
+}
+
+#[test]
+fn third_value_on_target_is_partial_with_actual_evidence_not_rejected() {
+    for corrupt in [Target::Z.entry(), Entry([0xfa, 1, 2, 3])] {
+        let root = PrivateDirectory::new();
+        let (mut owner, session, hash) = fs_owner(root.0.clone());
+        let plan = fs_plan(&mut owner, &session, &hash);
+        owner.scheduler.transport.state.borrow_mut().corrupt_target = Some(corrupt);
+        let value = apply(&mut owner, &session, &plan, &Cancellation::default()).unwrap();
+        let result = receipt(&value);
+        assert_eq!(result["status"], "partial");
+        assert_eq!(result["reason"], "mapping_mismatch");
+        assert_eq!(result["unknown"], 0);
+        assert_eq!(result["verified"], 0);
+        assert_eq!(result["preserved"], true);
+        assert_eq!(result["mismatches"][0]["physicalKey"], "caps-lock");
+        assert_eq!(result["mismatches"][0]["changedFromOriginal"], true);
+        assert_eq!(
+            result["mismatches"][0]["actual"],
+            serde_json::to_value(Target::from_entry(corrupt)).unwrap()
+        );
+        assert_eq!(
+            result["mismatches"][0]["actualUnsupported"],
+            Target::from_entry(corrupt).is_none()
+        );
+        assert!(result.get("observed").is_none());
+        let path = root.0.join(format!("{plan}.journal"));
+        let raw = std::fs::read_to_string(&path).unwrap();
+        let mut events: Vec<Value> = raw
+            .lines()
+            .map(|line| serde_json::from_str(line).unwrap())
+            .collect();
+        let observed =
+            Keymap::from_hex(events.last().unwrap()["readback_hex"].as_str().unwrap()).unwrap();
+        assert_eq!(observed.0[7], corrupt);
+        assert!(FsStore::inspect(&root.0).unwrap()[0].uncertain);
+        events.last_mut().unwrap()["status"] = json!("rejected");
+        std::fs::write(
+            path,
+            events
+                .into_iter()
+                .map(|event| format!("{event}\n"))
+                .collect::<String>(),
+        )
+        .unwrap();
+        assert!(FsStore::inspect(&root.0).is_err());
+    }
+}
+
+#[test]
+fn metadata_failures_poison_owner_even_when_interface_later_recovers() {
+    for fault in [
+        TransportError::Disconnected,
+        TransportError::Timeout,
+        TransportError::Stall,
+        TransportError::Protocol,
+    ] {
+        let (mut owner, session, hash) = setup();
+        let plan = one_plan(&mut owner, &session, &hash);
+        let before = owner.scheduler.transport.state.borrow().trace.len();
+        owner.scheduler.transport.state.borrow_mut().interface_error = Some(fault);
+        let error = call(
+            &mut owner,
+            json!({"type":"read_current_keymap","sessionId":session,"layer":"base"}),
+            &Cancellation::default(),
+        )
+        .unwrap_err();
+        assert_eq!(error.code, fault.fault().code);
+        owner.scheduler.transport.state.borrow_mut().interface_error = None;
+        assert!(apply(&mut owner, &session, &plan, &Cancellation::default()).is_err());
+        assert!(
+            call(
+                &mut owner,
+                json!({"type":"read_current_keymap","sessionId":session,"layer":"base"}),
+                &Cancellation::default()
+            )
+            .is_err()
+        );
+        assert_eq!(owner.scheduler.transport.state.borrow().trace.len(), before);
+        assert!(writes(&owner).is_empty());
+    }
+}
+
+#[test]
+fn out_of_bounds_observed_profile_poison_survives_a_later_valid_response() {
+    let (mut owner, session, hash) = setup();
+    let plan = one_plan(&mut owner, &session, &hash);
+    owner.scheduler.transport.state.borrow_mut().profile = 16;
+    let error = call(
+        &mut owner,
+        json!({"type":"read_current_keymap","sessionId":session,"layer":"base"}),
+        &Cancellation::default(),
+    )
+    .unwrap_err();
+    assert_eq!(error.code, "read_only");
+    let after_fault = owner.scheduler.transport.state.borrow().trace.len();
+    owner.scheduler.transport.state.borrow_mut().profile = 4;
+    assert!(apply(&mut owner, &session, &plan, &Cancellation::default()).is_err());
+    assert!(
+        call(
+            &mut owner,
+            json!({"type":"read_current_keymap","sessionId":session,"layer":"base"}),
+            &Cancellation::default()
+        )
+        .is_err()
+    );
+    assert_eq!(
+        owner.scheduler.transport.state.borrow().trace.len(),
+        after_fault
+    );
+    assert!(writes(&owner).is_empty());
 }

@@ -1,4 +1,4 @@
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@gpuix/react';
+import { Select, SelectTrigger, SelectContent, SelectItem } from '@gpuix/react';
 import type { DemoScenario } from '../client/demo';
 import type { EditorState } from '../model/editor';
 import { actionLabel } from '../model/actions';
@@ -38,8 +38,9 @@ export function Review({ state, palette: p, scenario, setScenario, onCancel, onA
     </div> : <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
       <Label palette={p}>DEMONSTRATION OUTCOME</Label>
       <Select onOpenChange={onPickerOpenChange} value={scenario} items={scenarios} onValueChange={value => setScenario(value as DemoScenario)}>
-        <SelectTrigger role="button" aria-label="Choose simulated apply outcome" style={{ height: 40, padding: 10, backgroundColor: p.surface, borderWidth: 1, borderColor: p.border, borderRadius: 7 }}>
-          <SelectValue>{<text style={{ color: p.text, fontSize: 14 }}>{scenarios.find(item => item.value === scenario)?.label} ▾</text>}</SelectValue>
+        <SelectTrigger role="button" aria-label="Choose simulated apply outcome" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', height: 40, padding: 10, backgroundColor: p.surface, borderWidth: 1, borderColor: p.border, borderRadius: 7 }}>
+          <text style={{ color: p.text, fontSize: 14, whiteSpace: 'nowrap', flexGrow: 1 }}>{scenarios.find(item => item.value === scenario)?.label}</text>
+          <text style={{ color: p.secondary, fontSize: 14, whiteSpace: 'nowrap', width: 16, textAlign: 'right' }}>▾</text>
         </SelectTrigger>
         <SelectContent style={{ width: 360, padding: 6, backgroundColor: p.surface, borderWidth: 1, borderColor: p.border, borderRadius: 8 }}>
           {scenarios.map(item => <SelectItem key={item.value} value={item.value} style={({ highlighted }) => ({ padding: 10, backgroundColor: highlighted ? p.selected : p.surface })}><text style={{ color: p.text, fontSize: 14 }}>{item.label}</text></SelectItem>)}

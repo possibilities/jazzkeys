@@ -158,6 +158,26 @@ impl Keymap {
     pub(crate) fn hash(&self) -> String {
         digest(&self.bytes())
     }
+    pub(crate) fn hex(&self) -> String {
+        self.bytes()
+            .iter()
+            .map(|byte| format!("{byte:02x}"))
+            .collect()
+    }
+    pub(crate) fn from_hex(hex: &str) -> Result<Self> {
+        if hex.len() != 1024 || !hex.bytes().all(|byte| byte.is_ascii_hexdigit()) {
+            return Err(INVALID);
+        }
+        let bytes: Result<Vec<u8>> = hex
+            .as_bytes()
+            .chunks_exact(2)
+            .map(|pair| {
+                u8::from_str_radix(std::str::from_utf8(pair).map_err(|_| INVALID)?, 16)
+                    .map_err(|_| INVALID)
+            })
+            .collect();
+        Self::from_bytes(&bytes?)
+    }
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]

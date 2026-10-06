@@ -52,6 +52,15 @@ struct Plan {
 }
 #[derive(Debug, Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
+pub(crate) struct MappingMismatch {
+    pub physical_key: String,
+    pub expected: Option<Target>,
+    pub actual: Option<Target>,
+    pub actual_unsupported: bool,
+    pub changed_from_original: bool,
+}
+#[derive(Debug, Clone, Serialize)]
+#[serde(rename_all = "camelCase")]
 pub(crate) struct Receipt {
     pub status: &'static str,
     pub session_id: String,
@@ -67,6 +76,9 @@ pub(crate) struct Receipt {
     pub verified_keys: Vec<String>,
     pub unknown_keys: Vec<String>,
     pub reason: Option<&'static str>,
+    pub mismatches: Vec<MappingMismatch>,
+    #[serde(skip_serializing)]
+    observed: Option<Keymap>,
 }
 pub(crate) struct Engine<T, C, S> {
     pub scheduler: Scheduler<T, C>,
@@ -166,7 +178,13 @@ impl<T: Transport, C: Clock, S: Store> Engine<T, C, S> {
         if profile[0] != 0x85 {
             return self.identity_error();
         }
-        let profile = Profile::observed(profile[1])?;
+        let profile = match Profile::observed(profile[1]) {
+            Ok(profile) => profile,
+            Err(error) => {
+                self.invalidate();
+                return Err(error);
+            }
+        };
         Ok((self.capability.identity.clone(), profile))
     }
     fn identity_error<U>(&mut self) -> Result<U> {
@@ -389,6 +407,8 @@ impl<T: Transport, C: Clock, S: Store> Engine<T, C, S> {
             verified_keys: Vec::new(),
             unknown_keys: Vec::new(),
             reason: None,
+            mismatches: Vec::new(),
+            observed: None,
         };
         if cancel.requested() {
             return Ok(receipt);
@@ -519,6 +539,7 @@ impl<T: Transport, C: Clock, S: Store> Engine<T, C, S> {
                 Err(error) => return Ok(self.uncertain(&plan, receipt, error.code)),
             };
             receipt.readback_complete = true;
+            receipt.observed = Some(actual.clone());
             let changed_slots: BTreeSet<usize> = plan
                 .changes
                 .iter()
@@ -536,15 +557,38 @@ impl<T: Transport, C: Clock, S: Store> Engine<T, C, S> {
                 .map(|change| change.key.clone())
                 .collect();
             receipt.verified = receipt.verified_keys.len();
+            receipt.mismatches = plan
+                .changes
+                .iter()
+                .take(receipt.attempted)
+                .filter(|change| actual.0[change.slot.index()] != change.after)
+                .map(|change| {
+                    let observed = actual.0[change.slot.index()];
+                    MappingMismatch {
+                        physical_key: change.key.clone(),
+                        expected: Target::from_entry(change.after),
+                        actual: Target::from_entry(observed),
+                        actual_unsupported: Target::from_entry(observed).is_none(),
+                        changed_from_original: observed != change.before,
+                    }
+                })
+                .collect();
+            let all_original = plan
+                .changes
+                .iter()
+                .take(receipt.attempted)
+                .all(|change| actual.0[change.slot.index()] == change.before);
             receipt.status = if !receipt.cancelled && actual == plan.desired && receipt.preserved {
                 "verified"
-            } else if receipt.verified == 0 && receipt.preserved {
+            } else if all_original && receipt.preserved {
                 "rejected"
             } else {
                 "partial"
             };
             if !receipt.preserved {
                 receipt.reason = Some("preservation_mismatch");
+            } else if !receipt.mismatches.is_empty() {
+                receipt.reason = Some("mapping_mismatch");
             }
             if receipt.status == "verified" {
                 if let Some(session) = self.session.as_mut() {
@@ -646,6 +690,7 @@ fn journal_outcome(receipt: &Receipt) -> JournalEvent {
         not_attempted: receipt.not_attempted,
         preserved: receipt.preserved,
         readback_complete: receipt.readback_complete,
+        readback_hex: receipt.observed.as_ref().map(Keymap::hex),
         cancelled: receipt.cancelled,
         reason: receipt.reason.map(str::to_string),
     }

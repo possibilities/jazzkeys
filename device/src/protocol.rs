@@ -192,7 +192,14 @@ impl<T: Transport, C: Clock> Scheduler<T, C> {
             return Err(STALE);
         }
         self.clock.sleep_until(self.next_wire_ms);
-        if self.transport.interface().map_err(TransportError::fault)? != self.expected {
+        let interface = match self.transport.interface() {
+            Ok(interface) => interface,
+            Err(error) => {
+                self.invalidated = true;
+                return Err(error.fault());
+            }
+        };
+        if interface != self.expected {
             self.invalidated = true;
             return Err(STALE);
         }

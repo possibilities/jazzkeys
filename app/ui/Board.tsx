@@ -24,11 +24,11 @@ export function Board({ state, palette: p, onSelect, onFocusId, inactive = false
               const id = adjacentKey(key.id, event.key as Direction); onSelect(id);
               const instance = refs.current.get(id); if (instance) renderer?.focusElement?.(instance.id);
             }}
-            style={{ position: 'absolute', left: key.x * UNIT, top: key.y * UNIT, width: key.width * UNIT - 5, height: UNIT - 5, minHeight: 0, padding: 4,
+            style={{ position: 'absolute', left: key.x * UNIT, top: key.y * UNIT, width: key.width * UNIT - 5, height: UNIT - 5, minHeight: 0, paddingLeft: 2, paddingRight: 2, paddingTop: 2, paddingBottom: 2,
               backgroundColor: selected ? p.selected : key.y === 0 || key.width > 1 || protectedKey ? p.keyAlternate : p.key,
               borderColor: selected ? p.accent : p.border, borderWidth: selected ? 2 : 1, borderRadius: key.id === 'knob' ? 19 : 6, flexDirection: 'column', gap: 1 }}>
-            <text style={{ color: p.text, fontWeight: selected ? 700 : 500, fontSize: key.legend.length > 5 ? 12 : 13 }}>{key.legend}</text>
-            {pending ? <text style={{ color: p.accent, fontSize: 9, fontWeight: 700 }}>{`• ${actionShort(pending)}`}</text> : protectedKey ? <text style={{ color: p.secondary, fontSize: 8 }}>—</text> : null}
+            <text style={{ color: p.text, fontWeight: selected ? 700 : 500, fontSize: key.legend.length > 5 ? 12 : 13, width: key.width * UNIT - 13, whiteSpace: 'nowrap', textAlign: 'center', lineHeight: 16 }}>{key.legend}</text>
+            {pending ? <text style={{ color: p.accent, fontSize: 9, fontWeight: 700, width: key.width * UNIT - 13, whiteSpace: 'nowrap', textAlign: 'center', lineHeight: 10 }}>{`• ${actionShort(pending)}`}</text> : protectedKey ? <text style={{ color: p.secondary, fontSize: 8, width: key.width * UNIT - 13, whiteSpace: 'nowrap', textAlign: 'center', lineHeight: 10 }}>—</text> : null}
           </Button>;
         })}
       </div>

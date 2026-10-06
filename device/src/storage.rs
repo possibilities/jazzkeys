@@ -1,5 +1,5 @@
 //! Durable evidence before wire mutation. Files are private, bounded, never auto-replayed.
-use crate::domain::{Entry, MAX_FRAME, Result, STORAGE, Snapshot, Target, valid_id};
+use crate::domain::{Entry, Keymap, MAX_FRAME, Result, STORAGE, Snapshot, Target, valid_id};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
 #[cfg(unix)]
@@ -51,6 +51,7 @@ pub(crate) enum JournalEvent {
         not_attempted: usize,
         preserved: bool,
         readback_complete: bool,
+        readback_hex: Option<String>,
         cancelled: bool,
         reason: Option<String>,
     },
@@ -170,6 +171,7 @@ impl FsStore {
             let mut snapshot_id = None;
             let mut resolved = false;
             let mut intent: Option<JournalIntent> = None;
+            let mut original: Option<Keymap> = None;
             let mut attempted: Vec<String> = Vec::new();
             let mut pending: Option<String> = None;
             let mut terminal = false;
@@ -202,6 +204,14 @@ impl FsStore {
                         )?)
                         .map_err(|_| STORAGE)?;
                         validate_intent(&snapshot, &prepared)?;
+                        original = Some(
+                            snapshot
+                                .maps()
+                                .map_err(|_| STORAGE)?
+                                .into_values()
+                                .next()
+                                .ok_or(STORAGE)?,
+                        );
                         snapshot_id = Some(prepared.snapshot_id.clone());
                         intent = Some(prepared);
                     }
@@ -238,6 +248,7 @@ impl FsStore {
                         not_attempted,
                         preserved,
                         readback_complete,
+                        readback_hex,
                         cancelled,
                         reason,
                     } => {
@@ -260,6 +271,38 @@ impl FsStore {
                         ) || pending.is_some() && status != "uncertain"
                         {
                             return Err(STORAGE);
+                        }
+                        if readback_complete != readback_hex.is_some() {
+                            return Err(STORAGE);
+                        }
+                        if let Some(hex) = readback_hex {
+                            let actual = Keymap::from_hex(&hex).map_err(|_| STORAGE)?;
+                            let original = original.as_ref().ok_or(STORAGE)?;
+                            let requested = &prepared.changes[..attempted.len()];
+                            let expected_verified: BTreeSet<_> = requested
+                                .iter()
+                                .filter(|change| {
+                                    actual.0[usize::from(change.slot)].0 == change.after
+                                })
+                                .map(|change| &change.physical_key)
+                                .collect();
+                            let slots: BTreeSet<_> = requested
+                                .iter()
+                                .map(|change| usize::from(change.slot))
+                                .collect();
+                            let actual_preserved = (0..128)
+                                .filter(|slot| !slots.contains(slot))
+                                .all(|slot| actual.0[slot] == original.0[slot]);
+                            if expected_verified != verified || actual_preserved != preserved {
+                                return Err(STORAGE);
+                            }
+                            if status == "rejected"
+                                && requested.iter().any(|change| {
+                                    actual.0[usize::from(change.slot)].0 != change.before
+                                })
+                            {
+                                return Err(STORAGE);
+                            }
                         }
                         if readback_complete && !unknown.is_empty()
                             || !readback_complete && !verified.is_empty()

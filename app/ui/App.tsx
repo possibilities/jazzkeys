@@ -72,7 +72,7 @@ export function JazzkeysApp({ initialScenario = 'disconnected', initialAppearanc
     } finally { applyStarted.current = false; setCancellationRequested(false); }
   }
   const status = state.mode === 'disconnected' ? 'Disconnected' : state.mode === 'offline' ? 'Offline draft · demo' : state.mode === 'read-only' ? 'Read-only · simulated' : 'Demo · no HID access';
-  return <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', position: 'relative', backgroundColor: p.canvas, fontFamily: FONT, color: p.text }}>
+  return <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', overflow: 'hidden', position: 'relative', backgroundColor: p.canvas, fontFamily: FONT, color: p.text }}>
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 32, paddingRight: 32, height: 78, flexShrink: 0, borderBottomWidth: 1, borderColor: p.border }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
         <text role="heading" aria-level={1} style={{ color: p.text, fontSize: 25, fontWeight: 700 }}>Jazzkeys</text>
@@ -84,7 +84,7 @@ export function JazzkeysApp({ initialScenario = 'disconnected', initialAppearanc
         <Button palette={p} label="Open Jazzkeys help and support limits" disabled={modal} onPress={() => { rememberFocus(); setHelp(true); }}>Help</Button>
       </div>
     </div>
-    <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0, overflowY: 'scroll', padding: 32, gap: 27 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, flexBasis: 0, minHeight: 0, overflowY: 'scroll', padding: 32, gap: 27 }}>
       {state.mode === 'disconnected' ? <>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 9, maxWidth: 700 }}>
           <Label palette={p}>AJAZZ × NACODEX AK820 MAX</Label>
@@ -117,7 +117,14 @@ export function JazzkeysApp({ initialScenario = 'disconnected', initialAppearanc
           <Board state={state} palette={p} onSelect={id => send({ type: 'select-key', id })} onFocusId={id => boardFocusIds.current.add(id)} inactive={modal} />
           <Inspector key={state.selected} state={help ? { ...state, phase: { kind: 'review', plan: { id: 'help', mode: 'demo', generation: 0, revision: 0, changes: [] } } } : state} palette={p} send={stageIntent} />
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, paddingTop: 22, borderTopWidth: 1, borderColor: p.border }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: 14 }}>
+          <text role="status" style={{ color: p.secondary, fontSize: 13 }}>{state.notice ?? 'Tab enters the board · arrows select keys · Cmd/Ctrl Z undoes a draft edit while the board is focused'}</text>
+          <Button palette={p} label={state.mode === 'demo' ? 'Disconnect demo and preserve draft' : 'Start a fresh demo and discard this simulated state'} disabled={modal} onPress={() => send({ type: state.mode === 'demo' ? 'disconnect-demo' : 'open-demo' })} style={{ minHeight: 32 }}>{state.mode === 'demo' ? 'Disconnect demo' : 'Reset demo'}</Button>
+        </div>
+      </>}
+    </div>
+    {state.mode !== 'disconnected' ? <>
+        <div testId="draft-action-bar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexShrink: 0, paddingTop: 17, paddingBottom: 17, paddingLeft: 32, paddingRight: 32, backgroundColor: p.canvas, borderTopWidth: 1, borderColor: p.border }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}><text style={{ color: p.text, fontSize: 19, fontWeight: 600 }}>{`${pending.length} pending ${pending.length === 1 ? 'change' : 'changes'}`}</text><Paragraph palette={p} small>Local draft only · current profile is simulated</Paragraph></div>
           <div style={{ display: 'flex', gap: 8 }}>
             <Button palette={p} label="Undo draft edit" disabled={modal || !state.past.length || state.layer === 'fn'} onPress={() => send({ type: 'undo' })}>Undo</Button>
@@ -126,13 +133,8 @@ export function JazzkeysApp({ initialScenario = 'disconnected', initialAppearanc
             <Button palette={p} primary label={`Review ${pending.length} pending changes`} testId="review-changes" disabled={modal || !pending.length || state.mode !== 'demo'} onPress={openReview}>{`Review ${pending.length} ${pending.length === 1 ? 'change' : 'changes'}`}</Button>
           </div>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', gap: 14 }}>
-          <text role="status" style={{ color: p.secondary, fontSize: 13 }}>{state.notice ?? 'Tab enters the board · arrows select keys · Cmd/Ctrl Z undoes a draft edit while the board is focused'}</text>
-          <Button palette={p} label={state.mode === 'demo' ? 'Disconnect demo and preserve draft' : 'Start a fresh demo and discard this simulated state'} disabled={modal} onPress={() => send({ type: state.mode === 'demo' ? 'disconnect-demo' : 'open-demo' })} style={{ minHeight: 32 }}>{state.mode === 'demo' ? 'Disconnect demo' : 'Reset demo'}</Button>
-        </div>
-      </>}
-    </div>
-    <div style={{ display: 'flex', justifyContent: 'space-between', paddingLeft: 32, paddingRight: 32, paddingTop: 13, paddingBottom: 13, borderTopWidth: 1, borderColor: p.border }}>
+    </> : null}
+    <div style={{ display: 'flex', justifyContent: 'space-between', flexShrink: 0, paddingLeft: 32, paddingRight: 32, paddingTop: 13, paddingBottom: 13, borderTopWidth: 1, borderColor: p.border }}>
       <text style={{ color: p.secondary, fontSize: 12 }}>Native · offline · no analytics</text>
       <text style={{ color: p.secondary, fontSize: 12 }}>Provisional geometry · hardware writes unavailable</text>
     </div>

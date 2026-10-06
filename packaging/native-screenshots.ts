@@ -22,6 +22,7 @@ for (const [width,height] of [[1180,780], [960,680]] as const) for (const appear
     evidence.push({name,width,height,scenario,appearance,text,a11y:test.renderer.getA11yTree()})
   } finally { test.unmount() }
 }
+await writeFile('artifacts/native/evidence.json',JSON.stringify({schemaVersion:1,renderer:'stock GPUIX 0.10.0 macOS ARM64',hardware:'none',evidence},null,2))
 // Actual native hit testing, state transition, and top-level cancellation.
 const alternative = createTestRoot({width:1180,height:780,onKeyDown:windowKeyHandler})
 try {
@@ -38,6 +39,10 @@ try {
     if (!element) throw new Error(`Missing native control ${testId}`)
     const bounds = flow.renderer.getElementBounds(element.id)
     if (!bounds) throw new Error(`Unlaid-out native control ${testId}`)
+    if (bounds.y < 0 || bounds.y + bounds.height > 780 || bounds.x < 0 || bounds.x + bounds.width > 1180) {
+      flow.renderer.captureScreenshot('artifacts/native/interaction-offscreen-control.png')
+      throw new Error(`Native control is outside viewport: ${testId}`)
+    }
     flow.renderer.nativeSimulateClick(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2)
   }
   click('open-demo')
@@ -51,7 +56,9 @@ try {
   click('stage-change')
   if (!flow.renderer.getAllText().includes('1 pending change')) throw new Error('Staging did not produce one draft change')
   click('review-changes')
+  flow.renderer.captureScreenshot('artifacts/native/interaction-review.png')
   const cancel = flow.renderer.findByTestId('cancel-review')!
+  if (!cancel) throw new Error('Review button did not open the sheet')
   if (flow.renderer.getFocusedElementId() !== cancel.id) throw new Error('Review must initially focus safe cancellation')
   flow.renderer.simulateKeystrokes('escape')
   flow.renderer.flush()

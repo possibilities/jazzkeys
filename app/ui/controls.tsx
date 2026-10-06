@@ -29,10 +29,10 @@ export const Button = forwardRef<PublicInstance, ButtonProps>(function Button({ 
       if (event.key === 'space') { spaceDown.current = true; setPressed(true); }
     }}
     onKeyUp={event => { if (event.key === 'space') { const commit = spaceDown.current; spaceDown.current = false; setPressed(false); if (commit && !disabled) onPress(); } }}
-    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingLeft: 15, paddingRight: 15, minHeight: 40, borderRadius: 8, borderWidth: 2, borderColor: focused && !disabled ? p.accent : primary ? p.accent : p.border,
+    style={{ display: 'flex', flexShrink: 0, alignItems: 'center', justifyContent: 'center', paddingLeft: 15, paddingRight: 15, minHeight: 40, borderRadius: 8, borderWidth: 2, borderColor: focused && !disabled ? p.accent : primary ? p.accent : p.border,
       backgroundColor: disabled ? p.subtle : primary ? p.accent : pressed ? p.selected : p.surface, cursor: disabled ? 'not-allowed' : 'pointer', userSelect: 'none',
       hover: disabled ? {} : { backgroundColor: primary ? p.accent : p.selected }, active: disabled ? {} : { backgroundColor: primary ? p.accent : p.selected, borderColor: primary ? p.onAccent : p.text }, ...style, ...(focused && !disabled ? { borderColor: primary ? p.onAccent : p.text, borderWidth: 2 } : {}) }}>
-    {typeof children === 'string' ? <text style={{ color: disabled ? p.secondary : primary ? p.onAccent : p.text, fontSize: 14, fontWeight: 600 }}>{children}</text> : children}
+    {typeof children === 'string' ? <text style={{ color: disabled ? p.secondary : primary ? p.onAccent : p.text, fontSize: 14, fontWeight: 600, whiteSpace: 'nowrap', textAlign: 'center' }}>{children}</text> : children}
   </div>;
 });
 export function Label({ children, palette: p }: { children: ReactNode; palette: Palette }) {
