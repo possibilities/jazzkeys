@@ -1,0 +1,138 @@
+name: Release Mac demo
+on:
+  push:
+    branches: [main]
+    paths:
+      - packaging/mac-release-version.txt
+      - .github/workflows/mac-release.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: mac-demo-release-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  sources:
+    if: github.repository == 'possibilities/jazzkeys' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.13.16
+      - name: Verify notices and release-tool regressions
+        run: |
+          python3 docs/redistribution/verify_inventory.py
+          python3 docs/redistribution/test_inventory_tools.py
+          python3 -m unittest discover -s packaging -p 'test_*.py'
+          python3 docs/redistribution/test_recreate_webkit_source.py
+      - name: Recreate the exact pinned WebKit source subset
+        run: python3 docs/redistribution/recreate_webkit_source.py --output "$RUNNER_TEMP/webkit-source-cache" --download
+      - name: Assemble and verify matching complete source
+        env:
+          SOURCE_COMMIT: ${{ github.sha }}
+        run: |
+          for attempt in 1 2 3; do
+            if python3 docs/redistribution/collect_sources.py --output "$RUNNER_TEMP/corresponding-source" --cache "$RUNNER_TEMP/webkit-source-cache" --project-ref "$SOURCE_COMMIT" --download; then
+              break
+            fi
+            if [ "$attempt" = 3 ]; then exit 1; fi
+            sleep 5
+          done
+          python3 packaging/source-release.py --source "$RUNNER_TEMP/corresponding-source" --output "$RUNNER_TEMP/source-assets" --project-ref "$SOURCE_COMMIT"
+          python3 packaging/source-release.py --source "$RUNNER_TEMP/corresponding-source" --output "$RUNNER_TEMP/source-assets" --project-ref "$SOURCE_COMMIT" --verify-only
+      - name: Make complete source available before any executable artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: jazzkeys-release-source-${{ github.sha }}
+          path: ${{ runner.temp }}/source-assets/
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 30
+  mac:
+    needs: sources
+    runs-on: macos-14
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.13.16
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version: 1.3.10
+      - name: Pinned Rust toolchain
+        run: rustup toolchain install 1.90.0 --profile minimal --component rustfmt --component clippy
+      - name: Locked checks, notices, and advisory scan
+        run: |
+          bun install --frozen-lockfile --ignore-scripts
+          bun run check
+          bun audit --json
+          python3 docs/redistribution/verify_inventory.py
+          python3 docs/redistribution/test_inventory_tools.py
+          python3 -m unittest discover -s packaging -p 'test_*.py'
+          cargo fmt --manifest-path device/Cargo.toml -- --check
+          cargo clippy --manifest-path device/Cargo.toml --locked --all-targets -- -D warnings
+          cargo test --manifest-path device/Cargo.toml --locked
+      - name: Read-only appearance and native offscreen controls
+        run: |
+          bun run appearance/test-package.ts
+          bun run appearance/test-native.ts
+          bun run test:native
+      - name: Build the compiled app with its matching worker
+        run: |
+          bun run build
+          bun packaging/verify-package.ts dist/jazzkeys-macos-arm64
+          bun packaging/smoke.ts dist/jazzkeys-macos-arm64
+          cmp dist/appearance-tests/jazzkeys-appearance dist/jazzkeys-macos-arm64/jazzkeys-appearance
+          bun run build:bundle
+      - name: Archive and re-extract the app; verify without a local runtime
+        run: python3 packaging/mac-release.py --bundle dist/install/macos-arm64 --output "$RUNNER_TEMP/mac-assets"
+      - name: Upload executable ZIP only after matching complete source exists
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: jazzkeys-release-mac-${{ github.sha }}
+          path: ${{ runner.temp }}/mac-assets/
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 30
+      - name: Upload native validation receipts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: jazzkeys-release-evidence-${{ github.sha }}
+          path: artifacts/
+          if-no-files-found: error
+          retention-days: 30
+  publish:
+    if: github.repository == 'possibilities/jazzkeys' && github.ref == 'refs/heads/main'
+    needs: [sources, mac]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.13.16
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: jazzkeys-release-source-${{ github.sha }}
+          path: ${{ runner.temp }}/release-assets
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: jazzkeys-release-mac-${{ github.sha }}
+          path: ${{ runner.temp }}/release-assets
+      - name: Verify both asset sets and publish an immutable demo prerelease
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 packaging/publish-mac-release.py --assets "$RUNNER_TEMP/release-assets"

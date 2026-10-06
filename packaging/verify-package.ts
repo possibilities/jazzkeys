@@ -17,7 +17,7 @@ export const packageBinaries = ['jazzkeys', 'jazzkeys-device', 'jazzkeys-appeara
 // Additional docs are included and hash-checked through the source manifest.
 export const requiredPackageFiles: readonly string[] = [
   'LICENSE', 'THIRD-PARTY-NOTICES.md', ...packageBinaries,
-  'docs/SAFETY.md', 'docs/HARDWARE.md', 'docs/PROTOCOL.md', 'docs/RELEASE.md', 'docs/VERIFICATION.md',
+  'docs/INSTALL.md', 'docs/SAFETY.md', 'docs/HARDWARE.md', 'docs/PROTOCOL.md', 'docs/RELEASE.md', 'docs/VERIFICATION.md',
   ...['README.md', 'Bun-LICENSE.md', 'CSSType-MIT.txt', 'DefinitelyTyped-MIT.txt',
     'GPUI-Apache-2.0.txt', 'GPUIX-Apache-2.0.txt', 'GPUIX-THIRD-PARTY-NOTICES.md',
     'IBM-Plex-Sans-OFL.txt', 'Lilex-OFL.txt', 'React-MIT.txt', 'TypeScript-Apache-2.0.txt',

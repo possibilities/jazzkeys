@@ -14,7 +14,7 @@ export function bundleLayout(target: PackageTarget) {
 }
 export interface BundleManifest {
   schemaVersion: 1; product: 'Jazzkeys'; version: string; target: PackageTarget
-  sourceCommit: string; sourceTree: string; hardwareStatus: 'no_hardware_demo'; redistributionStatus: 'review_pending'
+  sourceCommit: string; sourceTree: string; hardwareStatus: 'no_hardware_demo'; redistributionStatus: 'source_companion_required'
   protocolVersion: 1; appearanceProtocolVersion: 1; signing: string; layout: string; application: string
   sourceManifest: string; sourceManifestSha256: string
   executableSha256: string; workerSha256: string; appearanceHelperSha256: string
@@ -31,7 +31,7 @@ export async function verifyBundle(directory: string): Promise<BundleManifest> {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('Unknown bundle manifest')
   const manifest = value as BundleManifest
   if (manifest.schemaVersion !== 1 || manifest.product !== 'Jazzkeys' || !isPackageTarget(manifest.target) ||
-      manifest.hardwareStatus !== 'no_hardware_demo' || manifest.redistributionStatus !== 'review_pending' ||
+      manifest.hardwareStatus !== 'no_hardware_demo' || manifest.redistributionStatus !== 'source_companion_required' ||
       manifest.protocolVersion !== 1 || manifest.appearanceProtocolVersion !== 1) throw new Error('Unknown bundle manifest or protocol')
   const layout = bundleLayout(manifest.target)
   const sourcePath = `${layout.resources}/source-manifest.json`

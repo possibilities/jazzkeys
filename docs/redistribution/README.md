@@ -145,8 +145,18 @@ license obligations are intentionally described separately.
 `source-inputs.json` pins 1,010 original/source-subset archives totaling
 479,366,080 bytes. `collect_sources.py` copies matching cached bytes (or downloads
 checksum-pinned inputs only when `--download` is supplied), then writes a receipt.
-The locally generated, Git-verified WebKit source subset must be supplied from its
-retained cache; it is not falsely represented as an official downloadable asset.
+The locally generated, Git-verified WebKit source subset can be supplied from a
+retained cache or reconstructed byte-for-byte from the fixed official Git commit:
+
+```sh
+python docs/redistribution/recreate_webkit_source.py \
+  --output /path/outside/checkout/webkit-cache --download
+```
+
+Pass that directory as `--cache` below. Reconstruction verifies all 11,261 retained
+Git blobs, tree membership, original metadata, size, and the unchanged archive
+SHA-256. It executes no upstream code. This generated subset is not represented
+as an official downloadable upstream archive.
 
 ```sh
 python docs/redistribution/collect_sources.py \

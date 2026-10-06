@@ -1,79 +1,88 @@
-# Release status and gates
+# Mac demo releases
 
-## Current status
+The downloadable target is **macOS ARM64 only**. The release workflow builds a
+ZIP containing `Jazzkeys.app`, with all runtimes, its matching private worker,
+read-only appearance helper, license texts, and notices. A local development
+toolchain is not required to use the download. See [installation](INSTALL.md).
 
-As of 2026-10-06, this is a tested source/demo milestone. Native macOS offscreen
-rendering and the staged-mapping interaction passed; macOS ARM64 and Ubuntu 24.04
-compiled-package relocation/worker integrity checks passed. The bounded no-HID
-core passed an independent review and 37 unit plus 2 executable tests. See the
-[exact verification receipt](VERIFICATION.md) for source/run links and limits.
+## Scope
 
-This is not a completed write-enabled mapper. Real hardware access, a production
-HID transport, actual OS installation, screen-reader acceptance, Linux window
-rendering, and signed downloadable releases remain outside the verified scope.
+This is an experimental **no-hardware demo**, without Developer ID signing or
+notarization. It supports the native staged-mapping editor and review flow. It
+has no production HID transport and cannot read or change a physical keyboard.
+Base/Fn capability, persistence, and actual unit compatibility remain unverified.
 
-The installed Linux addon loads but has no native test renderer; ELF inspection
-shows a `GLIBC_2.39` requirement. Bun 1.3.10 references up to `GLIBC_2.25`. The
-addon governs the stricter known floor; neither load success nor the Ubuntu 24.04
-CI choice establishes full Linux rendering/install support. Initial `bun audit
---json` returned an empty report with exit 0 for the locked JS dependencies; this
-is not an audit of native code or bundled assets.
+Native offscreen light/dark/compact rendering, control interactions, keyboard
+focus behavior, core fault tests, and compiled-package relocation are automated.
+The release ZIP is re-extracted with macOS `ditto` to a path containing spaces;
+all files/modes are verified and both renderer-free compiled self-tests run with
+an empty PATH. These checks establish packaging integrity, not ordinary GUI
+startup or a screen-reader evaluation.
 
-Passing tests or compiling a package alone must not change those labels. Record
-later results against an exact commit, target, command, and evidence artifact;
-keep failed, blocked, and not-run checks distinct.
+The packaged macOS app's ordinary GUI runtime network behavior and OS permission
+prompts have not been observed. No network-silence or complete installation /
+accessibility acceptance claim is made. First-party code has no production HID
+backend, network feature, service installer, or Accessibility/Input Monitoring
+request. Static absence does not prove all bundled native runtime behavior.
+Hosted runner TCC preapprovals further limit permission-prompt observations.
+The additional live runtime check requires separately coordinated interaction.
 
-## Milestone exit criteria
+The full distribution-acceptance milestone therefore remains open. A labelled
+experimental demo is a narrower deliverable, not a completed write-enabled
+mapper or a claim that every acceptance gate passed.
 
-| Milestone | Required evidence |
-| --- | --- |
-| M0: feasibility | Stock pinned GPUIX renders a native window; compiled app starts with its matching worker from an installed-style location, without system Bun/Node |
-| M1: editor | Demo-only stage/review/cancel flow, essential states, keyboard interaction, actual inspected native screenshots |
-| M2: core | Independent fake-transport/clock traces, fail-closed plans, bounded IPC, durable snapshot/journal lifecycle, fault and uncertain-outcome tests |
-| M3: reads | Authorized H1–H3 evidence for a specific unit/interface/profile/layout; stable real reads; truthful permission/unsupported states |
-| M4: writes | Authorized one-key write and restoration, read-back/preservation, separately measured USB persistence and Bluetooth behavior |
-| M5: artifacts | Reviewed source, platform install/uninstall, dependency/license inventory, provenance, permission and network checks, truthful signing status |
+## CI and artifact integrity
 
-Source-only, demo-only, and later read-only releases are legitimate when labelled
-accurately. None is a completed write-enabled mapper. Apply remains unavailable
-without the complete reviewed capability evidence.
+`mac-release.yml` runs on reviewed main changes to its release marker and by
+manual dispatch on main. It has three stages:
 
-CI may build locally and publish screenshots/manifests, but executable uploads
-remain blocked by the specific native/Bun provenance and notice inventory in
-[THIRD-PARTY-NOTICES.md](../THIRD-PARTY-NOTICES.md#remaining-binary-release-inventory).
+1. A read-only Mac job runs locked checks, Rust formatting/lint/fault tests,
+   appearance tests, native offscreen interaction checks, package/bundle builds,
+   and the archive round trip. Only this job creates executable release bytes.
+2. A read-only source job reconstructs the pinned WebKit subset, collects all
+   checksum-pinned corresponding sources plus the exact project commit, and
+   verifies the complete archive and retained notice inventory.
+3. A separate, main-only publishing job receives only `contents: write` and
+   `actions: read`, verifies both asset sets and matching commit/tree, then
+   creates a versioned draft, uploads and verifies all assets, and publishes a
+   prerelease. Build jobs have no publishing token or signing credentials.
 
-## Binary publication checklist
+Actions are pinned by full commit; Python 3.13.16, Bun, Rust, native dependencies and lockfiles
+are pinned. Each release includes a SHA-256 list, exact source commit/tree,
+build-run link, bundle manifest, Mac validation receipt, complete source archive,
+and source receipt. These establish traceability and consistency, not independent
+publisher authentication, notarization, or reproducible source-to-binary proof.
+No artifact attestation or reproducible build claim is currently made.
 
-- Run required checks against the exact release commit. Pin Actions by full commit,
-  tools by exact version, and any build container by digest. Use frozen/locked
-  installs. Build jobs use minimal read permissions and no publishing secrets.
-- Build on each claimed platform. Establish macOS version and Linux libc/library
-  floors experimentally; upstream target availability is not a support guarantee.
-- Verify the app/worker identity, protocol compatibility, installed relative paths,
-  file modes, cleanup, and operation without development runtime installations.
-- Complete the native-library and embedded-font license inventory. Include required
-  license texts/notices, source obligations, and an SBOM. Current npm wrapper
-  notices alone are insufficient; see [third-party inventory](../THIRD-PARTY-NOTICES.md).
-- Capture and inspect native light/dark/narrow-state images and keyboard/accessibility
-  behavior. No browser rendering may stand in for native platform acceptance.
-- Verify runtime network silence, no hidden process/service, no device opens in
-  demo/startup, and narrowly scoped permissions. Do not ship a guessed udev rule.
-- Record support labels separately: demo, read-only identified, base single-slot
-  write, Fn write, USB persistence, Bluetooth behavior; include unit/revision/mode.
-- Publish source commit, exact target, build-run link, SHA-256 manifest, dependency
-  inventory, and artifact attestations where supported. Checksums alone do not
-  establish publisher identity or source-to-binary reproducibility.
-- Use a separate protected publishing step. Do not overwrite verified assets;
-  publish a new version for replacements with the reason recorded.
-- Label unsigned/ad-hoc macOS builds honestly. Developer ID/notarization require
-  authorized signing facilities; never advise globally disabling OS protection.
-  Prefer a simple auditable Linux package/archive with uninstall instructions.
-- Establish a working private security-reporting route before binary distribution.
+A published asset is never overwritten. A retry may finish a matching draft by
+checking existing asset hashes; a mismatch stops publication. A replacement uses
+a new source commit/run version and explains the reason. The pipeline creates no
+persistent credential and changes no repository visibility or OS security setting.
 
-## Immediate next evidence
+## Source and notices
 
-Complete native input/accessibility and distribution gates without broadening the
-hardware surface. Then request metadata-only inspection of the intended unit,
-followed by a separate bounded feature-query request. Hardware steps, reversible
-writes, desktop control, signing access, and release publication each retain their
-own authorization gates.
+The inventory includes pinned native crate/Git closures, Bun and bundled library
+sources, fonts, retained notices, worker dependencies, and build/relink recipes.
+The exact complete corresponding-source archive is published beside the app at
+equivalent access, including the required GPL/MPL/LGPL source inputs. Upstream
+links or GitHub's automatic project-source archive alone are not substitutes.
+See [third-party notices](../THIRD-PARTY-NOTICES.md) and
+[redistribution evidence](redistribution/README.md).
+
+## Remaining acceptance work
+
+- Observe ordinary packaged Mac startup, bounded runtime network/device access,
+  permission behavior, quit/uninstall, and system-appearance changes, with the
+  owner's coordinated permission for that interaction
+- Test VoiceOver on the native app; static roles and keyboard checks do not imply
+  complete screen-reader support
+- Acquire signing/notarization facilities only if the owner later authorizes them
+- Validate any physical-unit reads and writes through separate scoped hardware
+  approvals; keep real-device Apply disabled until reviewed evidence exists
+
+Report ordinary demo bugs in Issues. Follow [SECURITY.md](../SECURITY.md) for
+sensitive reports. GitHub private vulnerability reporting is not yet verified
+enabled; a minimal public request for a private channel is the supported fallback,
+without exploit details or personal/device data. This document replaces the
+older source-only publication hold now that a complete-source demo release is
+explicitly requested; it does not mark unperformed acceptance tests as passed.

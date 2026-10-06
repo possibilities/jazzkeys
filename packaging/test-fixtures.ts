@@ -43,7 +43,7 @@ export async function bundleFixture(target: PackageTarget) {
   const manifest: BundleManifest = {
     schemaVersion: 1, product: 'Jazzkeys', version: flat.manifest.version, target,
     sourceCommit: flat.manifest.sourceCommit, sourceTree: flat.manifest.sourceTree,
-    protocolVersion: 1, appearanceProtocolVersion: 1, hardwareStatus: 'no_hardware_demo', redistributionStatus: 'review_pending',
+    protocolVersion: 1, appearanceProtocolVersion: 1, hardwareStatus: 'no_hardware_demo', redistributionStatus: 'source_companion_required',
     layout: layout.layout, signing: layout.signing, application: layout.application,
     sourceManifest, sourceManifestSha256: digest(await readFile(join(dir, sourceManifest), 'utf8')),
     executableSha256: digest(flat.contents.jazzkeys!), workerSha256: digest(flat.contents['jazzkeys-device']!),

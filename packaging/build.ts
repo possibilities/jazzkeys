@@ -51,7 +51,7 @@ await copyFile(join(root, 'LICENSE'), join(out, 'LICENSE'))
 await copyFile(join(root, 'THIRD-PARTY-NOTICES.md'), join(out, 'THIRD-PARTY-NOTICES.md'))
 // Preserve committed notices and links, excluding ignored caches and untracked assets.
 await copyCommittedDocs(root, commit, out)
-const manifest = { schemaVersion: 1, product: 'Jazzkeys', version: '0.1.0-dev.0', target,
+const manifest = { schemaVersion: 1, product: 'Jazzkeys', version: (await Bun.file(join(root,'package.json')).json()).version, target,
   sourceCommit: commit, sourceTree, hardwareStatus: 'no_hardware_demo', signing: 'unsigned',
   bun: Bun.version, gpuix: '0.10.0', embeddedNativeAddonSha256:addonHash, workerVersion: '0.1.0', protocolVersion: 1,
   appearanceProtocolVersion:1, appearanceHelperSha256:appearanceHash,

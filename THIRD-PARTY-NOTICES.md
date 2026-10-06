@@ -119,7 +119,7 @@ On macOS the helper uses the system Foundation framework; its build script does
 not copy Apple framework binaries into Jazzkeys. Exact final-package linkage and
 platform support remain release checks.
 
-## Remaining binary-release inventory
+## Binary-release source and notice obligations
 
 The dependency **notice/source inventory work is now concrete**, rather than a
 request to investigate unspecified native licenses: 784 checksum-verified native
@@ -143,10 +143,12 @@ Before publishing executables:
    byte-for-byte reproduction is additional engineering confidence, not an added
    license condition. Do not restrict modifying/relinking or debugging those
    modifications. Resolve any concrete missing build input if review finds one.
-4. Complete the independent runtime, installation, signing-status and security
-   gates. Notice collection does not establish those results or hardware support.
+4. Label the exact runtime, installation, signing-status and security evidence
+   and limitations. The experimental Mac demo is not full distribution or hardware
+   acceptance; see [release scope](docs/RELEASE.md). Notice collection does not
+   establish runtime results or hardware support.
 
-CI may build and validate locally. No downloadable binary is approved merely
-because this inventory exists. Source bundles may retain upstream assets under
+The Mac demo release workflow enforces matching source delivery and package
+checks. A notice inventory alone never establishes those results. Source bundles may retain upstream assets under
 their own licenses; vendor logos, product-label photos, or example artwork are
 not licensed for separate Jazzkeys branding merely by appearing upstream.

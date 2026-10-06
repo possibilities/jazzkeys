@@ -13,8 +13,9 @@ available. Private vulnerability reporting has not yet been verified as enabled.
 If unavailable, open a minimal public issue asking the maintainer for a private
 reporting channel. Do not publish exploit details, device dumps, snapshots,
 serials, private paths, credentials, or personally identifying images there.
-A verified private channel is a binary-release requirement; no response-time SLA
-is promised.
+This follows GitHub's documented fallback for repositories without private
+reporting. No response-time SLA is promised. Do not send sensitive details until
+a private channel has been agreed with the maintainer.
 
 A useful private report names the affected commit/package/platform, expected and
 observed behavior, whether hardware was touched, and a bounded reproduction using
