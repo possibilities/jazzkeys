@@ -1,0 +1,35 @@
+{
+  "name": "jazzkeys",
+  "version": "0.1.0-dev.0",
+  "private": true,
+  "type": "module",
+  "description": "A careful key mapper for your AK820 MAX.",
+  "license": "GPL-3.0-or-later",
+  "packageManager": "bun@1.3.10",
+  "engines": {
+    "bun": "1.3.10"
+  },
+  "scripts": {
+    "dev": "bun --hot app/main.tsx",
+    "test": "bun test app packaging",
+    "typecheck": "tsc --noEmit",
+    "check": "bun run typecheck && bun test app packaging",
+    "build:worker": "cargo build --manifest-path device/Cargo.toml --locked --release",
+    "build": "bun run packaging/build.ts",
+    "test:native": "bun run packaging/native-screenshots.ts"
+  },
+  "dependencies": {
+    "@gpuix/react": "0.10.0",
+    "@gpuix/native": "0.10.0",
+    "react": "19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.0",
+    "@types/bun": "1.3.10",
+    "typescript": "5.9.3"
+  },
+  "overrides": {
+    "react-reconciler": "0.31.0"
+  }
+}
+
