@@ -4,6 +4,7 @@ import importlib.util
 import json
 from pathlib import Path
 import tempfile
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 import zipfile
@@ -93,7 +94,7 @@ class LaunchReceiptTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
-        self.directory, self.mac, self.receipt = synthetic_assets(Path(self.temp.name))
+        self.directory, self.mac, self.receipt = synthetic_assets(Path(self.temp.name).resolve())
 
     def verify(self, receipt=None):
         m.verify_launch_receipt(receipt or self.receipt, self.mac, COMMIT, TREE, RUN_ID, ATTEMPT)
@@ -218,11 +219,11 @@ class LaunchReceiptTests(unittest.TestCase):
 
     def run_mocked_gate(self, metadata=None):
         """Exercise ordering and output with every external command mocked."""
-        root = Path(self.temp.name) / 'checkout'
+        root = Path(self.temp.name).resolve() / 'checkout'
         root.mkdir()
-        output = Path(self.temp.name) / 'result/macos-launch.json'
-        metadata_helper = Path(self.temp.name) / 'metadata-helper'
-        launch_helper = Path(self.temp.name) / 'launch-helper'
+        output = Path(self.temp.name).resolve() / 'result/macos-launch.json'
+        metadata_helper = Path(self.temp.name).resolve() / 'metadata-helper'
+        launch_helper = Path(self.temp.name).resolve() / 'launch-helper'
         calls = []
         environment = {
             'GITHUB_ACTIONS': 'true', 'GITHUB_REPOSITORY': m.REPO, 'GITHUB_REF': 'refs/heads/main',
@@ -286,6 +287,15 @@ class LaunchReceiptTests(unittest.TestCase):
 
     def test_mocked_gate_extracts_exact_archive_and_emits_one_bound_receipt(self):
         self.run_mocked_gate()
+
+    def test_mocked_gate_normalizes_platform_temporary_directory_alias(self):
+        # macOS exposes /var and /tmp aliases of their /private counterparts.
+        # Production ROOT is resolved; mocked checkout/tool paths must be too.
+        real = Path(self.temp.name).resolve()
+        alias = real / 'platform-temp-alias'
+        alias.symlink_to(real, target_is_directory=True)
+        with patch.object(self, 'temp', SimpleNamespace(name=str(alias))):
+            self.run_mocked_gate()
 
     def test_mocked_gate_never_launches_after_metadata_rejection(self):
         self.run_mocked_gate({**self.receipt['metadata'], 'verified': False})
