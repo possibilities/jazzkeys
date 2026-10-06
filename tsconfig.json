@@ -15,7 +15,7 @@
   "include": [
     "app/**/*.ts",
     "app/**/*.tsx",
-    "packaging/**/*.ts"
+    "packaging/**/*.ts",
+    "appearance/**/*.ts"
   ]
 }
-

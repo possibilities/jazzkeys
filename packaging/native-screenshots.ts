@@ -15,7 +15,7 @@ const evidence: unknown[] = []
 for (const [width,height] of [[1180,780], [960,680]] as const) for (const appearance of ['light','dark'] as const) for (const scenario of scenarios) {
   const test = createTestRoot({width,height,onKeyDown:windowKeyHandler})
   try {
-    test.render(createElement<JazzkeysAppProps>(JazzkeysApp,{initialScenario:scenario,initialAppearance:appearance,viewportWidth:width}))
+    test.render(createElement<JazzkeysAppProps>(JazzkeysApp,{initialScenario:scenario,initialAppearance:appearance,viewportWidth:width,viewportHeight:height}))
     test.renderer.flush()
     const name = `${scenario}-${appearance}-${width}x${height}`
     const text = test.renderer.getAllText()
@@ -26,12 +26,6 @@ for (const [width,height] of [[1180,780], [960,680]] as const) for (const appear
 }
 await writeFile('artifacts/native/evidence.json',JSON.stringify({schemaVersion:1,renderer:'stock GPUIX 0.10.0 macOS ARM64',hardware:'none',evidence},null,2))
 // Actual native hit testing, state transition, and top-level cancellation.
-const alternative = createTestRoot({width:1180,height:780,onKeyDown:windowKeyHandler})
-try {
-  alternative.render(createElement<JazzkeysAppProps>(JazzkeysApp,{initialScenario:'editing',initialAppearance:'light',viewportWidth:1180,designComposition:'stacked-workbench'}))
-  alternative.renderer.flush()
-  alternative.renderer.captureScreenshot('artifacts/native/composition-stacked-workbench.png')
-} finally { alternative.unmount() }
 const flow = createTestRoot({width:1180,height:780,onKeyDown:windowKeyHandler})
 try {
   flow.render(createElement<JazzkeysAppProps>(JazzkeysApp,{initialScenario:'disconnected',initialAppearance:'light',viewportWidth:1180}))
@@ -56,7 +50,7 @@ try {
   flow.renderer.nativeSimulateKeystrokes(input.id,'e s c a p e')
   click('target-key.escape')
   click('stage-change')
-  if (!flow.renderer.getAllText().includes('1 pending change')) throw new Error('Staging did not produce one draft change')
+  if (!flow.renderer.getAllText().includes('1 staged change')) throw new Error('Staging did not produce one draft change')
   click('review-changes')
   flow.renderer.captureScreenshot('artifacts/native/interaction-review.png')
   const cancel = flow.renderer.findByTestId('cancel-review')!

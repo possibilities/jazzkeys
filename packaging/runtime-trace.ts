@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto'
 import { mkdir, readFile, readdir, readlink, realpath, stat, writeFile } from 'node:fs/promises'
 import { join, resolve } from 'node:path'
 import { release } from 'node:os'
-import { analyzeRuntimeTrace, runtimeTraceFilter, runtimeRawNetworkCalls, summarizeRuntimeStderr } from './runtime-policy'
+import { analyzeRuntimeTrace, runtimeTraceFilter, runtimeRawNetworkCalls, summarizeRuntimeStderr, runtimeExitAccepted } from './runtime-policy'
 import { verifyPackage } from './verify-package'
 
 export type RuntimeTraceOptions = {
@@ -24,8 +24,9 @@ export async function startRuntimeTrace(options: RuntimeTraceOptions) {
   const args = options.args ?? (phase === 'bootstrap' ? ['--package-self-test'] : [])
   if (JSON.stringify(args) !== JSON.stringify(phase === 'bootstrap' ? ['--package-self-test'] : [])) throw new Error('Only bounded production demo/bootstrap invocations are accepted')
   const before = await verifyPackage(packageDirectory)
+  const appearanceFile = before.files.find((file: {name:string;sha256:string})=>file.name==='jazzkeys-appearance') as {name:string;sha256:string;bytes:number}|undefined
   const executableModes: Record<string,string> = {}
-  for (const name of ['jazzkeys','jazzkeys-device']) {
+  for (const name of ['jazzkeys','jazzkeys-device',...(appearanceFile ? ['jazzkeys-appearance'] : [])]) {
     const mode = (await stat(join(packageDirectory,name))).mode & 0o7777
     if ((mode & 0o6022) !== 0 || (mode & 0o100) === 0) throw new Error(`Unsafe package executable mode: ${name}`)
     executableModes[name] = mode.toString(8)
@@ -64,7 +65,7 @@ export async function startRuntimeTrace(options: RuntimeTraceOptions) {
     clearTimeout(watchdog)
     const errors = await stderr
     const traces = await Promise.all((await readdir(evidenceDirectory)).filter(name=>/^syscalls\.\d+$/.test(name)).sort().map(async name=>({name,text:await readFile(join(evidenceDirectory,name),'utf8')})))
-    const policy = analyzeRuntimeTrace(traces,{packageDirectory,initialCwd:packageDirectory,phase})
+    const policy = analyzeRuntimeTrace(traces,{packageDirectory,initialCwd:packageDirectory,phase,appearanceHelperSha256:appearanceFile?.sha256})
     let packageUnchanged = false
     let packageVerificationError: string | undefined
     try {
@@ -74,10 +75,10 @@ export async function startRuntimeTrace(options: RuntimeTraceOptions) {
       packageUnchanged = JSON.stringify(before)===JSON.stringify(after) && modesAfter.every(Boolean)
     } catch (error) { packageVerificationError = String(error) }
     const ptraceFailure = /Operation not permitted|PTRACE_\w+.*(?:denied|failed)|strace:.*(?:error|failed)/i.test(errors)
-    const passed = policy.passed && packageUnchanged && !expired && !ptraceFailure && (phase==='bootstrap' ? exitCode===0 : stopped || exitCode===0)
+    const passed = policy.passed && packageUnchanged && !expired && !ptraceFailure && runtimeExitAccepted(phase,exitCode,stopped)
     const report = {schemaVersion:1,passed,scope:'compiled no-hardware demo; observed Linux app descendants only',startedAt,finishedAt:new Date().toISOString(),
       uid:process.getuid?.(),kernel:release(),strace:version.stdout.toString().split('\n')[0],sourceCommit:before.sourceCommit,sourceTree:before.sourceTree,
-      packageFiles:before.files,executableModes,packageUnchanged,packageVerificationError,networkIsolation:{isolated,networkNamespace,baseNetworkNamespace:options.env.JAZZKEYS_BASE_NETWORK_NS,networkInterfaces,networkRoutes},phase,traceFilter:runtimeTraceFilter,pointerOnlyNetworkCalls:runtimeRawNetworkCalls,exitCode,intentionallyStopped:stopped,timedOut:expired,ptraceFailure,startupDiagnostic:summarizeRuntimeStderr(errors),
+      packageFiles:before.files,appearanceHelper:appearanceFile ? {...appearanceFile,lifecycle:'natural EOF and parent-death cleanup require separate native appearance acceptance; trace teardown enforces kill-on-exit'} : null,killOnTracerExit:true,executableModes,packageUnchanged,packageVerificationError,networkIsolation:{isolated,networkNamespace,baseNetworkNamespace:options.env.JAZZKEYS_BASE_NETWORK_NS,networkInterfaces,networkRoutes},phase,traceFilter:runtimeTraceFilter,pointerOnlyNetworkCalls:runtimeRawNetworkCalls,exitCode,signalCode:child.signalCode,intentionallyStopped:stopped,timedOut:expired,ptraceFailure,startupDiagnostic:summarizeRuntimeStderr(errors),
       traceArtifacts:traces.map(file=>({name:file.name,sha256:createHash('sha256').update(file.text).digest('hex')})),policy,
       limits:['Finite synthetic flow, not every possible runtime path','Unix-domain services and normal font/library reads are observed separately from Internet traffic','This trace does not establish macOS permissions, accessibility acceptance, hardware safety, or installation behavior','No tracing of the user desktop, real keyboard input, clipboard, or private user files']}
     await writeFile(join(evidenceDirectory,'runtime-report.json'),JSON.stringify(report,null,2)+'\n',{mode:0o600})

@@ -26,6 +26,9 @@ jobs:
           bun-version: 1.3.10
       - name: Pinned Rust toolchain
         run: rustup toolchain install 1.90.0 --profile minimal --component rustfmt --component clippy
+      - name: Official Linux appearance build/test prerequisites
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y libglib2.0-dev pkg-config dbus python3-gi
       - name: Frozen dependencies; no lifecycle hooks
         run: bun install --frozen-lockfile --ignore-scripts
       - name: TypeScript and model checks
@@ -35,10 +38,14 @@ jobs:
           cargo fmt --manifest-path device/Cargo.toml -- --check
           cargo clippy --manifest-path device/Cargo.toml --locked --all-targets -- -D warnings
           cargo test --manifest-path device/Cargo.toml --locked
+      - name: Read-only system appearance and helper lifetime
+        run: |
+          bun run appearance/test-package.ts
+          bun run appearance/test-native.ts
       - name: Build and verify installed-style app and private worker
         run: |
           bun run build
-          for package in dist/jazzkeys-*; do bun packaging/verify-package.ts "$package"; bun packaging/smoke.ts "$package"; done
+          for package in dist/jazzkeys-*; do bun packaging/verify-package.ts "$package"; bun packaging/smoke.ts "$package"; cmp dist/appearance-tests/jazzkeys-appearance "$package/jazzkeys-appearance"; done
           bun run build:bundle
       - name: Upload validation evidence (binary distribution remains gated)
         if: always()

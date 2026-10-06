@@ -13,8 +13,9 @@ result to different binaries or infer GUI acceptance from the package self-test.
 This verifies a finite synthetic **no-HID demo** on Linux x86-64. It does not
 implement or authorize device access, install services, grant permissions, or
 publish executables. Source fixture rendering and physical keyboard behavior are
-separate evidence. The production GUI currently starts no device worker; the
-packaged worker is exercised separately through its private hello pipe.
+separate evidence. The production GUI starts only the fixed first-party system-appearance observer;
+it does not start a device worker. The packaged device worker is exercised
+separately through its private hello pipe.
 
 ## Three independent checks
 
@@ -33,8 +34,10 @@ packaged worker is exercised separately through its private hello pipe.
 3. **Compiled native demo:** trace the same production app, without special app
    arguments, while the stock GPUIX stdio automation drives a synthetic native
    select → search → stage → review → Escape → simulate → verified flow. Require
-   a rendered window and captured native pixels separately. No worker or helper
-   exec, daemon-style fork or privilege operation is expected in this GUI flow
+   a rendered window and captured native pixels separately. Only one zero-argument
+   exec of the hash-verified adjacent `jazzkeys-appearance` is permitted. The
+   device worker, other helpers, daemon-style forks and privilege operations are
+   forbidden in this GUI flow
 
 The Linux native orchestrator runs all three inside an isolated Xvfb/software
 Vulkan session. The app runs as the ordinary CI user in a separate network
@@ -69,7 +72,12 @@ The analyzer rejects:
   kernel-local netlink are counted separately
 - HID/input/USB device-node opens, including relative dirfd/cwd paths, and
   decoded HID/input ioctls
-- Unexpected executable launches and non-thread process creation in GUI mode
+- Unexpected executable launches and non-thread process creation in GUI mode.
+  The sole exception is the app's directly spawned child that actually executes
+  its exact, manifest-hash-verified `jazzkeys-appearance`, with no arguments. One
+  canonical unavailable `clone3` probe may accompany its `clone` fallback; a
+  missing, repeated, relocated, argument-bearing or independently forking helper
+  fails acceptance
 - Credential/capability changes, namespace changes, daemon detachment, device
   node creation, ownership changes and unsafe permission grants
 - Writes or mutations in system/configuration and known user service/autostart
@@ -80,10 +88,25 @@ The analyzer rejects:
   changed package hashes or executable modes, root execution and tracer failure
 
 The manifest is verified before and after execution. Reports bind observations to
-source commit/tree, app and worker SHA-256, executable modes, platform/kernel,
+source commit/tree, app, device-worker and appearance-helper SHA-256, executable
+modes, platform/kernel,
 strace version, exact syscall filter, namespace identity, termination reason and
 SHA-256 of each trace file. Package checksums bind evidence to bytes; they do not
 by themselves prove reproducible builds or publisher identity.
+
+## Appearance helper lifetime
+
+The appearance sidecar reads only the system color preference through the Unix
+session bus on Linux. Its launch is not a blanket helper allowance. Its own
+threads and Unix-domain connection remain traced, and Internet/device/privilege
+rules apply unchanged. The summary includes its hash, exact exec and process
+creation edge. Bootstrap must not launch it.
+
+`--kill-on-exit` prevents any traced descendant from surviving test teardown.
+Natural cleanup must also be established separately: native appearance tests
+close stdin and kill a synthetic parent, then require the observer to stop within
+a bounded deadline. Bind those lifecycle tests to the packaged helper hash; do
+not infer natural EOF handling solely from the tracer forcibly stopping it.
 
 ## Privacy and retained artifacts
 

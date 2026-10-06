@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { analyzeRuntimeTrace, summarizeRuntimeStderr } from './runtime-policy'
+import { analyzeRuntimeTrace, summarizeRuntimeStderr, runtimeExitAccepted } from './runtime-policy'
 
 const options = {packageDirectory:'/test/Installed Jazzkeys',initialCwd:'/test/Installed Jazzkeys',phase:'demo' as const}
 const head = '1.000000 execve("/test/Installed Jazzkeys/jazzkeys", ["jazzkeys"], 0x0 /* 0 vars */) = 0\n1.000001 openat(AT_FDCWD, "/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = 3</lib/libc.so.6>\n'
@@ -29,6 +29,9 @@ describe('runtime syscall acceptance, independent of app source',()=>{
   test('resolves openat dirfd and chdir-relative paths',()=>{
     expect(categories('1.1 openat(7</dev/input>, "event2", O_RDONLY) = -1 ENOENT\n')).toContain('input-or-hid-device')
     expect(categories('1.1 chdir("/dev/input") = 0\n1.2 openat(AT_FDCWD, "event2", O_RDONLY) = -1 ENOENT\n')).toContain('input-or-hid-device')
+  })
+  test('uses strace decoded AT_FDCWD paths as the direct syscall location',()=>{
+    expect(categories('1.1 openat(AT_FDCWD</dev/input>, \"event2\", O_RDONLY) = -1 ENOENT\n')).toContain('input-or-hid-device')
   })
   test('inherits shared cwd changes across threads',()=>{
     const result=analyzeRuntimeTrace([
@@ -78,4 +81,71 @@ test('startup diagnostics never copy stderr paths, credentials or user data',()=
   expect(diagnostic.vulkanCodes).toEqual(['VK_ERROR_INCOMPATIBLE_DRIVER'])
   expect(JSON.stringify(diagnostic)).not.toContain('private-person')
   expect(JSON.stringify(diagnostic)).not.toContain('deadbeef')
+})
+
+test('native binding startup failure is distinguished from GPU initialization',()=>{
+  const diagnostic=summarizeRuntimeStderr("error: Cannot find native binding.\nerror: Cannot find module '@gpuix/native-linux-x64-gnu' from '/$bunfs/root/app'\nerror: Cannot find module './gpuix-native.linux-x64-gnu.node' from '/$bunfs/root/app'")
+  expect(diagnostic.categories).toEqual(['nativeBindingMissing','moduleMissing'])
+  expect(diagnostic.missingKnownAssets).toEqual(['@gpuix/native-linux-x64-gnu','gpuix-native.linux-x64-gnu.node'])
+  expect(JSON.stringify(diagnostic)).not.toContain('$bunfs')
+})
+
+test('intentional teardown does not bless an already-crashed app',()=>{
+  expect(runtimeExitAccepted('demo',143,true)).toBe(true)
+  expect(runtimeExitAccepted('demo',0,false)).toBe(true)
+  expect(runtimeExitAccepted('demo',139,true)).toBe(false)
+  expect(runtimeExitAccepted('demo',1,true)).toBe(false)
+  expect(runtimeExitAccepted('demo',143,false)).toBe(false)
+  expect(runtimeExitAccepted('bootstrap',143,true)).toBe(false)
+})
+
+const appearancePath='/test/Installed Jazzkeys/jazzkeys-appearance'
+const appearanceOptions={...options,appearanceHelperSha256:'a'.repeat(64)}
+const helperExec = `1.4 execve("${appearancePath}", ["${appearancePath}"], 0x0 /* 1 vars */) = 0\n1.5 openat(AT_FDCWD, "/lib/libgio.so", O_RDONLY) = 3</lib/libgio.so>\n`
+const helperSpawn='1.3 clone(child_stack=NULL, flags=CLONE_VM|CLONE_VFORK|SIGCHLD) = 102\n'
+const withAppearance=(parent=helperSpawn,child=helperExec) => analyzeRuntimeTrace([{name:'syscalls.100',text:head+parent},{name:'syscalls.102',text:child}],appearanceOptions)
+test('allows only one hash-identified adjacent zero-argument appearance helper',()=>{
+  const result=withAppearance()
+  expect(result.passed).toBe(true)
+  expect(result.appearanceHelper?.sha256).toBe('a'.repeat(64))
+  expect(result.processSpawns).toHaveLength(1)
+})
+test('appearance helper cannot be used as a generic executable or command path',()=>{
+  expect(withAppearance(helperSpawn,helperExec.replace(`["${appearancePath}"]`,`["${appearancePath}", "--command"]`)).findings.map(x=>x.category)).toContain('appearance-helper-arguments')
+  expect(withAppearance(helperSpawn,helperExec.replaceAll(appearancePath,'/tmp/jazzkeys-appearance')).passed).toBe(false)
+  expect(analyzeRuntimeTrace([{name:'syscalls.100',text:head+helperSpawn},{name:'syscalls.102',text:helperExec}],options).passed).toBe(false)
+  expect(analyzeRuntimeTrace([{name:'syscalls.100',text:head}],appearanceOptions).passed).toBe(false)
+})
+test('appearance allowance preserves network, device, privilege and fork enforcement',()=>{
+  for (const operation of ['socket(AF_INET, SOCK_STREAM, 0) = -1 EPERM','openat(AT_FDCWD, "/dev/hidraw0", O_RDONLY) = -1 ENOENT','setuid(0) = -1 EPERM','clone(child_stack=NULL, flags=SIGCHLD) = 103']) {
+    expect(withAppearance(helperSpawn,helperExec+`1.6 ${operation}\n`).passed).toBe(false)
+  }
+  expect(withAppearance(helperSpawn+'1.7 fork() = 103\n').passed).toBe(false)
+  expect(withAppearance(helperSpawn,helperExec+helperExec.replace('1.4','1.8')).passed).toBe(false)
+})
+test('appearance spawn must belong to the app, not another executable',()=>{
+  const result=analyzeRuntimeTrace([{name:'syscalls.100',text:head},{name:'syscalls.999',text:helperSpawn},{name:'syscalls.102',text:helperExec}],appearanceOptions)
+  expect(result.findings.map(x=>x.category)).toContain('appearance-spawn-identity')
+})
+test('allows one canonical unavailable clone3 probe only when paired with the exact helper spawn',()=>{
+  const probe='1.2 clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD}, 88) = -1 ENOSYS (Function not implemented)\n'
+  expect(withAppearance(probe+helperSpawn).passed).toBe(true)
+  expect(withAppearance(probe+probe+helperSpawn).passed).toBe(false)
+  expect(withAppearance(probe).passed).toBe(false)
+  expect(withAppearance(probe.replace('ENOSYS','EPERM')+helperSpawn).passed).toBe(false)
+})
+
+test('appearance ownership resolves across late parent clone returns',()=>{
+  const result=analyzeRuntimeTrace([
+    {name:'syscalls.100',text:head+'1.0 clone(child_stack=NULL, flags=CLONE_VM|CLONE_THREAD <unfinished ...>\n1.3 <... clone resumed>) = 101\n'},
+    {name:'syscalls.101',text:helperSpawn.replace('1.3','1.2')},
+    {name:'syscalls.102',text:helperExec},
+  ],appearanceOptions)
+  expect(result.passed).toBe(true)
+  expect(result.processSpawns[0]?.owner).toBe('100')
+})
+
+test('thread or helper allowance cannot hide untraced or detached descendants',()=>{
+  expect(categories('1.1 clone(child_stack=NULL, flags=CLONE_VM|CLONE_THREAD|CLONE_UNTRACED) = 101\n')).toContain('trace-evasion')
+  expect(withAppearance(helperSpawn.replace('CLONE_VM|','CLONE_PARENT|CLONE_VM|')).findings.map(x=>x.category)).toContain('detached-process-parent')
 })

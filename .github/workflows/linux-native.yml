@@ -5,6 +5,7 @@ on:
     paths:
       - 'app/**'
       - 'device/**'
+      - 'appearance/**'
       - 'packaging/**'
       - 'package.json'
       - 'bun.lock'
@@ -34,7 +35,7 @@ jobs:
           sudo apt-get install --no-install-recommends -y xvfb xauth x11-utils xdotool \
             imagemagick dbus-x11 libvulkan1 mesa-vulkan-drivers vulkan-tools \
             libxkbcommon0 libxkbcommon-x11-0 libfontconfig1 fonts-dejavu-core \
-            strace python3-pil gcc
+            strace python3-pil gcc libglib2.0-dev pkg-config python3-gi
       - name: Pinned toolchain and frozen published packages
         run: |
           rustup toolchain install 1.90.0 --profile minimal --component rustfmt --component clippy

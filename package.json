@@ -11,9 +11,9 @@
   },
   "scripts": {
     "dev": "bun --hot app/main.tsx",
-    "test": "bun test app packaging",
+    "test": "bun test app packaging appearance",
     "typecheck": "tsc --noEmit",
-    "check": "bun run typecheck && bun test app packaging",
+    "check": "bun run typecheck && bun test app packaging appearance",
     "build:worker": "cargo build --manifest-path device/Cargo.toml --locked --release",
     "build": "bun run packaging/build.ts",
     "test:native": "bun run packaging/native-screenshots.ts",

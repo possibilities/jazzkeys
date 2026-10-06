@@ -32,10 +32,9 @@ const binaries = process.platform === 'darwin' ? join(app,'Contents','MacOS') : 
 const resources = process.platform === 'darwin' ? join(app,'Contents','Resources') : join(app,'share')
 await mkdir(binaries,{recursive:true,mode:0o755})
 await mkdir(resources,{recursive:true,mode:0o755})
-for (const name of ['jazzkeys','jazzkeys-device']) await cp(join(flat,name),join(binaries,name))
-await cp(join(root,'docs','licenses'),join(resources,'licenses'),{recursive:true})
+for (const name of ['jazzkeys','jazzkeys-device','jazzkeys-appearance']) await cp(join(flat,name),join(binaries,name))
+await cp(join(flat,'docs'),join(resources,'docs'),{recursive:true})
 for (const name of ['LICENSE','THIRD-PARTY-NOTICES.md']) await cp(join(root,name),join(resources,name))
-await cp(join(root,'docs','VERIFICATION.md'),join(resources,'VERIFICATION.md'))
 await writeFile(join(resources,'INSTALL.txt'),`Jazzkeys development demo\n\nHardware access is unavailable. No service or HID permission rule is installed.\n${process.platform === 'darwin' ? 'This is an unsigned/development app bundle. It is not Developer ID signed or notarized.\nDo not disable system protections globally.\n' : 'Extract the directory and run bin/jazzkeys. The measured native-addon floor is GLIBC 2.39.\nNo privileged installation is necessary. Remove the extracted directory to uninstall.\n'}\nThe bundled notices are an inventory in progress, not redistribution clearance.\nSee THIRD-PARTY-NOTICES.md and VERIFICATION.md before redistribution.\n`)
 if (process.platform === 'darwin') {
   await writeFile(join(app,'Contents','Info.plist'),`<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n<plist version="1.0"><dict>\n<key>CFBundleName</key><string>Jazzkeys</string>\n<key>CFBundleDisplayName</key><string>Jazzkeys</string>\n<key>CFBundleIdentifier</key><string>io.jazzkeys.desktop</string>\n<key>CFBundleExecutable</key><string>jazzkeys</string>\n<key>CFBundlePackageType</key><string>APPL</string>\n<key>CFBundleShortVersionString</key><string>0.1.0</string>\n<key>CFBundleVersion</key><string>0.1.0</string>\n<key>LSMinimumSystemVersion</key><string>14.8.9</string>\n<key>NSHighResolutionCapable</key><true/>\n</dict></plist>\n`)
@@ -46,12 +45,16 @@ const executable = join(binaries,'jazzkeys')
 const smoke = Bun.spawn([executable,'--package-self-test'],{cwd:dirname(app),env:{PATH:''},stdout:'pipe',stderr:'pipe'})
 const [stdout,stderr,code] = await Promise.all([new Response(smoke.stdout).text(),new Response(smoke.stderr).text(),smoke.exited])
 if (code !== 0 || !stdout.includes('"hardwareAccess":false')) throw new Error(`Bundle integrity/relocation failed: ${stderr}`)
+const nativeSmoke = Bun.spawn([executable,'--native-self-test'],{cwd:dirname(app),env:{PATH:''},stdout:'pipe',stderr:'pipe'})
+const [nativeOutput,nativeError,nativeCode] = await Promise.all([new Response(nativeSmoke.stdout).text(),new Response(nativeSmoke.stderr).text(),nativeSmoke.exited])
+if (nativeCode !== 0 || !nativeOutput.includes('"rendererBinding":"native"')) throw new Error(`Bundled native renderer failed to load: ${nativeError}`)
 const hash = async (path: string) => createHash('sha256').update(await readFile(path)).digest('hex')
 const manifest = {schemaVersion:1,product:'Jazzkeys',target,sourceCommit:source.sourceCommit,sourceTree:source.sourceTree,
-  hardwareStatus:'no_hardware_demo',redistributionStatus:'review_pending',signing:'no Developer ID or notarization',
+  hardwareStatus:'no_hardware_demo',redistributionStatus:'review_pending',signing:process.platform==='darwin' ? 'no Developer ID or notarization' : 'unsigned ELF files',
   layout:process.platform==='darwin' ? 'macOS app bundle' : 'unprivileged relocatable directory',
   application:app.slice(destination.length+1),executableSha256:await hash(executable),workerSha256:await hash(join(binaries,'jazzkeys-device')),
-  selfTest:JSON.parse(stdout.trim())}
+  appearanceHelperSha256:await hash(join(binaries,'jazzkeys-appearance')),
+  selfTest:JSON.parse(stdout.trim()),nativeLoadTest:JSON.parse(nativeOutput.trim())}
 await writeFile(join(destination,'bundle-manifest.json'),JSON.stringify(manifest,null,2)+'\n')
 await mkdir(join(root,'artifacts','install'),{recursive:true})
 await writeFile(join(root,'artifacts','install',`${target}.json`),JSON.stringify(manifest,null,2)+'\n')

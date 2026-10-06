@@ -27,7 +27,7 @@ function withDraft(state: EditorState, draft: Mapping): EditorState {
 }
 export function editorReducer(state: EditorState, intent: EditorIntent): EditorState {
   switch (intent.type) {
-    case 'show-read-only': return { ...initialEditorState(), mode: 'read-only', generation: state.generation + 1, notice: 'Simulated read-only session. No hardware has been identified.' };
+    case 'show-read-only': return state.phase.kind === 'applying' ? state : { ...state, mode: 'read-only', phase: { kind: 'editing' }, generation: state.generation + 1, notice: 'Simulated read-only session. Your local draft is preserved; staging and apply are unavailable.' };
     case 'open-demo': return { ...initialEditorState(), mode: 'demo', generation: state.generation + 1, notice: 'Demo opened. No keyboard access.' };
     case 'select-key': {
       if (state.phase.kind !== 'editing' || !physicalKey(intent.id)) return state;
@@ -43,7 +43,9 @@ export function editorReducer(state: EditorState, intent: EditorIntent): EditorS
     }
     case 'remove-change': {
       if (!canEdit(state) || !state.draft[intent.id]) return state;
-      const draft = { ...state.draft }; delete draft[intent.id]; return withDraft(state, draft);
+      const draft = { ...state.draft }; delete draft[intent.id];
+      const next = withDraft(state, draft);
+      return intent.id === state.selected ? { ...next, target: state.baseline[state.selected]! } : next;
     }
     case 'undo': {
       if (!canEdit(state) || !state.past.length) return state;
@@ -54,7 +56,7 @@ export function editorReducer(state: EditorState, intent: EditorIntent): EditorS
       return { ...state, draft: state.future[0]!, past: [...state.past, state.draft], future: state.future.slice(1), revision: state.revision + 1, notice: 'Draft edit redone.' };
     }
     case 'discard': return canEdit(state) ? withDraft(state, {}) : state;
-    case 'set-layer': return state.phase.kind === 'editing' ? { ...state, layer: intent.layer, notice: null } : state;
+    case 'set-layer': return state.phase.kind === 'editing' ? { ...state, layer: intent.layer, target: state.draft[state.selected] ?? state.baseline[state.selected]!, notice: null } : state;
     case 'review': {
       const changes = changesFor(state);
       if (state.mode !== 'demo' || state.phase.kind !== 'editing' || !changes.length) return state;

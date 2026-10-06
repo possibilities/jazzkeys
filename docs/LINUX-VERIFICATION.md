@@ -40,6 +40,10 @@ the macOS test harness:
 The stock stdio initialization reply in this version reports an 800×600 default;
 it is not trusted as the actual window size. Each screenshot must have the exact
 requested dimensions and is accompanied by `xwininfo` and native painted bounds.
+The live automation tree intentionally omits style fields. The paint-text registry
+is thread-local, while Linux runs painting on its UI thread, so retained text plus
+actual UI-thread painted bounds are used for readiness; `getPaintedText` is not a
+Linux acceptance gate. Pixel evidence remains independent of those metadata APIs.
 
 ## Reproduction and artifacts
 
@@ -56,18 +60,24 @@ Run `.github/workflows/linux-native.yml` on the reviewed commit. The workflow:
    session, a fresh runtime directory, and the sole Mesa lavapipe ICD. It does not
    connect to an inherited display or any user's desktop
 4. Creates a disposable network namespace, drops back to the ordinary runner
-   account before executing application code, and checks that only loopback and
+   account with an explicit clean environment and temporary HOME before executing
+   application code, and checks that only loopback and
    no routes remain. It does not modify host network settings or AppArmor policy
 5. Traces the compiled bootstrap/private-worker handshake separately, then the
    compiled GUI demo. The executable runs with an empty PATH. Runtime evidence
    comes from the app descendants, not from the screenshot/test driver
-6. Exercises native hit testing and native key dispatch through open demo → select
+6. Starts the test-only Settings portal on that private bus before the compiled
+   app. Checks an initial dark read and live light → dark → light signals through
+   the actual packaged appearance observer and React app. Every transition must
+   repaint a known canvas margin to the expected palette in captured X11 pixels.
+   No actual desktop preference or user-facing appearance override is changed
+7. Exercises native hit testing and native key dispatch through open demo → select
    Caps → search/choose Escape → stage → review → Escape dismissal → Enter reopen
    through restored focus → simulate → verified. These are synthetic local editor
    actions; they do not test physical key input
-7. Captures light/dark disconnected, read-only, editing, review, applying, verified
-   and uncertain states at 1180×780 and 960×680, plus the matched stacked editing
-   alternative. Captures only the single visible window matching the native app's
+8. Captures light/dark disconnected, read-only, editing, review, applying, verified
+   and uncertain states at 1180×780 and 960×680 in the single Instrument Bench
+   composition, including its height-aware compact geometry. Captures only the single visible window matching the native app's
    PID and expected title, never a desktop/root-window image
 
 `artifacts/linux-native/` records the source commit, runner image version, OS,
@@ -79,7 +89,8 @@ uploaded; raw syscall streams and traced-process stderr stay on the ephemeral
 runner. Uploaded artifacts are retained for 14 days; the workflow does not
 publish binary releases or send screenshots to users.
 
-The pixel checker rejects wrong-sized or essentially blank images. It cannot
+The pixel checker rejects wrong-sized or essentially blank images and verifies
+the explicit system-follow canvas-color assertions. It cannot
 judge text clipping, hierarchy, focus clarity, readable labels, or visual polish.
 Those still require inspecting the actual output pixels. A screenshot matrix
 does not establish AT-SPI/screen-reader behavior, Wayland, a physical GPU,

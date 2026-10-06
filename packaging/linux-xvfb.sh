@@ -15,6 +15,7 @@ unset DISPLAY WAYLAND_DISPLAY WAYLAND_SOCKET
 export XDG_RUNTIME_DIR
 XDG_RUNTIME_DIR="$(mktemp -d)"
 chmod 700 "$XDG_RUNTIME_DIR"
+mkdir -m 700 "$XDG_RUNTIME_DIR/home"
 trap 'rm -rf "$XDG_RUNTIME_DIR"' EXIT
 export JAZZKEYS_HEADLESS_X11=1
 export LIBGL_ALWAYS_SOFTWARE=1
@@ -34,7 +35,7 @@ export VK_DRIVER_FILES="$VK_ICD_FILENAMES"
   ldd --version
   dpkg-query -W -f='${Package}\t${Version}\n' xvfb xauth xdotool imagemagick dbus-x11 \
     libvulkan1 mesa-vulkan-drivers vulkan-tools libxkbcommon0 libxkbcommon-x11-0 \
-    libfontconfig1 fonts-dejavu-core strace python3-pil gcc
+    libfontconfig1 fonts-dejavu-core strace python3-pil python3-gi gcc pkg-config libglib2.0-dev
   cat "$VK_ICD_FILENAMES"
   sha256sum node_modules/@gpuix/native-linux-x64-gnu/*.node
   readelf --version-info node_modules/@gpuix/native-linux-x64-gnu/*.node
@@ -51,8 +52,8 @@ xvfb-run --auto-servernum --server-args='-screen 0 1280x900x24 -nolisten tcp' \
     # Root only creates a disposable network namespace; runuser drops privilege
     # before Bun, native code, fixtures, tracing, or application code executes.
     # Explicit environment preserves the local display, not CI credentials.
-    sudo --non-interactive unshare --net -- runuser --user "$(id -un)" -- env \
-      PATH="$PATH" HOME="$HOME" USER="$(id -un)" LOGNAME="$(id -un)" \
+    sudo --non-interactive unshare --net -- runuser --user "$(id -un)" -- env -i \
+      PATH="$PATH" HOME="$XDG_RUNTIME_DIR/home" USER="$(id -un)" LOGNAME="$(id -un)" \
       DISPLAY="$DISPLAY" XAUTHORITY="$XAUTHORITY" XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" \
       DBUS_SESSION_BUS_ADDRESS="$DBUS_SESSION_BUS_ADDRESS" XDG_SESSION_TYPE=x11 \
       GITHUB_ACTIONS=true JAZZKEYS_HEADLESS_X11=1 JAZZKEYS_NETWORK_NAMESPACE=1 \
