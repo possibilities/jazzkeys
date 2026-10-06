@@ -139,7 +139,7 @@ export function JazzkeysApp({ initialScenario = 'disconnected', initialAppearanc
       <text style={{ color: p.secondary, fontSize: 12 }}>Provisional geometry · hardware writes unavailable</text>
     </div>
     {modal ? <div style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, backgroundColor: '#07110BB8', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24, pointerEvents: 'auto' }}>
-      <div ref={scopeRef} role="dialog" aria-label={help ? 'Jazzkeys help and honest support limits' : state.phase.kind === 'outcome' ? 'Simulated apply outcome' : 'Review and simulate mapping changes'} style={{ display: 'flex', flexDirection: 'column', width: 620, maxHeight: '92%', overflowY: 'scroll', padding: 28, backgroundColor: p.surface, borderRadius: 16, borderWidth: 1, borderColor: p.border }}>
+      <div ref={scopeRef} testId="review-sheet" role="dialog" aria-label={help ? 'Jazzkeys help and honest support limits' : state.phase.kind === 'outcome' ? 'Simulated apply outcome' : 'Review and simulate mapping changes'} style={{ display: 'flex', flexDirection: 'column', width: 620, maxHeight: '92%', overflowY: 'scroll', padding: 28, backgroundColor: p.surface, borderRadius: 16, borderWidth: 1, borderColor: p.border }}>
         {help ? <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
           <text role="heading" aria-level={2} style={{ color: p.text, fontSize: 25, fontWeight: 600 }}>A careful place to begin</text>
           <Paragraph palette={p}>Jazzkeys is a native editor for the AJAZZ × NACODEX AK820 MAX. This build offers an isolated demonstration. It does not open HID devices.</Paragraph>

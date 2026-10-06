@@ -17,7 +17,7 @@ Both alternatives use the same native components and deterministic `editing` sce
 
 The split automatically adopts the stacked layout below 1110 logical pixels rather than shrinking the key labels. Main content scrolls within a bounded page region at 960 × 680; header and state footer remain stable. The board stays proportionate at a fixed 43-pixel unit rather than distorting key widths.
 
-Selection is provisional design judgment from composition and fit calculations. Actual native captures of both matched alternatives are still required before visual acceptance. This document does not claim a rendered comparison has been reviewed.
+Both matched compositions were captured in the real macOS GPUIX renderer. The split keeps the selected key and target close to the board, while the stacked composition requires vertical travel at normal width. The split remains the default; the narrower view deliberately stacks instead of shrinking keys. The draft/review bar stays outside the scrolling content.
 
 ## Truthful states and local interaction
 
@@ -76,7 +76,7 @@ Stable native `testId` locators include:
 
 `bun test app` verifies pure draft transitions, protection, spatial navigation, cancellation, single-use simulation plans and solid-color contrast. Strict TypeScript checks the actual pinned API types.
 
-Not yet established by the implementation worker: native pixel inspection, VoiceOver, AT-SPI, actual mouse/keyboard event behavior, Linux live rendering, or any device operation. No desktop app was launched or controlled. macOS native renderer captures and authorized platform interaction checks are release acceptance work; a browser preview is not a substitute.
+Native macOS pixels were inspected and the select/stage/review/Escape/focus-return/simulate flow passed in the actual offscreen renderer. Native roles and labels were inspected in its AccessKit tree. See [verification](VERIFICATION.md) for the exact commit and run. VoiceOver, AT-SPI, Linux live rendering, full OS-level accessibility and every device operation remain unverified. No user desktop app was controlled; a browser preview is not used as a substitute.
 
 ## Reference provenance
 

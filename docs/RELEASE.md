@@ -2,11 +2,15 @@
 
 ## Current status
 
-As of 2026-10-06, this is source/demo work in progress. M0 (native/packaging spine),
-M1 (mock editor), and M2 (safety core) are not yet accepted as complete. No real
-hardware access, production HID transport, hardware write verification, native
-screenshot acceptance, accessibility acceptance, or installed-package acceptance
-is claimed. There is no verified downloadable hardware-mapper release.
+As of 2026-10-06, this is a tested source/demo milestone. Native macOS offscreen
+rendering and the staged-mapping interaction passed; macOS ARM64 and Ubuntu 24.04
+compiled-package relocation/worker integrity checks passed. The bounded no-HID
+core passed an independent review and 37 unit plus 2 executable tests. See the
+[exact verification receipt](VERIFICATION.md) for source/run links and limits.
+
+This is not a completed write-enabled mapper. Real hardware access, a production
+HID transport, actual OS installation, screen-reader acceptance, Linux window
+rendering, and signed downloadable releases remain outside the verified scope.
 
 The installed Linux addon loads but has no native test renderer; ELF inspection
 shows a `GLIBC_2.39` requirement. Bun 1.3.10 references up to `GLIBC_2.25`. The
@@ -68,7 +72,8 @@ remain blocked by the specific native/Bun provenance and notice inventory in
 
 ## Immediate next evidence
 
-Finish stock-runtime/native packaging and fake-core acceptance first. Then request
-metadata-only inspection of the intended unit, followed by a separate bounded
-feature-query request. Hardware steps, reversible writes, desktop control,
-signing access, and release publication each retain their own authorization gates.
+Complete native input/accessibility and distribution gates without broadening the
+hardware surface. Then request metadata-only inspection of the intended unit,
+followed by a separate bounded feature-query request. Hardware steps, reversible
+writes, desktop control, signing access, and release publication each retain their
+own authorization gates.

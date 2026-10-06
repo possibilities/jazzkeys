@@ -67,7 +67,8 @@ Demo mode cannot open devices. Native screenshots and keyboard-only testing must
 cover disconnected, read-only, editing, review, applying, verified, uncertain,
 and narrow-window states. Inspect pixels and behavior; generated files alone do
 not prove acceptance. Linux native headless screenshot support is not assumed.
-No screenshot, VoiceOver, or AT-SPI acceptance is claimed yet.
+Native macOS screenshot and focused interaction evidence is recorded in
+[verification](VERIFICATION.md); VoiceOver and AT-SPI acceptance is not claimed.
 The installed Linux addon loads, but reports `hasNativeTestRenderer: false`; its
 ELF version requirements include `GLIBC_2.39`. Do not claim Ubuntu 22.04 or a
 lower libc floor without a different verified artifact.
