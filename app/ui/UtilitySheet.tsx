@@ -7,8 +7,8 @@ export function UtilitySheet({ state, palette: p, appearanceLabel, send, onClose
   const action = (intent: EditorIntent) => { send(intent); onClose(); };
   return <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-      <text role="heading" aria-level={2} style={{ color: p.text, fontSize: 22, lineHeight: 28, fontWeight: 600 }}>Jazzkeys</text>
-      <Button palette={p} variant="quiet" label="Close Jazzkeys utilities" testId="close-utilities" autoFocus onPress={onClose}>Done</Button>
+      <text role="heading" aria-level={2} style={{ color: p.text, fontSize: 22, lineHeight: 28, fontWeight: 600 }}>JazzKeys</text>
+      <Button palette={p} variant="quiet" label="Close JazzKeys utilities" testId="close-utilities" autoFocus onPress={onClose}>Done</Button>
     </div>
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}><Label palette={p}>Appearance</Label><Paragraph palette={p}>{appearanceLabel}</Paragraph></div>
     <Button palette={p} variant="quiet" label={help ? 'Hide help and support limits' : 'Show help and support limits'} testId="show-help" onPress={() => setHelp(!help)} style={{ justifyContent: 'flex-start', paddingLeft: 0 }}>{help ? '⌄ Help and support limits' : '› Help and support limits'}</Button>

@@ -1,6 +1,6 @@
 # System appearance
 
-Jazzkeys follows the operating system's light/dark preference. There is no manual
+JazzKeys follows the operating system's light/dark preference. There is no manual
 appearance picker, persisted theme setting, environment theme override, timer
 that polls for cosmetic changes, renderer fork, or hardware dependency.
 
@@ -26,7 +26,7 @@ use the labelled fallback. Packaged launches are the system-following path.
 ## Read-only native boundary
 
 The first-party `jazzkeys-appearance` executable is adjacent to the installed
-Jazzkeys executable. The host requires an exact compile-time SHA-256, a regular
+JazzKeys executable. The host requires an exact compile-time SHA-256, a regular
 non-symlink file, an executable bit, a size below 4 MiB, and no group/world write
 bits before launch. There is no PATH search or caller-supplied helper path.
 The child inherits only the minimum home/session-bus environment, never loader
@@ -70,7 +70,7 @@ newer observations. A received setting signal also supersedes an in-flight read.
 
 No portal autostart is requested. An absent running portal remains unavailable
 until it acquires the bus name. If the entire session bus dies, the source degrades
-to read-once/unavailable; reopening Jazzkeys reconnects. There is no reconnect
+to read-once/unavailable; reopening JazzKeys reconnects. There is no reconnect
 polling loop. Desktops without a running Settings portal retain the documented
 light fallback. GLib/GIO runtime libraries are platform prerequisites, not bundled
 copies; see the package's platform dependency check.

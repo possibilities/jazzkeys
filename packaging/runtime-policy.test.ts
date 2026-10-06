@@ -1,8 +1,8 @@
 import { describe, expect, test } from 'bun:test'
 import { analyzeRuntimeTrace, summarizeRuntimeStderr, runtimeExitAccepted } from './runtime-policy'
 
-const options = {packageDirectory:'/test/Installed Jazzkeys',initialCwd:'/test/Installed Jazzkeys',phase:'demo' as const}
-const head = '1.000000 execve("/test/Installed Jazzkeys/jazzkeys", ["jazzkeys"], 0x0 /* 0 vars */) = 0\n1.000001 openat(AT_FDCWD, "/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = 3</lib/libc.so.6>\n'
+const options = {packageDirectory:'/test/Installed JazzKeys',initialCwd:'/test/Installed JazzKeys',phase:'demo' as const}
+const head = '1.000000 execve("/test/Installed JazzKeys/jazzkeys", ["jazzkeys"], 0x0 /* 0 vars */) = 0\n1.000001 openat(AT_FDCWD, "/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = 3</lib/libc.so.6>\n'
 const analyze = (lines:string,phase:'demo'|'bootstrap'='demo') => analyzeRuntimeTrace([{name:'syscalls.100',text:head+lines}],{...options,phase})
 const categories = (lines:string) => analyze(lines).findings.map(item=>item.category)
 
@@ -67,7 +67,7 @@ describe('runtime syscall acceptance, independent of app source',()=>{
     expect(categories(`1.1 ${call} = -1 EPERM\n`)).toContain('namespace-or-privilege')
   })
   test('requires exact bootstrap worker and rejects any helper attempt in GUI',()=>{
-    const worker='1.1 execve("/test/Installed Jazzkeys/jazzkeys-device", ["jazzkeys-device"], 0x0 /* 0 vars */) = 0\n'
+    const worker='1.1 execve("/test/Installed JazzKeys/jazzkeys-device", ["jazzkeys-device"], 0x0 /* 0 vars */) = 0\n'
     expect(analyze(worker,'bootstrap').passed).toBe(true)
     expect(analyze('','bootstrap').passed).toBe(false)
     expect(analyze(worker).passed).toBe(false)
@@ -107,7 +107,7 @@ test('intentional teardown does not bless an already-crashed app',()=>{
   expect(runtimeExitAccepted('bootstrap',143,true)).toBe(false)
 })
 
-const appearancePath='/test/Installed Jazzkeys/jazzkeys-appearance'
+const appearancePath='/test/Installed JazzKeys/jazzkeys-appearance'
 const appearanceOptions={...options,appearanceHelperSha256:'a'.repeat(64)}
 const helperExec = `1.4 execve("${appearancePath}", ["${appearancePath}"], 0x0 /* 1 vars */) = 0\n1.5 openat(AT_FDCWD, "/lib/libgio.so", O_RDONLY) = 3</lib/libgio.so>\n`
 const helperSpawn='1.3 clone(child_stack=NULL, flags=CLONE_VM|CLONE_VFORK|SIGCHLD) = 102\n'

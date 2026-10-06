@@ -20,5 +20,5 @@ if (process.argv.includes('--package-self-test')) {
   const { JazzkeysApp } = await import('./ui/App');
   const { windowKeyHandler } = await import('./ui/keyboard');
   const { createElement } = await import('react');
-  render(createElement<JazzkeysAppProps>(JazzkeysApp, {appearanceController}), { title: 'Jazzkeys', appName: 'Jazzkeys', appId: 'io.jazzkeys.desktop', width: 1180, height: 780, minWidth: 960, minHeight: 680, onKeyDown: windowKeyHandler });
+  render(createElement<JazzkeysAppProps>(JazzkeysApp, {appearanceController}), { title: 'JazzKeys', appName: 'JazzKeys', appId: 'io.jazzkeys.desktop', width: 1180, height: 780, minWidth: 960, minHeight: 680, onKeyDown: windowKeyHandler });
 }

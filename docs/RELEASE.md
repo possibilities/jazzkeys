@@ -1,7 +1,13 @@
 # Mac demo releases
 
+Current launch investigation: demo.2 repairs code signatures, but a macOS 26.5.2
+installation still reports Launch Services error -10827. Valid signatures and
+direct executable self-tests are not proof that the application opens through
+Launch Services. The JazzKeys name correction and a bounded native open/window/quit
+check are being validated before the next downloadable release.
+
 The downloadable target is **macOS ARM64 only**. The release workflow builds a
-ZIP containing `Jazzkeys.app`, with all runtimes, its matching private worker,
+ZIP containing `JazzKeys.app`, with all runtimes, its matching private worker,
 read-only appearance helper, license texts, and notices. A local development
 toolchain is not required to use the download. See [installation](INSTALL.md).
 

@@ -23,5 +23,5 @@ render(createElement<JazzkeysAppProps>(JazzkeysApp, {
   initialAppearance: appearance as 'light' | 'dark',
   viewportWidth: width,
   viewportHeight: height,
-}), { title: 'Jazzkeys Linux fixture', appName: 'Jazzkeys', appId: 'io.jazzkeys.linux-fixture',
+}), { title: 'JazzKeys Linux fixture', appName: 'JazzKeys', appId: 'io.jazzkeys.linux-fixture',
   width, height, minWidth: width, minHeight: height, onKeyDown: windowKeyHandler })

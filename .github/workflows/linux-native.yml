@@ -45,10 +45,10 @@ jobs:
         run: |
           bun run build
           bun packaging/smoke.ts dist/jazzkeys-linux-x64-gnu
-          mkdir -p "$RUNNER_TEMP/Jazzkeys installed test"
-          cp -a dist/jazzkeys-linux-x64-gnu "$RUNNER_TEMP/Jazzkeys installed test/Jazzkeys"
+          mkdir -p "$RUNNER_TEMP/JazzKeys installed test"
+          cp -a dist/jazzkeys-linux-x64-gnu "$RUNNER_TEMP/JazzKeys installed test/JazzKeys"
       - name: Exercise stock Wayland app in dedicated Weston outputs on private Xvfb
-        run: bash packaging/linux-xvfb.sh "$RUNNER_TEMP/Jazzkeys installed test/Jazzkeys"
+        run: bash packaging/linux-xvfb.sh "$RUNNER_TEMP/JazzKeys installed test/JazzKeys"
       - name: Retain native pixels and trace evidence, never release binaries
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

@@ -62,7 +62,7 @@ for (const target of ['macos-arm64', 'linux-x64-gnu'] as const) {
     const fixture = await bundleFixture(target)
     try {
       for (const change of [
-        { sourceManifest: '../manifest.json' }, { application: '../Jazzkeys' }, { sourceTree: 'f'.repeat(40) },
+        { sourceManifest: '../manifest.json' }, { application: '../JazzKeys' }, { sourceTree: 'f'.repeat(40) },
         { sourceCommit: 'bad' }, { product: 'Other' }, { protocolVersion: 2 },
         { appearanceProtocolVersion: 2 }, { workerSha256: '0'.repeat(64) },
         { files: [...fixture.manifest.files, { name: '../escaped', bytes: 3, sha256: 'a'.repeat(64) }] },
@@ -110,7 +110,7 @@ test('Mac bundle signing provenance binds the pre-seal input, sealed output, and
     }
     await fixture.save()
     await verifyBundle(fixture.dir)
-    const seal = join(fixture.dir,'Jazzkeys.app/Contents/_CodeSignature/CodeResources')
+    const seal = join(fixture.dir,'JazzKeys.app/Contents/_CodeSignature/CodeResources')
     await rm(seal)
     await expect(verifyBundle(fixture.dir)).rejects.toThrow()
   } finally {

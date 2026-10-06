@@ -5,15 +5,15 @@ import { artifactFiles, hashArtifactFile, isPackageTarget, packageBinaries, read
 export function bundleLayout(target: PackageTarget) {
   const mac = target === 'macos-arm64'
   return {
-    application: mac ? 'Jazzkeys.app' : 'jazzkeys',
-    binaries: mac ? 'Jazzkeys.app/Contents/MacOS' : 'jazzkeys/bin',
-    resources: mac ? 'Jazzkeys.app/Contents/Resources' : 'jazzkeys/share',
+    application: mac ? 'JazzKeys.app' : 'jazzkeys',
+    binaries: mac ? 'JazzKeys.app/Contents/MacOS' : 'jazzkeys/bin',
+    resources: mac ? 'JazzKeys.app/Contents/Resources' : 'jazzkeys/share',
     layout: mac ? 'macOS app bundle' : 'unprivileged relocatable directory',
     signing: mac ? 'ad-hoc sealed bundle; no Developer ID or notarization' : 'unsigned ELF files',
   }
 }
 export interface BundleManifest {
-  schemaVersion: 1; product: 'Jazzkeys'; version: string; target: PackageTarget
+  schemaVersion: 1; product: 'JazzKeys'; version: string; target: PackageTarget
   sourceCommit: string; sourceTree: string; hardwareStatus: 'no_hardware_demo'; redistributionStatus: 'source_companion_required'
   protocolVersion: 1; appearanceProtocolVersion: 1; signing: string; layout: string; application: string
   sourceManifest: string; sourceManifestSha256: string; sourceManifestScope: 'pre-bundle flat build'
@@ -31,7 +31,7 @@ export async function verifyBundle(directory: string): Promise<BundleManifest> {
   const value = await readArtifactManifest(directory, 'bundle-manifest.json')
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('Unknown bundle manifest')
   const manifest = value as BundleManifest
-  if (manifest.schemaVersion !== 1 || manifest.product !== 'Jazzkeys' || !isPackageTarget(manifest.target) ||
+  if (manifest.schemaVersion !== 1 || manifest.product !== 'JazzKeys' || !isPackageTarget(manifest.target) ||
       manifest.hardwareStatus !== 'no_hardware_demo' || manifest.redistributionStatus !== 'source_companion_required' ||
       manifest.protocolVersion !== 1 || manifest.appearanceProtocolVersion !== 1) throw new Error('Unknown bundle manifest or protocol')
   const layout = bundleLayout(manifest.target)
@@ -39,7 +39,7 @@ export async function verifyBundle(directory: string): Promise<BundleManifest> {
   if (manifest.application !== layout.application || manifest.layout !== layout.layout || manifest.signing !== layout.signing ||
       manifest.sourceManifest !== sourcePath || manifest.sourceManifestScope !== 'pre-bundle flat build') throw new Error('Unexpected bundle layout or source manifest path')
   const required = [`${layout.resources}/INSTALL.txt`, sourcePath,
-    ...(manifest.target === 'macos-arm64' ? ['Jazzkeys.app/Contents/Info.plist', 'Jazzkeys.app/Contents/_CodeSignature/CodeResources'] : [])]
+    ...(manifest.target === 'macos-arm64' ? ['JazzKeys.app/Contents/Info.plist', 'JazzKeys.app/Contents/_CodeSignature/CodeResources'] : [])]
   // Reject traversal before any path taken from the manifest is opened.
   const files = validateFileRecords(manifest.files, name => name.startsWith(`${layout.application}/`), required)
   await verifyArtifactFiles(directory, files, 'bundle-manifest.json')
@@ -52,7 +52,7 @@ export async function verifyBundle(directory: string): Promise<BundleManifest> {
   const mac = manifest.target === 'macos-arm64'
   const transform = manifest.signingTransform
   if (mac ? (!transform || transform.kind !== 'macos-adhoc-bundle-seal') : transform !== undefined) throw new Error('Unexpected bundle signing transform')
-  if (mac && transform!.resourceSealSha256 !== files.find(file => file.name === 'Jazzkeys.app/Contents/_CodeSignature/CodeResources')!.sha256) throw new Error('Resource seal hash metadata mismatch')
+  if (mac && transform!.resourceSealSha256 !== files.find(file => file.name === 'JazzKeys.app/Contents/_CodeSignature/CodeResources')!.sha256) throw new Error('Resource seal hash metadata mismatch')
   const expected = new Set(required)
   for (const file of source.files) {
     const binary = packageBinaries.includes(file.name as typeof packageBinaries[number])

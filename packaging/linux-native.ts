@@ -117,15 +117,15 @@ async function connect(child: PipeChild, stop: () => void): Promise<App> {
 async function ready(app: App) {
   // Unlike getPaintedText's thread-local registry, getTree/getBounds route to
   // Linux's actual UI thread. Require a text node with real painted dimensions.
-  await waitFor(async () => (await app.getByText('Jazzkeys').all()).some(node =>
-    node.text === 'Jazzkeys' && !!node.bounds && node.bounds.width > 0 && node.bounds.height > 0), 'painted Jazzkeys window')
+  await waitFor(async () => (await app.getByText('JazzKeys').all()).some(node =>
+    node.text === 'JazzKeys' && !!node.bounds && node.bounds.width > 0 && node.bounds.height > 0), 'painted JazzKeys window')
   const all = (await app.call('getAllText', {})).text
   if (all.some(text => text.includes('Uncaught runtime errors:'))) throw new Error('Native runtime error overlay appeared')
 }
 async function capture(app: App, compositor: Compositor, name: string, width: number, height: number, expectedCanvas?: string) {
   const { pid } = await within(app.call('initialize', { protocolVersion: 1, client: 'jazzkeys-linux-acceptance' }), 'native identity')
   const fixture = name.startsWith('installed-') ? false : true
-  const title = fixture ? 'Jazzkeys Linux fixture' : 'Jazzkeys'
+  const title = fixture ? 'JazzKeys Linux fixture' : 'JazzKeys'
   const appId = fixture ? 'io.jazzkeys.linux-fixture' : 'io.jazzkeys.desktop'
   let sceneBefore: ReturnType<typeof verifyWestonScene> | undefined
   await waitFor(async () => {
@@ -133,7 +133,7 @@ async function capture(app: App, compositor: Compositor, name: string, width: nu
     catch (error) {
       // An initial configure/commit can precede the first mapped app surface.
       // All identity/geometry requirements still have to pass before capture.
-      if (error instanceof Error && /Expected one application surface, observed 0|Jazzkeys does not fill the dedicated mapped output/.test(error.message)) return false
+      if (error instanceof Error && /Expected one application surface, observed 0|JazzKeys does not fill the dedicated mapped output/.test(error.message)) return false
       throw error
     }
   }, `mapped Wayland surface for ${name}`)

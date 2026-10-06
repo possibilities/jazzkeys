@@ -20,8 +20,8 @@ class MacArchiveTests(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
         self.bundle = self.root / 'bundle'
-        self.files = [('Jazzkeys.app/Contents/MacOS/jazzkeys', b'fixture executable', 0o755),
-                      ('Jazzkeys.app/Contents/Resources/LICENSE', b'fixture notice', 0o644)]
+        self.files = [('JazzKeys.app/Contents/MacOS/jazzkeys', b'fixture executable', 0o755),
+                      ('JazzKeys.app/Contents/Resources/LICENSE', b'fixture notice', 0o644)]
         self.manifest = {'files': []}
         for name, data, mode in self.files:
             path = self.bundle / name
@@ -65,10 +65,10 @@ class MacArchiveTests(unittest.TestCase):
             command.assert_not_called()
 
     def test_tamper_check_requires_valid_baseline_and_rejected_resource_change(self):
-        install = self.bundle / 'Jazzkeys.app/Contents/Resources/INSTALL.txt'
+        install = self.bundle / 'JazzKeys.app/Contents/Resources/INSTALL.txt'
         install.write_bytes(b'pristine instructions')
         def baseline(path):
-            self.assertEqual((path / 'Jazzkeys.app/Contents/Resources/INSTALL.txt').read_bytes(), b'pristine instructions')
+            self.assertEqual((path / 'JazzKeys.app/Contents/Resources/INSTALL.txt').read_bytes(), b'pristine instructions')
             return {'verified': True}
         with patch.object(m, 'verify_mac_signatures', side_effect=baseline), patch.object(m.subprocess, 'run', return_value=SimpleNamespace(returncode=1, stderr='a sealed resource is missing or invalid')):
             self.assertTrue(m.reject_tampered_resources(self.bundle))

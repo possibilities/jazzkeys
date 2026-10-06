@@ -13,9 +13,9 @@ its [protocol reference](https://github.com/dniminenn/sharkfin/blob/4860eafbcb54
 [device record](https://github.com/dniminenn/sharkfin/blob/4860eafbcb543d93ce09285204b91f6d853f54b1/app/src-tauri/data/devices.json#L5057-L5080),
 and [additional evidence](https://github.com/dniminenn/sharkfin/blob/4860eafbcb543d93ce09285204b91f6d853f54b1/app/src-tauri/data/devices.extra.json#L712-L715).
 [Report #15](https://github.com/dniminenn/sharkfin/issues/15) concerns another unit;
-its mutable discussion is supporting evidence, not a measured Jazzkeys unit.
+its mutable discussion is supporting evidence, not a measured JazzKeys unit.
 
-Jazzkeys uses independently structured first-party code informed by these GPL
+JazzKeys uses independently structured first-party code informed by these GPL
 references. It is licensed GPL-3.0-or-later and does **not** claim clean-room
 provenance. Retain source/license attribution for any adapted fixtures or code.
 
@@ -46,7 +46,7 @@ protected until their physical and semantic meaning is evidenced.
 There is no documented profile-count query in this evidence. An observed index
 of 4 is not proof of four profiles. Do not scan arbitrary profiles or set one.
 The reference bulk format transfers nine 56-byte pages (504 bytes), less than a
-complete 512-byte layer. Jazzkeys has no bulk fallback. Some related boards ignore
+complete 512-byte layer. JazzKeys has no bulk fallback. Some related boards ignore
 single-slot commands; that is a reason to remain read-only, not expand opcodes.
 
 ## Worker boundary

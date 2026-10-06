@@ -80,7 +80,7 @@ With no Wayland display, the addon selects GPUI's headless platform. Its
 [window implementation](https://github.com/remorses/zed/blob/81c99f816b4a5f69d3c014774068034c24d1d7af/crates/gpui_linux/src/linux/headless/window.rs)
 no-ops drawing/frame callbacks, explaining the bounds timeout and absent X11
 connection in the receipt. Increasing the test timeout cannot create a window.
-An upstream correction would forward `gpui/x11` and rebuild the addon. Jazzkeys
+An upstream correction would forward `gpui/x11` and rebuild the addon. JazzKeys
 neither patches that binary nor substitutes a fork: the supported stock Wayland
 branch is used instead. X11 remains unverified/unavailable for this release.
 
@@ -160,7 +160,7 @@ actual canvas color.
 The ephemeral compositor enables `--debug` only to attest scene ownership.
 Weston's debug interface can expose sensitive information and must never be
 enabled on a user's compositor. Here the socket lives in a newly created private
-0700 directory, only synthetic Jazzkeys windows exist, and the process/socket
+0700 directory, only synthetic JazzKeys windows exist, and the process/socket
 are destroyed at the end of each test. Protocol traffic, credentials, and user
 files are not collected.
 

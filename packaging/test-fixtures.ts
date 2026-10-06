@@ -16,7 +16,7 @@ export async function packageFixture(target: PackageTarget = 'linux-x64-gnu') {
     if (packageBinaries.includes(name as typeof packageBinaries[number])) await chmod(join(dir, name), 0o755)
   }
   const manifest: PackageManifest = {
-    schemaVersion: 1, product: 'Jazzkeys', version: '0.1.0-dev.0', target,
+    schemaVersion: 1, product: 'JazzKeys', version: '0.1.0-dev.0', target,
     sourceCommit: 'a'.repeat(40), sourceTree: 'b'.repeat(40), hardwareStatus: 'no_hardware_demo', signing: target === 'macos-arm64' ? 'ad-hoc development; no Developer ID or notarization' : 'unsigned',
     bun: '1.3.10', gpuix: '0.10.0', workerVersion: '0.1.0', protocolVersion: 1, appearanceProtocolVersion: 1,
     appearanceHelperSha256: digest(contents['jazzkeys-appearance']!), embeddedNativeAddonSha256: 'e'.repeat(64),
@@ -46,7 +46,7 @@ export async function bundleFixture(target: PackageTarget) {
     await writeFile(join(dir, layout.binaries, 'jazzkeys'), flat.contents.jazzkeys! + 'Offline seal transformation\n')
   }
   const manifest: BundleManifest = {
-    schemaVersion: 1, product: 'Jazzkeys', version: flat.manifest.version, target,
+    schemaVersion: 1, product: 'JazzKeys', version: flat.manifest.version, target,
     sourceCommit: flat.manifest.sourceCommit, sourceTree: flat.manifest.sourceTree,
     protocolVersion: 1, appearanceProtocolVersion: 1, hardwareStatus: 'no_hardware_demo', redistributionStatus: 'source_companion_required',
     layout: layout.layout, signing: layout.signing, application: layout.application,

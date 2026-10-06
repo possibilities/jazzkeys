@@ -5,7 +5,7 @@ import { verifyPackage } from './verify-package'
 
 const source = resolve(process.argv[2] ?? 'dist/jazzkeys-linux-x64-gnu')
 await verifyPackage(source)
-const scratch = await mkdtemp(join(tmpdir(), 'Jazzkeys installed test '))
+const scratch = await mkdtemp(join(tmpdir(), 'JazzKeys installed test '))
 try {
   const installed = join(scratch, 'A folder with spaces')
   await cp(source, installed, {recursive:true, errorOnExist:true})

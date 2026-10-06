@@ -1,6 +1,6 @@
 # Hardware status
 
-**No device is currently verified writable by Jazzkeys.** No physical keyboard has
+**No device is currently verified writable by JazzKeys.** No physical keyboard has
 been accessed during this implementation. Production HID access is not yet
 implemented. Candidate IDs and simulated success cannot enable public writes.
 

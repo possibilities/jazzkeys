@@ -1,8 +1,8 @@
-# Jazzkeys: Instrument Bench
+# JazzKeys: Instrument Bench
 
 ## One physical object, one deliberate workflow
 
-Jazzkeys centers an illustrative AK820 MAX above a horizontal mapping rail. The
+JazzKeys centers an illustrative AK820 MAX above a horizontal mapping rail. The
 board is the strongest object; its physical legends remain stable while the rail
 explains the selected key and proposed mapping. The only filled primary action in
 ordinary editing is Review. No slogan, sidebar, profile picker, dashboard, or
@@ -98,7 +98,7 @@ Cmd/Ctrl Z are restricted to draft edits while a board key owns focus, leaving
 native text-field undo alone. No global typing hook exists.
 
 Stock `@gpuix/react` and `@gpuix/native` 0.10.0 do not export Button or Dialog;
-Jazzkeys uses first-party adapters and the published Combobox/Select components.
+JazzKeys uses first-party adapters and the published Combobox/Select components.
 There is no DOM, webview, CSS selector dependency, or framework fork. AccessKit
 roles and pure tests do not establish VoiceOver or AT-SPI acceptance.
 

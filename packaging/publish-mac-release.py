@@ -32,7 +32,7 @@ def check_file(directory, record, name_key='name'):
 
 def verify_assets(directory, commit, tree):
     mac = json.loads((directory / 'macos-release.json').read_text())
-    source_name = f'Jazzkeys-corresponding-source-{commit}.json'
+    source_name = f'JazzKeys-corresponding-source-{commit}.json'
     source = json.loads((directory / source_name).read_text())
     if (mac['schemaVersion'] != 1 or mac['sourceCommit'] != commit or mac['sourceTree'] != tree
             or mac['target'] != 'macos-arm64' or mac['hardwareStatus'] != 'no_hardware_demo'
@@ -44,9 +44,9 @@ def verify_assets(directory, commit, tree):
             or signatures.get('afterExtraction', {}).get('verified') is not True
             or signatures.get('resourceTamperRejected') is not True):
         raise ValueError('Mac signature verification evidence is incomplete')
-    if (mac['archive']['name'] != f'Jazzkeys-demo-macos-arm64-{commit}.zip'
-            or mac['bundleManifest']['name'] != f'Jazzkeys-bundle-manifest-{commit}.json'
-            or source['archive']['path'] != f'Jazzkeys-corresponding-source-{commit}.tar.gz'):
+    if (mac['archive']['name'] != f'JazzKeys-demo-macos-arm64-{commit}.zip'
+            or mac['bundleManifest']['name'] != f'JazzKeys-bundle-manifest-{commit}.json'
+            or source['archive']['path'] != f'JazzKeys-corresponding-source-{commit}.tar.gz'):
         raise ValueError('Unexpected release artifact filename')
     app = check_file(directory, mac['archive'])
     bundle = check_file(directory, mac['bundleManifest'])
@@ -73,7 +73,7 @@ class GitHub:
         host = 'uploads.github.com' if file else 'api.github.com'
         connection = http.client.HTTPSConnection(host, timeout=240)
         headers = {'Authorization': f'Bearer {self.token}', 'Accept': 'application/vnd.github+json',
-                   'X-GitHub-Api-Version': '2022-11-28', 'User-Agent': 'Jazzkeys-reviewed-release-workflow'}
+                   'X-GitHub-Api-Version': '2022-11-28', 'User-Agent': 'JazzKeys-reviewed-release-workflow'}
         data = json.dumps(body).encode() if body is not None else None
         headers['Content-Type'] = 'application/octet-stream' if file else 'application/json'
         if file:
@@ -209,7 +209,7 @@ def main():
     assets.append(sums)
     body = f'''Experimental **Mac Apple-silicon demo**. Requires macOS {mac['minimumSystemVersion']} or later.
 
-Download **{mac['archive']['name']}**, unzip, and move Jazzkeys.app into Applications or a folder you own. No Rust, Xcode, Bun, or Node is needed. Quit and remove the app to uninstall. [Installation and Apple security guidance](https://github.com/{REPO}/blob/{commit}/docs/INSTALL.md).
+Download **{mac['archive']['name']}**, unzip, and move JazzKeys.app into Applications or a folder you own. No Rust, Xcode, Bun, or Node is needed. Quit and remove the app to uninstall. [Installation and Apple security guidance](https://github.com/{REPO}/blob/{commit}/docs/INSTALL.md).
 
 **Ad-hoc development-signed, without Developer ID or notarization. macOS may block opening it.** Do not disable system protections globally. This demo cannot read or change your keyboard. No hardware permission grant is part of exploring the demo.
 
@@ -226,7 +226,7 @@ Verify downloads using SHA256SUMS. This version's assets are never overwritten. 
     token = os.environ.get('GITHUB_TOKEN')
     if not token:
         raise SystemExit('The publishing job requires its ephemeral GitHub Actions token')
-    url = publish(GitHub(token), tag, commit, f'Jazzkeys {version} · Mac demo', body, assets)
+    url = publish(GitHub(token), tag, commit, f'JazzKeys {version} · Mac demo', body, assets)
     print(url)
     if os.environ.get('GITHUB_STEP_SUMMARY'):
         with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as stream:

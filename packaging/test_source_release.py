@@ -71,7 +71,7 @@ class SourceReleaseTests(unittest.TestCase):
         self.source = self.directory / 'source'
         shutil.copytree(self.verified_source, self.source)
         self.output = self.directory / 'output'
-        self.prefix = f'Jazzkeys-corresponding-source-{self.commit}'
+        self.prefix = f'JazzKeys-corresponding-source-{self.commit}'
         self.archive = self.output / f'{self.prefix}.tar.gz'
         self.receipt = self.output / f'{self.prefix}.json'
         self.root_patch = patch.object(release, 'ROOT', self.repo)

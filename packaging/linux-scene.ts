@@ -26,10 +26,10 @@ export function verifyWestonScene(text: string, expected: {
   if (clientViews.length !== 1) throw new Error(`Expected one application surface, observed ${clientViews.length}`)
   const app = clientViews[0]!
   if (app.pid !== expected.pid || app.role !== 'xdg_toplevel' || app.surfaceId <= 0
-    || app.label !== `top-level window '${expected.title}' of ${expected.appId}`) throw new Error('Compositor surface does not belong to the expected Jazzkeys process')
+    || app.label !== `top-level window '${expected.title}' of ${expected.appId}`) throw new Error('Compositor surface does not belong to the expected JazzKeys process')
   if (/\[(?:view|surface) is not mapped!\]|\[no outputs\]|\balpha:/m.test(app.block)
     || !sameRectangle(rectangle(app.block))
-    || !app.block.includes(`\t\toutputs: ${output[1]} (${output[2]}) (primary)`)) throw new Error('Jazzkeys does not fill the dedicated mapped output')
+    || !app.block.includes(`\t\toutputs: ${output[1]} (${output[2]}) (primary)`)) throw new Error('JazzKeys does not fill the dedicated mapped output')
   for (const view of views.filter(view => view.pid === 0)) {
     if (view.surfaceId !== 0 || view.role !== 'kiosk-shell-background' || view.label !== 'kiosk shell background surface'
       || !sameRectangle(rectangle(view.block))) throw new Error('Unexpected compositor-owned surface')
@@ -38,5 +38,5 @@ export function verifyWestonScene(text: string, expected: {
     application: { pid: app.pid, surfaceId: app.surfaceId, role: app.role, title: expected.title, appId: expected.appId },
     clientSurfaceCount: clientViews.length, internalBackgrounds: views.length - clientViews.length,
     identitySource: 'Weston wl_client_get_credentials and desktop-surface metadata',
-    scope: 'One synthetic Jazzkeys surface in a fresh dedicated kiosk compositor; no user desktop' }
+    scope: 'One synthetic JazzKeys surface in a fresh dedicated kiosk compositor; no user desktop' }
 }

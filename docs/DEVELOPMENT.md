@@ -26,7 +26,7 @@ The later upstream design reference is GPUIX commit
 [`4ecca30f68057b4d9830d32675ba4ed999eeeaaa`](https://github.com/remorses/gpuix/tree/4ecca30f68057b4d9830d32675ba4ed999eeeaaa).
 The installed npm 0.10.0 package is authoritative for actual exports: unlike that
 source reference, it does not export the proposed headless Button/Dialog APIs.
-Jazzkeys uses first-party native host controls and must validate their focus,
+JazzKeys uses first-party native host controls and must validate their focus,
 keyboard activation, accessibility, and dialog behavior on the native runtime.
 Do not silently import DOM/shadcn controls or patch the framework/fork.
 

@@ -68,7 +68,7 @@ describe('no-window CLI startup ordering', () => {
   test('package self-test retains its uncompiled integrity boundary regardless of display', async () => {
     const result = await cli(['--package-self-test'], { ZED_HEADLESS: '1' })
     expect(result.code).not.toBe(0)
-    expect(result.stderr).toContain('Worker integrity is available only in a compiled Jazzkeys package')
+    expect(result.stderr).toContain('Worker integrity is available only in a compiled JazzKeys package')
     expect(result.stderr).not.toContain('ZED_HEADLESS is set')
     expect(result.stderr).not.toContain(`Unsupported WASI flavor "${loaderSentinel}"`)
   })

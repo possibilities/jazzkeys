@@ -9,7 +9,7 @@ const EXPECTED_VERSION = '0.1.0'
 /** No caller-supplied path, shell command, HID buffer, or opcode surface. */
 export async function checkPackagedWorker(): Promise<{mode: 'no_hardware'; hardwareAccess: false}> {
   if (typeof JAZZKEYS_WORKER_SHA256 === 'undefined' || !/^[a-f0-9]{64}$/.test(JAZZKEYS_WORKER_SHA256)) {
-    throw new Error('Worker integrity is available only in a compiled Jazzkeys package')
+    throw new Error('Worker integrity is available only in a compiled JazzKeys package')
   }
   const directory = await realpath(dirname(process.execPath))
   const path = join(directory, 'jazzkeys-device')

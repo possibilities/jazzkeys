@@ -1,6 +1,6 @@
 # Product
 
-Jazzkeys is a focused native key mapper for the AJAZZ × NACODEX AK820 MAX
+JazzKeys is a focused native key mapper for the AJAZZ × NACODEX AK820 MAX
 mechanical, long-battery-life variant. It is an independent project, unaffiliated
 with AJAZZ, NACODEX, GPUIX, or Sharkfin.
 

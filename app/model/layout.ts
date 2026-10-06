@@ -18,7 +18,7 @@ const row = (ids: string[], legends: string[], y: number, start = 0) => ids.forE
 row(['grave', ...'1234567890', 'minus', 'equal'], ['`', ...'1234567890', '−', '='], 1.35);
 key('backspace', 'Backspace', 13, 1.35, 2); key('delete', 'Del', 15, 1.35);
 key('tab', 'Tab', 0, 2.35, 1.5); row([... 'qwertyuiop', 'bracket-left', 'bracket-right'], [...'QWERTYUIOP', '[', ']'], 2.35, 1.5);
-key('backslash', '\\', 13.5, 2.35, 1.5); key('home', 'Home', 15, 2.35, 1, 'protected.unknown', 'This demo entry is unknown. Jazzkeys preserves unsupported entries instead of replacing them.');
+key('backslash', '\\', 13.5, 2.35, 1.5); key('home', 'Home', 15, 2.35, 1, 'protected.unknown', 'This demo entry is unknown. JazzKeys preserves unsupported entries instead of replacing them.');
 key('caps-lock', 'Caps Lock', 0, 3.35, 1.75); row([... 'asdfghjkl', 'semicolon', 'quote'], [...'ASDFGHJKL', ';', "'"], 3.35, 1.75);
 key('enter', 'Enter', 12.75, 3.35, 2.25); key('page-up', 'PgUp', 15, 3.35);
 key('left-shift', 'Shift', 0, 4.35, 2.25, 'modifier.left-shift'); row([...'zxcvbnm', 'comma', 'period', 'slash'], [...'ZXCVBNM', ',', '.', '/'], 4.35, 2.25);

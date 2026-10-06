@@ -108,7 +108,7 @@ impl FsStore {
         }
         let lock = root.join("owner.lock");
         let mut file = private_new(&lock)?;
-        file.write_all(b"Exclusive Jazzkeys evidence owner. Never auto-replay journals.\n")
+        file.write_all(b"Exclusive JazzKeys evidence owner. Never auto-replay journals.\n")
             .and_then(|_| file.sync_all())
             .map_err(|_| STORAGE)?;
         File::open(&root)

@@ -145,7 +145,7 @@ def verify_archive(path, prefix, records):
 def release_receipt(archive, filename, source_receipt, records):
     return {
         'schema_version': 1,
-        'artifact_type': 'Jazzkeys corresponding source',
+        'artifact_type': 'JazzKeys corresponding source',
         'project_commit': source_receipt['project_source']['commit'],
         'source_tree': source_receipt['project_source']['source_tree'],
         'archive': {'path': filename, **file_record(archive)},
@@ -165,7 +165,7 @@ def package_source(source, output, project_ref, verify_only=False):
         raise ValueError('Source companion does not exist')
     if source == output or source in output.parents or output in source.parents:
         raise ValueError('Source and output directories must not overlap')
-    prefix = f'Jazzkeys-corresponding-source-{project_ref}'
+    prefix = f'JazzKeys-corresponding-source-{project_ref}'
     archive = output / f'{prefix}.tar.gz'
     receipt_path = output / f'{prefix}.json'
     for path in (archive, receipt_path):

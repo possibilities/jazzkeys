@@ -83,10 +83,10 @@ export function JazzkeysApp({ initialScenario = 'disconnected', initialAppearanc
   const status = state.mode === 'disconnected' ? 'Hardware unavailable' : state.mode === 'offline' ? 'Offline draft · demo' : state.mode === 'read-only' ? 'Read-only · simulated' : 'Demo · no hardware access';
   return <div testId="jazzkeys-root" style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', overflow: 'hidden', position: 'relative', backgroundColor: p.canvas, fontFamily: FONT, color: p.text }}>
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingLeft: layout.headerInset, paddingRight: layout.headerInset, height: 56, flexShrink: 0, borderBottomWidth: 1, borderColor: p.border }}>
-      <text role="heading" aria-level={1} style={{ color: p.text, fontSize: 18, lineHeight: 24, fontWeight: 600 }}>Jazzkeys</text>
+      <text role="heading" aria-level={1} style={{ color: p.text, fontSize: 18, lineHeight: 24, fontWeight: 600 }}>JazzKeys</text>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
         <div style={{ paddingLeft: 16, paddingRight: 16, height: 28, minWidth: 230, display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: p.subtle, borderRadius: 7 }}><text role="status" aria-label={status} style={{ color: p.secondary, fontSize: 12, lineHeight: 18 }}>{status}</text></div>
-        <Button palette={p} variant="quiet" label="Open Jazzkeys utilities and help" testId="more-utilities" disabled={modal} onPress={() => { rememberFocus(); setUtilities(true); }} style={{ paddingLeft: 4, paddingRight: 4 }}>More</Button>
+        <Button palette={p} variant="quiet" label="Open JazzKeys utilities and help" testId="more-utilities" disabled={modal} onPress={() => { rememberFocus(); setUtilities(true); }} style={{ paddingLeft: 4, paddingRight: 4 }}>More</Button>
       </div>
     </div>
     <div testId="bench-workspace" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexGrow: 1, flexBasis: 0, minHeight: 0, overflowY: 'scroll', paddingTop: layout.topGap, paddingBottom: layout.bottomGap }}>
@@ -117,7 +117,7 @@ export function JazzkeysApp({ initialScenario = 'disconnected', initialAppearanc
     </div>
     {state.mode !== 'disconnected' ? <DraftBar state={state} palette={p} compact={layout.compact} disabled={modal} send={stageIntent} onReview={openReview} /> : <div style={{ height: 64, flexShrink: 0 }} />}
     {modal ? <div style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, backgroundColor: '#07110B66', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 32, pointerEvents: 'auto' }}>
-      <div ref={scopeRef} testId="review-sheet" role="dialog" aria-label={utilities ? 'Jazzkeys utilities and support limits' : state.phase.kind === 'outcome' ? 'Simulated apply outcome' : 'Review and simulate mapping changes'} style={{ display: 'flex', flexDirection: 'column', width: utilities ? 520 : 688, maxHeight: height - 64, overflowY: utilities ? 'scroll' : 'hidden', padding: 28, backgroundColor: p.surface, borderRadius: 12, borderWidth: 1, borderColor: p.border }}>
+      <div ref={scopeRef} testId="review-sheet" role="dialog" aria-label={utilities ? 'JazzKeys utilities and support limits' : state.phase.kind === 'outcome' ? 'Simulated apply outcome' : 'Review and simulate mapping changes'} style={{ display: 'flex', flexDirection: 'column', width: utilities ? 520 : 688, maxHeight: height - 64, overflowY: utilities ? 'scroll' : 'hidden', padding: 28, backgroundColor: p.surface, borderRadius: 12, borderWidth: 1, borderColor: p.border }}>
         {utilities ? <UtilitySheet state={state} palette={p} appearanceLabel={appearanceState.availabilityLabel} send={stageIntent} onClose={closeModal} /> : state.phase.kind === 'outcome' ? <Outcome state={state} palette={p} onClose={closeModal} /> : <Review state={state} palette={p} appearance={appearance} scenario={scenario} setScenario={setScenario} onCancel={closeModal} onApply={() => { void apply(); }} cancellationRequested={cancellationRequested} onPickerOpenChange={updatePickerOpen} />}
       </div>
     </div> : null}

@@ -6,7 +6,7 @@ import { resolve, join } from 'node:path'
 export type PackageTarget = 'macos-arm64' | 'linux-x64-gnu'
 export interface ArtifactFile { name: string; bytes: number; sha256: string }
 export interface PackageManifest {
-  schemaVersion: 1; product: 'Jazzkeys'; version: string; target: PackageTarget
+  schemaVersion: 1; product: 'JazzKeys'; version: string; target: PackageTarget
   sourceCommit: string; sourceTree: string; hardwareStatus: 'no_hardware_demo'; signing: 'unsigned' | 'ad-hoc development; no Developer ID or notarization'
   bun: string; gpuix: string; workerVersion: string; protocolVersion: 1
   appearanceProtocolVersion: 1; appearanceHelperSha256: string; embeddedNativeAddonSha256: string
@@ -45,7 +45,7 @@ export function validateFileRecords(value: unknown, allowed: (name: string) => b
 export function validatePackageManifest(value: unknown): PackageManifest {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('Unknown package manifest')
   const manifest = value as Record<string, unknown>
-  if (manifest.schemaVersion !== 1 || manifest.product !== 'Jazzkeys' || manifest.hardwareStatus !== 'no_hardware_demo' ||
+  if (manifest.schemaVersion !== 1 || manifest.product !== 'JazzKeys' || manifest.hardwareStatus !== 'no_hardware_demo' ||
       manifest.signing !== (manifest.target === 'macos-arm64' ? 'ad-hoc development; no Developer ID or notarization' : 'unsigned') || !isPackageTarget(manifest.target) || !version(manifest.version) ||
       !commit(manifest.sourceCommit) || !commit(manifest.sourceTree) || !version(manifest.bun) ||
       !version(manifest.gpuix) || !version(manifest.workerVersion) || manifest.protocolVersion !== 1 ||

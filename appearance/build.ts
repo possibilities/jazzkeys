@@ -2,7 +2,7 @@ import { mkdir } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 import { signMacCode, requireValidMacCode } from '../packaging/sign-macos'
 
-/** Host-only build; callers hash and package this exact output next to Jazzkeys. */
+/** Host-only build; callers hash and package this exact output next to JazzKeys. */
 export async function buildAppearanceHelper(output: string): Promise<void> {
   const root = resolve(import.meta.dir, '..')
   const args = ['cc', '-O2', '-Wall', '-Wextra', '-Werror']

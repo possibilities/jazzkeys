@@ -1,12 +1,12 @@
 # Install the Mac demo
 
-Download the `Jazzkeys-demo-macos-arm64-….zip` asset from a
+Download the `JazzKeys-demo-macos-arm64-….zip` asset from a
 [Mac demo release](https://github.com/possibilities/jazzkeys/releases). Choose the
 app ZIP, not GitHub's automatically generated source archive. The release also
 provides checksums, provenance, and the complete corresponding-source companion.
 
 Requires **Apple silicon and macOS 14.8.9 or later**. Unzip it and move
-`Jazzkeys.app` to Applications, or keep it in a folder you own. No Rust, Xcode,
+`JazzKeys.app` to Applications, or keep it in a folder you own. No Rust, Xcode,
 Bun, Node, Terminal command, account, installer, or background service is needed.
 Open the app in Finder when you are ready.
 
@@ -24,7 +24,7 @@ The app can demonstrate selecting keys, staging mappings, and reviewing a draft.
 It cannot read or change the connected keyboard. Its two palettes follow system
 appearance; there is no manual theme setting.
 
-To uninstall, quit the app and remove `Jazzkeys.app`. There is no daemon,
+To uninstall, quit the app and remove `JazzKeys.app`. There is no daemon,
 startup item, driver, or system HID permission rule to remove. No persistent
 hardware snapshot is created by this demo.
 

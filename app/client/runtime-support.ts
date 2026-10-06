@@ -6,9 +6,9 @@
 export function requireNativeDisplay(platform: NodeJS.Platform, env: Readonly<Record<string, string | undefined>>): void {
   if (platform !== 'linux') return
   if (env.ZED_HEADLESS !== undefined) {
-    throw new Error('Jazzkeys cannot open a Linux window while ZED_HEADLESS is set. Unset ZED_HEADLESS and launch Jazzkeys from a Wayland session.')
+    throw new Error('JazzKeys cannot open a Linux window while ZED_HEADLESS is set. Unset ZED_HEADLESS and launch JazzKeys from a Wayland session.')
   }
   if (env.WAYLAND_DISPLAY === undefined || env.WAYLAND_DISPLAY.length === 0) {
-    throw new Error('This Jazzkeys Linux build requires a Wayland session. X11-only and headless sessions are unsupported by the pinned native renderer.')
+    throw new Error('This JazzKeys Linux build requires a Wayland session. X11-only and headless sessions are unsupported by the pinned native renderer.')
   }
 }

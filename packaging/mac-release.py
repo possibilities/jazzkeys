@@ -32,7 +32,7 @@ def validate_archive(path, manifest):
             p = PurePosixPath(name)
             mode = item.external_attr >> 16
             if (name in seen or name not in expected or p.is_absolute() or '..' in p.parts
-                    or '\\' in name or str(p) != name or not name.startswith('Jazzkeys.app/')
+                    or '\\' in name or str(p) != name or not name.startswith('JazzKeys.app/')
                     or item.is_dir() or not stat.S_ISREG(mode) or mode & 0o6022
                     or item.flag_bits & 1):
                 raise ValueError('Unsafe or unexpected ZIP member')
@@ -40,7 +40,7 @@ def validate_archive(path, manifest):
             record = expected[name]
             if item.file_size != record['bytes']:
                 raise ValueError('ZIP member size mismatch')
-            if name.startswith('Jazzkeys.app/Contents/MacOS/') and mode & 0o111 != 0o111:
+            if name.startswith('JazzKeys.app/Contents/MacOS/') and mode & 0o111 != 0o111:
                 raise ValueError('ZIP executable mode missing')
             with archive.open(item) as stream:
                 if hashlib.file_digest(stream, 'sha256').hexdigest() != record['sha256']:
@@ -69,7 +69,7 @@ def run(*args, **kwargs):
 
 
 def verify_mac_signatures(bundle):
-    app = bundle / 'Jazzkeys.app'
+    app = bundle / 'JazzKeys.app'
     inspected = {}
     targets = [('app', app, 'io.jazzkeys.desktop'),
                ('jazzkeys', app / 'Contents/MacOS/jazzkeys', 'io.jazzkeys.desktop'),
@@ -89,9 +89,9 @@ def verify_mac_signatures(bundle):
 
 def reject_tampered_resources(bundle):
     # Operate only on a private copy, never on bytes intended for release.
-    with tempfile.TemporaryDirectory(prefix='Jazzkeys signature negative test ') as temporary:
-        app = Path(temporary) / 'Jazzkeys.app'
-        shutil.copytree(bundle / 'Jazzkeys.app', app)
+    with tempfile.TemporaryDirectory(prefix='JazzKeys signature negative test ') as temporary:
+        app = Path(temporary) / 'JazzKeys.app'
+        shutil.copytree(bundle / 'JazzKeys.app', app)
         verify_mac_signatures(Path(temporary))
         with (app / 'Contents/Resources/INSTALL.txt').open('ab') as stream:
             stream.write(b'\nIntentional CI-only resource tampering.\n')
@@ -119,34 +119,34 @@ def main():
             or manifest['target'] != 'macos-arm64' or manifest['hardwareStatus'] != 'no_hardware_demo'
             or run('git', 'status', '--porcelain', cwd=ROOT)):
         raise SystemExit('Release bundle must match the clean current commit and Mac demo target')
-    with (bundle / 'Jazzkeys.app/Contents/Info.plist').open('rb') as stream:
+    with (bundle / 'JazzKeys.app/Contents/Info.plist').open('rb') as stream:
         plist = plistlib.load(stream)
     if plist.get('CFBundleExecutable') != 'jazzkeys' or plist.get('CFBundleIdentifier') != 'io.jazzkeys.desktop':
         raise SystemExit('Unexpected app identity')
     before_archive = verify_mac_signatures(bundle)
     tamper_rejected = reject_tampered_resources(bundle)
     output.mkdir(parents=True, exist_ok=True)
-    archive = output / f'Jazzkeys-demo-macos-arm64-{commit}.zip'
+    archive = output / f'JazzKeys-demo-macos-arm64-{commit}.zip'
     create_archive(bundle, archive, manifest)
     # Archive Utility-compatible extraction and existing integrity checks. These
     # self-test flags never create a window or enter the ordinary GUI startup.
-    with tempfile.TemporaryDirectory(prefix='Jazzkeys install with spaces ') as temp:
+    with tempfile.TemporaryDirectory(prefix='JazzKeys install with spaces ') as temp:
         extracted = Path(temp)
         run('/usr/bin/ditto', '-x', '-k', str(archive), temp)
         shutil.copyfile(bundle / 'bundle-manifest.json', extracted / 'bundle-manifest.json')
         run('bun', 'packaging/verify-bundle.ts', temp, cwd=ROOT)
         after_extraction = verify_mac_signatures(extracted)
-        executable = extracted / 'Jazzkeys.app/Contents/MacOS/jazzkeys'
+        executable = extracted / 'JazzKeys.app/Contents/MacOS/jazzkeys'
         tests = {}
         for flag in ['--package-self-test', '--native-self-test']:
             tests[flag] = json.loads(run(str(executable), flag, cwd=temp, env={'PATH': ''}))
         if tests['--package-self-test'].get('hardwareAccess') is not False or tests['--native-self-test'].get('rendererBinding') != 'native':
             raise SystemExit('Unexpected compiled-package test result')
-    manifest_name = f'Jazzkeys-bundle-manifest-{commit}.json'
+    manifest_name = f'JazzKeys-bundle-manifest-{commit}.json'
     with (output / manifest_name).open('xb') as stream:
         stream.write((bundle / 'bundle-manifest.json').read_bytes())
     receipt = {
-        'schemaVersion': 1, 'product': 'Jazzkeys', 'target': 'macos-arm64',
+        'schemaVersion': 1, 'product': 'JazzKeys', 'target': 'macos-arm64',
         'sourceCommit': commit, 'sourceTree': tree, 'version': manifest['version'], 'hardwareStatus': 'no_hardware_demo',
         'distribution': 'experimental demo', 'signing': 'ad-hoc sealed bundle; no Developer ID or notarization',
         'minimumSystemVersion': plist['LSMinimumSystemVersion'], 'buildOS': run('/usr/bin/sw_vers', '-productVersion'),

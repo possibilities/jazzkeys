@@ -13,7 +13,7 @@ Output 0 (screen0):
 \tHead 0 (screen0): connected
 
 Layer 0 (pos 0x70000000):
-\tView 0 (role xdg_toplevel, PID 1234, surface ID 17, top-level window 'Jazzkeys' of io.jazzkeys.desktop, 0xabc):
+\tView 0 (role xdg_toplevel, PID 1234, surface ID 17, top-level window 'JazzKeys' of io.jazzkeys.desktop, 0xabc):
 \t\tposition: (0, 0) -> (1180, 780)
 \t\t[fully opaque]
 \t\toutputs: 0 (screen0) (primary)
@@ -24,7 +24,7 @@ Layer 1 (pos 0x2):
 \t\t[fully opaque]
 \t\toutputs: 0 (screen0) (primary)
 `
-const expected = { pid: 1234, title: 'Jazzkeys', appId: 'io.jazzkeys.desktop', width: 1180, height: 780 }
+const expected = { pid: 1234, title: 'JazzKeys', appId: 'io.jazzkeys.desktop', width: 1180, height: 780 }
 test('dedicated Weston output requires the exact native process, app and full-output surface', () => {
   const report = verifyWestonScene(scene, expected)
   expect(report.passed).toBe(true)
@@ -34,7 +34,7 @@ test('dedicated Weston output requires the exact native process, app and full-ou
 test('other clients, cursor surfaces, altered labels, missing mapping and partial surfaces fail closed', () => {
   for (const bad of [
     scene.replace('PID 1234', 'PID 999'), scene.replace('io.jazzkeys.desktop', 'io.other.app'),
-    scene.replace("'Jazzkeys'", "'Unrelated'"), scene.replace('role xdg_toplevel', 'role wl_pointer-cursor'),
+    scene.replace("'JazzKeys'", "'Unrelated'"), scene.replace('role xdg_toplevel', 'role wl_pointer-cursor'),
     scene.replace('surface ID 17', 'surface ID 0'), scene.replace('\t\t[fully opaque]', '\t[surface is not mapped!]'),
     scene.replace('\t\tposition: (0, 0) -> (1180, 780)', '\t\tposition: (10, 0) -> (1180, 780)'),
     scene.replace('\t\t[fully opaque]', '\t\talpha: 0.900000'),
