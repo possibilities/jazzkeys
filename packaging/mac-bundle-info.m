@@ -26,10 +26,13 @@ int main(int argc, const char *argv[]) {
             id value = embeddedInfo[key];
             if ([value isKindOfClass:NSString.class]) embeddedValues[key] = value;
         }
-        LSItemInfoRecord item = {0};
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        LSItemInfoRecord item = {0};
         OSStatus status = LSCopyItemInfoForURL((__bridge CFURLRef)url, kLSRequestBasicFlagsOnly, &item);
+        BOOL lsIsApplication = (item.flags & kLSItemInfoIsApplication) != 0;
+        UInt32 lsFlags = item.flags;
+        if (item.extension) CFRelease(item.extension);
 #pragma clang diagnostic pop
         id isApplication = nil;
         NSError *resourceError = nil;
@@ -42,17 +45,17 @@ int main(int argc, const char *argv[]) {
             [info[@"CFBundlePackageType"] isEqual:@"APPL"] &&
             [executablePath isEqual:expectedExecutable] &&
             [architectures containsObject:@(CPU_TYPE_ARM64)] &&
-            status == noErr && (item.flags & kLSItemInfoIsApplication) != 0 &&
-            resourceRead && isApplication.boolValue;
+            status == noErr && lsIsApplication &&
+            resourceRead && [isApplication boolValue];
         NSDictionary *result = @{
             @"schemaVersion": @1, @"probe": @"read-only bundle recognition; no launch", @"verified": @(valid),
             @"bundleCreated": @(bundle != nil), @"cfBundleCreated": @(cfBundle != NULL),
             @"executableResolved": @([executablePath isEqual:expectedExecutable]),
             @"architectures": architectures, @"literalExecutableArchitectures": literalArchitectures, @"resolvedExecutableArchitectures": resolvedArchitectures,
             @"embeddedInfoValues": embeddedValues, @"embeddedInfoKeys": [embeddedInfo.allKeys sortedArrayUsingSelector:@selector(compare:)],
-            @"launchServicesStatus": @(status), @"launchServicesFlags": @(item.flags),
-            @"launchServicesRecognizesApplication": @((item.flags & kLSItemInfoIsApplication) != 0),
-            @"urlResourceRecognizesApplication": @(resourceRead && isApplication.boolValue),
+            @"launchServicesStatus": @(status), @"launchServicesFlags": @(lsFlags),
+            @"launchServicesRecognizesApplication": @(lsIsApplication),
+            @"urlResourceRecognizesApplication": @(resourceRead && [isApplication boolValue]),
             @"bundleName": info[@"CFBundleName"] ?: @"", @"displayName": info[@"CFBundleDisplayName"] ?: @"",
             @"executableName": info[@"CFBundleExecutable"] ?: @"", @"identifier": info[@"CFBundleIdentifier"] ?: @"",
             @"packageType": info[@"CFBundlePackageType"] ?: @"", @"minimumSystemVersion": info[@"LSMinimumSystemVersion"] ?: @"",
@@ -61,7 +64,6 @@ int main(int argc, const char *argv[]) {
         };
         NSData *json = [NSJSONSerialization dataWithJSONObject:result options:NSJSONWritingSortedKeys error:NULL];
         if (json) { fwrite(json.bytes, 1, json.length, stdout); fputc('\n', stdout); }
-        if (item.extension) CFRelease(item.extension);
         if (cfExecutable) CFRelease(cfExecutable);
         if (cfBundle) CFRelease(cfBundle);
         return valid ? 0 : 1;
