@@ -6,7 +6,9 @@
 
 int main(int argc, const char *argv[]) {
     @autoreleasepool {
-        if (argc != 2) return 64;
+        if (argc != 2 && argc != 3) return 64;
+        NSString *expectedName = argc == 3 ? [NSString stringWithUTF8String:argv[2]] : @"JazzKeys";
+        if (![expectedName isEqual:@"JazzKeys"] && ![expectedName isEqual:@"Jazzkeys"]) return 64;
         NSString *path = [[NSString stringWithUTF8String:argv[1]] stringByStandardizingPath];
         NSURL *url = [NSURL fileURLWithPath:path isDirectory:YES];
         NSBundle *bundle = [NSBundle bundleWithURL:url];
@@ -38,8 +40,8 @@ int main(int argc, const char *argv[]) {
         NSError *resourceError = nil;
         BOOL resourceRead = [url getResourceValue:&isApplication forKey:NSURLIsApplicationKey error:&resourceError];
         BOOL valid = bundle != nil && cfBundle != NULL &&
-            [info[@"CFBundleName"] isEqual:@"JazzKeys"] &&
-            [info[@"CFBundleDisplayName"] isEqual:@"JazzKeys"] &&
+            [info[@"CFBundleName"] isEqual:expectedName] &&
+            [info[@"CFBundleDisplayName"] isEqual:expectedName] &&
             [info[@"CFBundleExecutable"] isEqual:@"jazzkeys"] &&
             [info[@"CFBundleIdentifier"] isEqual:@"io.jazzkeys.desktop"] &&
             [info[@"CFBundlePackageType"] isEqual:@"APPL"] &&

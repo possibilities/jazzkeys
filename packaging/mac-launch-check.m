@@ -18,7 +18,7 @@ static void tick(void) {
     [NSRunLoop.currentRunLoop runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
 }
 static BOOL windowServerDataAvailable = NO;
-static NSArray *ownedWindows(pid_t pid) {
+static NSArray *ownedWindows(pid_t pid, NSString *expectedTitle) {
     CFArrayRef raw = CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly, kCGNullWindowID);
     windowServerDataAvailable = raw != NULL;
     NSArray *windows = CFBridgingRelease(raw) ?: @[];
@@ -30,7 +30,7 @@ static NSArray *ownedWindows(pid_t pid) {
         if (!CGRectMakeWithDictionaryRepresentation((__bridge CFDictionaryRef)window[(__bridge NSString *)kCGWindowBounds], &bounds)) continue;
         if (bounds.size.width < 960 || bounds.size.height < 680) continue;
         NSString *title = window[(__bridge NSString *)kCGWindowName] ?: @"";
-        if (title.length && ![title isEqual:@"JazzKeys"]) continue;
+        if (title.length && ![title isEqual:expectedTitle]) continue;
         [owned addObject:@{@"width": @(bounds.size.width), @"height": @(bounds.size.height),
             @"title": window[(__bridge NSString *)kCGWindowName] ?: @""}];
     }
@@ -45,11 +45,14 @@ int main(int argc, const char *argv[]) {
         NSURL *url = [[NSURL fileURLWithPath:[NSString stringWithUTF8String:argv[1]] isDirectory:YES] URLByResolvingSymlinksInPath];
         NSString *workspace = environment[@"GITHUB_WORKSPACE"];
         if (!workspace.length) return 64;
-        NSURL *expectedURL = [[NSURL fileURLWithPath:[workspace stringByAppendingPathComponent:@"dist/install/macos-arm64/JazzKeys.app"] isDirectory:YES] URLByResolvingSymlinksInPath];
-        if (![url isEqual:expectedURL]) return 65;
+        NSURL *expectedURL = [[NSURL fileURLWithPath:[workspace stringByAppendingPathComponent:@"dist/launch-current/JazzKeys.app"] isDirectory:YES] URLByResolvingSymlinksInPath];
+        NSURL *baselineURL = [[NSURL fileURLWithPath:[workspace stringByAppendingPathComponent:@"dist/launch-baseline/Jazzkeys.app"] isDirectory:YES] URLByResolvingSymlinksInPath];
+        BOOL baseline = [url isEqual:baselineURL];
+        if (![url isEqual:expectedURL] && !baseline) return 65;
+        NSString *expectedTitle = baseline ? @"Jazzkeys" : @"JazzKeys";
         NSString *output = [NSString stringWithUTF8String:argv[2]];
         NSBundle *bundle = [NSBundle bundleWithURL:url];
-        if (![url.lastPathComponent isEqual:@"JazzKeys.app"] ||
+        if (![url.lastPathComponent isEqual:[expectedTitle stringByAppendingString:@".app"]] ||
             ![bundle.bundleIdentifier isEqual:@"io.jazzkeys.desktop"] ||
             [NSRunningApplication runningApplicationsWithBundleIdentifier:@"io.jazzkeys.desktop"].count != 0) return 65;
         NSWorkspaceOpenConfiguration *config = [NSWorkspaceOpenConfiguration configuration];
@@ -61,19 +64,21 @@ int main(int argc, const char *argv[]) {
         config.allowsRunningApplicationSubstitution = NO;
         config.createsNewApplicationInstance = YES;
         __block BOOL completed = NO;
-        __block NSRunningApplication *application = nil;
+        __block NSRunningApplication *reportedApplication = nil;
         __block NSError *launchError = nil;
         [NSWorkspace.sharedWorkspace openApplicationAtURL:url configuration:config completionHandler:^(NSRunningApplication *app, NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{ application = app; launchError = error; completed = YES; });
+            dispatch_async(dispatch_get_main_queue(), ^{ reportedApplication = app; launchError = error; completed = YES; });
         }];
         NSDate *deadline = [NSDate dateWithTimeIntervalSinceNow:30];
         while (!completed && deadline.timeIntervalSinceNow > 0) tick();
         BOOL launchTimedOut = !completed;
+        NSRunningApplication *application = reportedApplication;
         if (launchTimedOut) {
             // Bounded final observation: a delayed completion is a failure, but
             // still reclaim the exact app we asked Launch Services to start.
             deadline = [NSDate dateWithTimeIntervalSinceNow:10];
             while (!application && deadline.timeIntervalSinceNow > 0) {
+                application = reportedApplication;
                 for (NSRunningApplication *candidate in [NSRunningApplication runningApplicationsWithBundleIdentifier:@"io.jazzkeys.desktop"]) {
                     if ([[candidate.bundleURL URLByResolvingSymlinksInPath] isEqual:url]) { application = candidate; break; }
                 }
@@ -87,7 +92,7 @@ int main(int argc, const char *argv[]) {
         if (identity) {
             deadline = [NSDate dateWithTimeIntervalSinceNow:20];
             while (!application.terminated && deadline.timeIntervalSinceNow > 0) {
-                windows = ownedWindows(application.processIdentifier);
+                windows = ownedWindows(application.processIdentifier, expectedTitle);
                 if (application.finishedLaunching && windows.count > 0) break;
                 tick();
             }
@@ -106,6 +111,7 @@ int main(int argc, const char *argv[]) {
         BOOL passed = completed && !launchTimedOut && launched && quitRequested && !forceAttempted && application.terminated;
         NSDictionary *result = @{@"schemaVersion": @1, @"verified": @(passed),
             @"scope": @"One CI-built app via Launch Services; no user desktop or input injection",
+            @"targetKind": baseline ? @"published-demo.2-baseline" : @"current-extracted-archive",
             @"completionReceived": @(completed), @"identityMatched": @(identity),
             @"launchedWithOwnedWindow": @(launched), @"windowServerDataAvailable": @(windowServerDataAvailable), @"windows": windows,
             @"pid": identity ? @(application.processIdentifier) : @0,
