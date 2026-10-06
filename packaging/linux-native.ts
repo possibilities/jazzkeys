@@ -205,8 +205,10 @@ async function verifyWarningScroll(app: App, compositor: Compositor, name: strin
     await app.call('scrollWheel', input)
     await waitFor(async () => {
       const { rail, footer } = await measure()
+      const fixedFooter = (['x', 'y', 'width', 'height'] as const).every(key => Math.abs(footer[key] - before.footer[key]) <= 1)
       return rail.x >= 0 && rail.x + rail.width <= width && rail.y >= 56
-        && rail.y + rail.height <= footer.y + 1 && Math.abs(footer.y - (height - 64)) <= 1
+        && rail.y + rail.height <= footer.y + 1 && fixedFooter
+        && Math.abs(footer.y + footer.height - height) <= 1
     }, `full warning-state mapping rail above fixed footer: ${name}`)
   } catch (error) { failure = error }
   const after = await measure()

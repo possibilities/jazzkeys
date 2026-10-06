@@ -2,13 +2,6 @@ name: Native demo screenshots
 on:
   push:
     branches: [main]
-    paths:
-      - 'app/**'
-      - 'packaging/native-screenshots.ts'
-      - 'package.json'
-      - 'bun.lock'
-      - 'tsconfig.json'
-      - '.github/workflows/native-ui.yml'
   workflow_dispatch:
 permissions:
   contents: read

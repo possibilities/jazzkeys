@@ -33,10 +33,18 @@ appearance helper, uid 1001, no routes and unchanged package hashes.
 
 Direct inspection of all 35 images found coherent readable layouts and dialogs,
 with one explicit caveat: warning banners push part of the mapping rail below
-the initial scroll position in read-only/offline states. The later read-only
-native wheel/complete-rail visibility assertions and four scrolled captures were
-added to verify access; they are not established by this earlier run. Acceptance
-of these additions requires a new successful exact-commit run and image review.
+the initial scroll position in read-only/offline states.
+
+[Run 37464547938](https://github.com/possibilities/jazzkeys/actions/runs/37464547938),
+commit `8caa3a8ffdd98cc9d3d645ca846f1cdf5d7425b8`, also passed all four read-only
+native-wheel assertions and retained 39 PNGs. Inspected scrolled images show
+the complete rail and controls above the unchanged footer in both themes/sizes.
+Offsets changed from zero to -56 pixels at 1180×780 and -55 at 960×680. Reported
+bordered footer bounds are y=717/617 and height=63; their sum reaches the viewport
+bottom. The gate compares stable before/after geometry and that bottom alignment,
+rather than confusing the reported content box with the CSS outer height.
+Runtime/sensor and system-follow checks passed again. X11 and physical keyboard
+or screen-reader acceptance remain outside these results.
 
 ## Why the stock addon cannot select X11
 
