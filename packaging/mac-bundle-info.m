@@ -51,13 +51,13 @@ int main(int argc, const char *argv[]) {
             resourceRead && [isApplication boolValue];
         NSDictionary *result = @{
             @"schemaVersion": @1, @"probe": @"read-only bundle recognition; no launch", @"verified": @(valid),
-            @"bundleCreated": @(bundle != nil), @"cfBundleCreated": @(cfBundle != NULL),
+            @"bundleCreated": @((BOOL)(bundle != nil)), @"cfBundleCreated": @((BOOL)(cfBundle != NULL)),
             @"executableResolved": @([executablePath isEqual:expectedExecutable]),
             @"architectures": architectures, @"literalExecutableArchitectures": literalArchitectures, @"resolvedExecutableArchitectures": resolvedArchitectures,
             @"embeddedInfoValues": embeddedValues, @"embeddedInfoKeys": [embeddedInfo.allKeys sortedArrayUsingSelector:@selector(compare:)],
             @"launchServicesStatus": @(status), @"launchServicesFlags": @(lsFlags),
             @"launchServicesRecognizesApplication": @(lsIsApplication),
-            @"urlResourceRecognizesApplication": @(resourceRead && [isApplication boolValue]),
+            @"urlResourceRecognizesApplication": @((BOOL)(resourceRead && [isApplication boolValue])),
             @"bundleName": info[@"CFBundleName"] ?: @"", @"displayName": info[@"CFBundleDisplayName"] ?: @"",
             @"executableName": info[@"CFBundleExecutable"] ?: @"", @"identifier": info[@"CFBundleIdentifier"] ?: @"",
             @"packageType": info[@"CFBundlePackageType"] ?: @"", @"minimumSystemVersion": info[@"LSMinimumSystemVersion"] ?: @"",

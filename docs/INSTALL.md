@@ -11,7 +11,7 @@ Bun, Node, Terminal command, account, installer, or background service is needed
 Open the app in Finder when you are ready.
 
 This is an **experimental demo**, ad-hoc development-signed with sealed resources,
-without Developer ID signing or notarization. Use demo.2 or later: demo.1 had an
+without Developer ID signing or notarization. Use the latest JazzKeys-named release: demo.1 had an
 invalid application signature and is superseded.
 macOS may block it. Follow [Apple's security guidance](https://support.apple.com/en-us/102445)
 and decide whether you trust this exact download; do not globally disable
@@ -35,7 +35,9 @@ spaces, verifies every bundled file and executable mode, and runs its private
 worker and native-binding self-tests with an empty runtime PATH. These self-tests
 do not open a window. Native offscreen rendering/interaction checks are separate.
 
-The packaged app's ordinary macOS GUI startup, runtime network behavior, and OS
-permission prompts have not yet been observed. Neither full installation nor
-screen-reader acceptance is claimed. Hosted CI permission preapprovals would
+The exact release archive is also opened through Launch Services on a separate
+Mac CI runner, checked for its owned main window, and quit normally. This does
+not guarantee every macOS version or opener behaves identically: a reported
+macOS 26.5.2 opening failure remains under investigation. Runtime network behavior,
+permission-request absence, and screen-reader acceptance are not established. Hosted CI permission preapprovals would
 also limit what absence of visible prompts could prove. See [release scope](RELEASE.md).

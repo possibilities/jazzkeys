@@ -30,36 +30,26 @@ def check_file(directory, record, name_key='name'):
     return path
 
 
-def verify_assets(directory, commit, tree):
-    mac = json.loads((directory / 'macos-release.json').read_text())
-    source_name = f'JazzKeys-corresponding-source-{commit}.json'
-    source = json.loads((directory / source_name).read_text())
-    if (mac['schemaVersion'] != 1 or mac['sourceCommit'] != commit or mac['sourceTree'] != tree
-            or mac['target'] != 'macos-arm64' or mac['hardwareStatus'] != 'no_hardware_demo'
-            or mac['signing'] != 'ad-hoc sealed bundle; no Developer ID or notarization'
-            or source['schema_version'] != 1 or source['project_commit'] != commit or source['source_tree'] != tree):
-        raise ValueError('Release source/target correspondence mismatch')
-    signatures = mac.get('bundleSignatureVerification', {})
-    if (signatures.get('beforeArchive', {}).get('verified') is not True
-            or signatures.get('afterExtraction', {}).get('verified') is not True
-            or signatures.get('resourceTamperRejected') is not True):
-        raise ValueError('Mac signature verification evidence is incomplete')
-    if (mac['archive']['name'] != f'JazzKeys-demo-macos-arm64-{commit}.zip'
-            or mac['bundleManifest']['name'] != f'JazzKeys-bundle-manifest-{commit}.json'
-            or source['archive']['path'] != f'JazzKeys-corresponding-source-{commit}.tar.gz'):
-        raise ValueError('Unexpected release artifact filename')
-    app = check_file(directory, mac['archive'])
-    bundle = check_file(directory, mac['bundleManifest'])
-    source_archive = check_file(directory, source['archive'], 'path')
-    manifest = json.loads(bundle.read_text())
-    if (manifest['sourceCommit'] != commit or manifest['sourceTree'] != tree
-            or manifest['target'] != 'macos-arm64' or manifest['hardwareStatus'] != 'no_hardware_demo'):
-        raise ValueError('Bundle provenance mismatch')
-    spec = importlib.util.spec_from_file_location('mac_release', ROOT / 'packaging/mac-release.py')
+def launch_tools():
+    spec = importlib.util.spec_from_file_location('release_launch', ROOT / 'packaging/release-launch.py')
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
-    module.validate_archive(app, manifest)
-    expected = {app.name, bundle.name, source_archive.name, source_name, 'macos-release.json'}
+    return module
+
+
+def verify_assets(directory, commit, tree, run_id=None, run_attempt=None):
+    launch_module = launch_tools()
+    mac, app, bundle = launch_module.verify_mac_assets(directory, commit, tree)
+    source_name = f'JazzKeys-corresponding-source-{commit}.json'
+    source = launch_module.read_receipt(directory / source_name)
+    if (source['schema_version'] != 1 or source['project_commit'] != commit or source['source_tree'] != tree):
+        raise ValueError('Release source/target correspondence mismatch')
+    if source['archive']['path'] != f'JazzKeys-corresponding-source-{commit}.tar.gz':
+        raise ValueError('Unexpected release artifact filename')
+    source_archive = check_file(directory, source['archive'], 'path')
+    launch = launch_module.read_receipt(directory / 'macos-launch.json')
+    launch_module.verify_launch_receipt(launch, mac, commit, tree, run_id, run_attempt)
+    expected = {app.name, bundle.name, source_archive.name, source_name, 'macos-release.json', 'macos-launch.json'}
     if {p.name for p in directory.iterdir()} != expected or any(not p.is_file() or p.is_symlink() for p in directory.iterdir()):
         raise ValueError('Unexpected release staging contents')
     return mac, sorted(directory.iterdir())
@@ -180,17 +170,20 @@ def main():
     args = parser.parse_args()
     commit = os.environ.get('GITHUB_SHA', '')
     run_id = os.environ.get('GITHUB_RUN_ID', '')
+    run_attempt = os.environ.get('GITHUB_RUN_ATTEMPT', '')
     if (os.environ.get('GITHUB_ACTIONS') != 'true' or os.environ.get('GITHUB_REPOSITORY') != REPO
             or os.environ.get('GITHUB_REF') != 'refs/heads/main'
             or os.environ.get('GITHUB_EVENT_NAME') not in ('push', 'workflow_dispatch')
-            or not re.fullmatch(r'[a-f0-9]{40}', commit) or not run_id.isdecimal()):
+            or not re.fullmatch(r'[a-f0-9]{40}', commit) or not re.fullmatch(r'[1-9][0-9]*', run_id)
+            or not re.fullmatch(r'[1-9][0-9]*', run_attempt)):
         raise SystemExit('Publication is restricted to the trusted repository main workflow')
     current = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
     tree = subprocess.check_output(['git', 'rev-parse', 'HEAD^{tree}'], cwd=ROOT, text=True).strip()
     if current != commit:
         raise SystemExit('Publisher checkout does not match workflow commit')
     directory = args.assets.resolve()
-    mac, assets = verify_assets(directory, commit, tree)
+    mac, assets = verify_assets(directory, commit, tree, run_id, run_attempt)
+    launch = json.loads((directory / 'macos-launch.json').read_text())
     version = (ROOT / 'packaging/mac-release-version.txt').read_text().strip()
     if not re.fullmatch(r'\d+\.\d+\.\d+-demo\.\d+', version):
         raise SystemExit('Invalid demo release version')
@@ -200,8 +193,10 @@ def main():
     run_url = f'https://github.com/{REPO}/actions/runs/{run_id}'
     provenance = directory / 'release-provenance.json'
     provenance.write_text(json.dumps({'schemaVersion': 1, 'repository': REPO, 'sourceCommit': commit,
-        'sourceTree': tree, 'tag': tag, 'buildRun': run_url, 'target': 'macos-arm64',
+        'sourceTree': tree, 'tag': tag, 'buildRun': run_url, 'launchRunAttempt': launch['workflow']['runAttempt'], 'target': 'macos-arm64',
         'distribution': 'experimental no-hardware demo', 'signing': mac['signing'],
+        'launchAcceptance': {'receipt': 'macos-launch.json', 'archiveSha256': mac['archive']['sha256'],
+                             'testOS': launch['testOS'], 'trust': launch['trust']},
         'assets': [{'name': p.name, 'bytes': p.stat().st_size, 'sha256': digest(p)} for p in assets]}, indent=2) + '\n')
     assets.append(provenance)
     sums = directory / 'SHA256SUMS'
@@ -213,9 +208,9 @@ Download **{mac['archive']['name']}**, unzip, and move JazzKeys.app into Applica
 
 **Ad-hoc development-signed, without Developer ID or notarization. macOS may block opening it.** Do not disable system protections globally. This demo cannot read or change your keyboard. No hardware permission grant is part of exploring the demo.
 
-This revision corrects the first demo's invalid/unsealed application signature. Strict verification passes before and after extraction, and a modified-resource negative test is rejected. No system security settings were changed.
+Strict signature verification passes before and after extraction, and a modified-resource negative test is rejected. The exact ZIP above was downloaded from this workflow's build artifact, extracted, recognized by Launch Services, opened with a titled JazzKeys window, and quit gracefully on a GitHub-hosted Mac running macOS {launch['testOS']['version']} ({launch['testOS']['build']}). The same-run archive-bound evidence is in macos-launch.json. No app rebuild, permission acceptance, input injection, or security-settings change was part of this gate.
 
-The ordinary packaged GUI startup, network behavior, OS permission prompts, and VoiceOver acceptance remain unobserved. Native offscreen controls and relocated compiled self-tests passed; these do not establish full installation/runtime acceptance. [Exact scope](https://github.com/{REPO}/blob/{commit}/docs/RELEASE.md).
+This does not establish first-run acceptance of a quarantined download on a user's Mac or resolve the reported Raycast -10827 failure on macOS 26.5.2. Network silence, hardware behavior, and VoiceOver acceptance remain unverified. Native offscreen controls and relocated compiled self-tests passed. [Exact scope](https://github.com/{REPO}/blob/{commit}/docs/RELEASE.md).
 
 The complete corresponding-source archive and build/relink instructions are provided alongside the app; GitHub's automatic source ZIP alone is not the full source companion. Notices are also inside the app.
 

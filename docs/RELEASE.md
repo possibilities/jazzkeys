@@ -1,10 +1,14 @@
 # Mac demo releases
 
-Current launch investigation: demo.2 repairs code signatures, but a macOS 26.5.2
-installation still reports Launch Services error -10827. Valid signatures and
-direct executable self-tests are not proof that the application opens through
-Launch Services. The JazzKeys name correction and a bounded native open/window/quit
-check are being validated before the next downloadable release.
+Current launch investigation: the exact published demo.2 ZIP and the renamed
+JazzKeys archive both passed a real Launch Services open/window/quit check on a
+clean macOS 26.6.2 runner. The reported macOS 26.5.2 opening failure (-10827) has
+not been reproduced there and remains unresolved on that host. No registration
+reset, quarantine removal, or OS security change is implied by the CI result.
+
+The new release gate tests the **same archive produced by the release build**
+after extraction on a separate Mac runner, rather than treating signatures or
+direct executable self-tests as evidence of a normal application launch.
 
 The downloadable target is **macOS ARM64 only**. The release workflow builds a
 ZIP containing `JazzKeys.app`, with all runtimes, its matching private worker,
@@ -13,8 +17,9 @@ toolchain is not required to use the download. See [installation](INSTALL.md).
 
 ## Scope
 
-This is an experimental **no-hardware demo**, with an ad-hoc development signature and sealed resources, without Developer ID
-signing or notarization. It supports the native staged-mapping editor and review flow. It
+This is an experimental **no-hardware demo**, with an ad-hoc development
+signature and sealed resources, without Developer ID signing or notarization.
+It supports the native staged-mapping editor and review flow. It
 has no production HID transport and cannot read or change a physical keyboard.
 Base/Fn capability, persistence, and actual unit compatibility remain unverified.
 
@@ -24,16 +29,19 @@ The release ZIP is re-extracted with macOS `ditto` to a path containing spaces;
 all files/modes are verified and both renderer-free compiled self-tests run with
 an empty PATH. The complete bundle and all three executables must pass strict
 code-signature verification before archiving and after extraction. An intentional
-change to a sealed resource in a disposable copy must fail verification. These checks establish packaging integrity, not ordinary GUI
-startup or a screen-reader evaluation.
+change to a sealed resource in a disposable copy must fail verification. These
+checks establish packaging integrity; the separate Launch Services gate below
+establishes a bounded GUI launch, not a screen-reader evaluation.
 
-The packaged macOS app's ordinary GUI runtime network behavior and OS permission
-prompts have not been observed. No network-silence or complete installation /
-accessibility acceptance claim is made. First-party code has no production HID
-backend, network feature, service installer, or Accessibility/Input Monitoring
+Ordinary packaged GUI launch, owned main-window creation, and graceful quit are
+now checked through Launch Services on the recorded CI OS. Runtime network
+behavior and OS permission-request absence are not established by that check.
+No network-silence, universal installation, or accessibility acceptance claim
+is made. First-party code has no production HID backend, network feature, service installer, or Accessibility/Input Monitoring
 request. Static absence does not prove all bundled native runtime behavior.
 Hosted runner TCC preapprovals further limit permission-prompt observations.
-The additional live runtime check requires separately coordinated interaction.
+The earlier deeper interaction/network pilot remains separate from this bounded
+launch check; it is not run or claimed by the release pipeline.
 
 The full distribution-acceptance milestone therefore remains open. A labelled
 experimental demo is a narrower deliverable, not a completed write-enabled
@@ -42,16 +50,21 @@ mapper or a claim that every acceptance gate passed.
 ## CI and artifact integrity
 
 `mac-release.yml` runs on reviewed main changes to its release marker and by
-manual dispatch on main. It has three stages:
+manual dispatch on main. It has four stages:
 
-1. A read-only Mac job runs locked checks, Rust formatting/lint/fault tests,
-   appearance tests, native offscreen interaction checks, package/bundle builds,
-   and the archive round trip. Only this job creates executable release bytes.
-2. A read-only source job reconstructs the pinned WebKit subset, collects all
+1. A read-only source job reconstructs the pinned WebKit subset, collects all
    checksum-pinned corresponding sources plus the exact project commit, and
    verifies the complete archive and retained notice inventory.
-3. A separate, main-only publishing job receives only `contents: write` and
-   `actions: read`, verifies both asset sets and matching commit/tree, then
+2. A read-only Mac job runs locked checks, Rust formatting/lint/fault tests,
+   appearance tests, native offscreen interaction checks, package/bundle builds,
+   and the archive round trip. Only this job creates executable release bytes.
+3. A read-only macOS 26 job downloads the exact same-run Mac archive, validates
+   its hashes/signatures/metadata, extracts it, opens only that app through Launch
+   Services, observes its titled main-window-sized surface, and quits it. It
+   accepts no prompts and performs no keyboard or pointer injection. A bound
+   `macos-launch.json` records the actual OS and result.
+4. A separate, main-only publishing job receives only `contents: write` and
+   `actions: read`, verifies all asset sets and matching commit/tree, then
    creates a versioned draft, uploads and verifies all assets, and publishes a
    prerelease. Build jobs have no publishing token or signing credentials.
 
@@ -79,9 +92,10 @@ See [third-party notices](../THIRD-PARTY-NOTICES.md) and
 
 ## Remaining acceptance work
 
-- Observe ordinary packaged Mac startup, bounded runtime network/device access,
-  permission behavior, quit/uninstall, and system-appearance changes, with the
-  owner's coordinated permission for that interaction
+- Resolve the reported host-specific opening failure without assuming that a
+  successful CI launch proves that host has been repaired
+- Observe bounded runtime network/device access, permission behavior, uninstall,
+  and system-appearance changes with coordinated interaction where required
 - Test VoiceOver on the native app; static roles and keyboard checks do not imply
   complete screen-reader support
 - Acquire signing/notarization facilities only if the owner later authorizes them
@@ -118,3 +132,14 @@ inputs. These transform records do not independently prove that only signing
 changed executable bytes. Native strict signature verification establishes the
 final seal's integrity; ad-hoc signatures do not authenticate a publisher.
 Nothing inside the app is rewritten after sealing.
+
+## Launch Services and branding in demo.3
+
+Display names and new bundle/archive filenames use **JazzKeys**. The lowercase
+repository, bundle identifier, and private executable names remain stable.
+The comparison run is [recorded against commit 63f415d](https://github.com/possibilities/jazzkeys/actions/runs/37527895292):
+both the byte-verified published demo.2 and the newly extracted JazzKeys app
+resolved ARM64 and APPL through CoreFoundation/Launch Services, produced their
+expected titled windows, and quit without forced cleanup or accepted prompts.
+That rules out a universally malformed demo.2 archive; it does not explain or
+repair an OS/opener-specific failure on a different machine.

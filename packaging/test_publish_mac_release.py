@@ -1,8 +1,10 @@
 import hashlib
 import importlib.util
+import json
 from pathlib import Path
 import tempfile
 import unittest
+from test_release_launch import synthetic_assets, TREE, RUN_ID, ATTEMPT
 
 spec = importlib.util.spec_from_file_location('publisher', Path(__file__).with_name('publish-mac-release.py'))
 m = importlib.util.module_from_spec(spec)
@@ -106,6 +108,59 @@ class PublisherTests(unittest.TestCase):
             m.check_file(Path(self.temp.name), {'name': '../outside'})
         with self.assertRaisesRegex(ValueError, 'differs'):
             m.check_file(Path(self.temp.name), {'name': self.path.name, 'bytes': 1, 'sha256': '0' * 64})
+
+
+class PublisherLaunchGateTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.directory, self.mac, self.receipt = synthetic_assets(Path(self.temp.name))
+
+    def verify(self):
+        return m.verify_assets(self.directory, COMMIT, TREE, RUN_ID, ATTEMPT)
+
+    def test_archive_bound_same_run_receipt_is_a_required_public_asset(self):
+        mac, assets = self.verify()
+        self.assertEqual(mac, self.mac)
+        self.assertEqual(len(assets), 6)
+        self.assertIn('macos-launch.json', {path.name for path in assets})
+
+    def test_missing_launch_receipt_rejected(self):
+        (self.directory / 'macos-launch.json').unlink()
+        with self.assertRaisesRegex(ValueError, 'receipt'):
+            self.verify()
+
+    def test_same_commit_different_run_receipt_rejected(self):
+        self.receipt['workflow']['runId'] = '999'
+        self.receipt['workflow']['url'] = 'https://github.com/possibilities/jazzkeys/actions/runs/999'
+        (self.directory / 'macos-launch.json').write_text(json.dumps(self.receipt))
+        with self.assertRaisesRegex(ValueError, 'workflow run'):
+            self.verify()
+
+    def test_other_archive_receipt_rejected(self):
+        self.receipt['archive']['sha256'] = '0' * 64
+        (self.directory / 'macos-launch.json').write_text(json.dumps(self.receipt))
+        with self.assertRaisesRegex(ValueError, 'source/archive correspondence'):
+            self.verify()
+
+    def test_launch_cleanup_failure_blocks_publication(self):
+        self.receipt['launch']['forceAttempted'] = True
+        (self.directory / 'macos-launch.json').write_text(json.dumps(self.receipt))
+        with self.assertRaisesRegex(ValueError, 'gracefully quit'):
+            self.verify()
+
+    def test_extra_assets_and_symlink_receipts_rejected(self):
+        unexpected = self.directory / 'another-app.zip'
+        unexpected.write_bytes(b'unexpected')
+        with self.assertRaisesRegex(ValueError, 'staging contents'):
+            self.verify()
+        unexpected.unlink()
+        receipt = self.directory / 'macos-launch.json'
+        moved = Path(self.temp.name) / 'elsewhere.json'
+        receipt.rename(moved)
+        receipt.symlink_to(moved)
+        with self.assertRaisesRegex(ValueError, 'unsafe receipt'):
+            self.verify()
 
 
 if __name__ == '__main__':

@@ -117,7 +117,7 @@ int main(int argc, const char *argv[]) {
             @"pid": identity ? @(application.processIdentifier) : @0,
             @"quitRequested": @(quitRequested), @"forceAttempted": @(forceAttempted), @"forceAccepted": @(forceAccepted),
             @"launchTimedOut": @(launchTimedOut), @"cleanupUncertain": @(cleanupUncertain),
-            @"terminated": @(identity && application.terminated),
+            @"terminated": @((BOOL)(identity && application.terminated)),
             @"permissionPromptsAccepted": @NO, @"errors": errorChain(launchError, url.path)};
         NSData *json = [NSJSONSerialization dataWithJSONObject:result options:NSJSONWritingPrettyPrinted | NSJSONWritingSortedKeys error:NULL];
         if (!json || ![json writeToFile:output atomically:YES]) return 74;
