@@ -41,13 +41,21 @@ for (const [width,height] of [[1180,780], [960,680]] as const) for (const appear
     // scroll container exposes the entire rail while the action footer stays put.
     if (scenario === 'read-only') {
       const rail = test.renderer.findByTestId('mapping-rail')!
-      test.renderer.scrollIntoView(rail.id)
+      const workspace = test.renderer.findByTestId('bench-workspace')!
+      // Exercise the user's wheel path. Stock 0.10.0 scrollIntoView uses a
+      // retained child index while the GPUI container injects a tracker child;
+      // it does not establish that the requested rectangle became visible.
+      test.renderer.nativeSimulateScrollWheel(16, height / 2, 0, -300)
       test.renderer.flush()
       const railBounds = test.renderer.getElementBounds(rail.id)!
       const footer = test.renderer.findByTestId('draft-action-bar')!
       const footerBounds = test.renderer.getElementBounds(footer.id)!
-      if (railBounds.y < 56 || railBounds.y + railBounds.height > footerBounds.y + 1 || footerBounds.y !== height - 64) throw new Error(`Warning-state rail cannot be reached above fixed footer: ${name}`)
+      const offset = test.renderer.getScrollOffset(workspace.id)
       test.renderer.captureScreenshot(`artifacts/native/${name}-scrolled.png`)
+      const scrollEvidence = {name:`${name}-scrolled`,input:'native wheel',railBounds,footerBounds,offset}
+      await writeFile(`artifacts/native/${name}-scroll.json`,JSON.stringify(scrollEvidence,null,2))
+      if (!offset || offset[1]! >= 0 || railBounds.y < 56 || railBounds.y + railBounds.height > footerBounds.y + 1 || footerBounds.y !== height - 64) throw new Error(`Warning-state rail cannot be reached above fixed footer: ${name}`)
+      evidence.push(scrollEvidence)
     }
   } finally { test.unmount() }
 }

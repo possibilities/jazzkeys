@@ -20,9 +20,23 @@ receipts passed, including zero Internet/HID attempts, uid 1001, one verified
 appearance helper, an isolated loopback-only network namespace and unchanged
 package hashes. Those finite early traces do not establish a complete GUI flow.
 
-The nested-Wayland harness is a correction to the test route. A definition and
-unit tests do not certify it: a successful run on the exact final commit, its
-runtime receipts, and direct inspection of all output images remain required.
+[Run 37463394496](https://github.com/possibilities/jazzkeys/actions/runs/37463394496),
+commit `6a7bc868065acc5b59658e2ca0267dbb8377e417`, successfully exercised the
+corrected nested-Wayland route. Its 35 PNGs cover the installed flow and 28
+fixtures. Actual canvas RGB values were `[23,28,25]` for both dark captures and
+`[243,241,235]` for both light captures. The native select/search/stage/review,
+Escape/Enter focus-return, simulate and verified flow passed. Every capture's
+before/after scene attested the expected sole fullscreen app surface. Sensor,
+bootstrap and GUI traces passed; the GUI trace recorded 2,602 syscalls, zero
+Internet/HID attempts, the exact private Wayland socket, one hash-verified
+appearance helper, uid 1001, no routes and unchanged package hashes.
+
+Direct inspection of all 35 images found coherent readable layouts and dialogs,
+with one explicit caveat: warning banners push part of the mapping rail below
+the initial scroll position in read-only/offline states. The later read-only
+native wheel/complete-rail visibility assertions and four scrolled captures were
+added to verify access; they are not established by this earlier run. Acceptance
+of these additions requires a new successful exact-commit run and image review.
 
 ## Why the stock addon cannot select X11
 
@@ -110,6 +124,10 @@ The workflow is designed to:
 9. Capture disconnected, read-only, editing, review, applying, verified and
    uncertain fixtures in light/dark at 1180×780 and 960×680. Each new compositor
    has exactly that output size, avoiding inferred crop coordinates or scaling
+10. In every read-only fixture, dispatch an actual stock-native wheel event into
+    the workspace and require the complete mapping rail above the fixed footer.
+    Retain initial/scrolled pixels, before/after rail/footer geometry and reported
+    scroll offsets; save failure pixels and fail if the rail remains occluded
 
 ## Pixel ownership and evidence
 

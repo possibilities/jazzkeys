@@ -188,6 +188,37 @@ async function click(app: App, testId: string) {
 async function hasText(app: App, text: string) {
   await waitFor(async () => (await app.call('getAllText', {})).text.includes(text), text)
 }
+async function verifyWarningScroll(app: App, compositor: Compositor, name: string, width: number, height: number) {
+  const workspace = await app.getByTestId('bench-workspace').element()
+  const measure = async () => ({
+    rail: await app.getByTestId('mapping-rail').bounds(),
+    footer: await app.getByTestId('draft-action-bar').bounds(),
+    workspace: await app.getByTestId('bench-workspace').bounds(),
+    offset: (await app.call('getScrollOffset', { elementId: workspace.id })).offset,
+  })
+  const before = await measure()
+  // Stock GPUI deltas are pixels: negative Y scrolls the content down. Dispatch
+  // into the workspace's blank left margin, away from nested input/list widgets.
+  const input = { x: before.workspace.x + 12, y: before.workspace.y + 40, deltaX: 0, deltaY: -600 }
+  let failure: unknown
+  try {
+    await app.call('scrollWheel', input)
+    await waitFor(async () => {
+      const { rail, footer } = await measure()
+      return rail.x >= 0 && rail.x + rail.width <= width && rail.y >= 56
+        && rail.y + rail.height <= footer.y + 1 && Math.abs(footer.y - (height - 64)) <= 1
+    }, `full warning-state mapping rail above fixed footer: ${name}`)
+  } catch (error) { failure = error }
+  const after = await measure()
+  const report = { name: `${name}-scroll`, result: failure ? 'failed' : 'passed', input: 'stock native GPUI scroll-wheel dispatch',
+    event: input, before, after, fullRailVisibleAboveFixedFooter: !failure }
+  await writeFile(join(out, `${name}-scroll.json`), JSON.stringify(report, null, 2) + '\n')
+  evidence.push(report)
+  // Keep actual failure pixels as well as geometry; a retained tree alone must
+  // never turn an occluded read-only rail into a successful acceptance receipt.
+  await capture(app, compositor, `${name}-${failure ? 'scroll-failed' : 'scrolled'}`, width, height)
+  if (failure) throw failure
+}
 async function startFakePortal() {
   // The surrounding script created this test's private session bus. This server
   // never connects to a user's bus or changes an actual desktop preference.
@@ -313,6 +344,7 @@ for (const fixture of fixtures) {
   try {
     fixtureApp = await connect(child, () => child.kill())
     await capture(fixtureApp, fixtureCompositor, name, width, height)
+    if (fixture.scenario === 'read-only') await verifyWarningScroll(fixtureApp, fixtureCompositor, name, width, height)
   } finally {
     if (fixtureApp) await fixtureApp.close()
     child.kill()
@@ -321,4 +353,4 @@ for (const fixture of fixtures) {
   }
 }
 await saveEvidence()
-console.log('Compiled native Wayland flow, live system-follow pixels, and 28 Linux fixture captures completed. Visual review is still required; no HID was opened.')
+console.log('Compiled native Wayland flow, live system-follow pixels, 28 Linux fixture captures, and four native warning-state scroll checks completed. Visual review is still required; no HID was opened.')
