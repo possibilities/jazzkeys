@@ -17,7 +17,7 @@ export async function packageFixture(target: PackageTarget = 'linux-x64-gnu') {
   }
   const manifest: PackageManifest = {
     schemaVersion: 1, product: 'Jazzkeys', version: '0.1.0-dev.0', target,
-    sourceCommit: 'a'.repeat(40), sourceTree: 'b'.repeat(40), hardwareStatus: 'no_hardware_demo', signing: 'unsigned',
+    sourceCommit: 'a'.repeat(40), sourceTree: 'b'.repeat(40), hardwareStatus: 'no_hardware_demo', signing: target === 'macos-arm64' ? 'ad-hoc development; no Developer ID or notarization' : 'unsigned',
     bun: '1.3.10', gpuix: '0.10.0', workerVersion: '0.1.0', protocolVersion: 1, appearanceProtocolVersion: 1,
     appearanceHelperSha256: digest(contents['jazzkeys-appearance']!), embeddedNativeAddonSha256: 'e'.repeat(64),
     files: Object.entries(contents).map(([name, body]) => ({ name, bytes: Buffer.byteLength(body), sha256: digest(body) })),
@@ -39,14 +39,21 @@ export async function bundleFixture(target: PackageTarget) {
   const sourceManifest = `${layout.resources}/source-manifest.json`
   await cp(join(flat.dir, 'manifest.json'), join(dir, sourceManifest))
   await writeFile(join(dir, layout.resources, 'INSTALL.txt'), 'Offline installation instructions fixture\n')
-  if (target === 'macos-arm64') await writeFile(join(dir, layout.application, 'Contents/Info.plist'), 'Offline plist fixture\n')
+  if (target === 'macos-arm64') {
+    await writeFile(join(dir, layout.application, 'Contents/Info.plist'), 'Offline plist fixture\n')
+    await mkdir(join(dir, layout.application, 'Contents/_CodeSignature'))
+    await writeFile(join(dir, layout.application, 'Contents/_CodeSignature/CodeResources'), 'Offline seal fixture\n')
+    await writeFile(join(dir, layout.binaries, 'jazzkeys'), flat.contents.jazzkeys! + 'Offline seal transformation\n')
+  }
   const manifest: BundleManifest = {
     schemaVersion: 1, product: 'Jazzkeys', version: flat.manifest.version, target,
     sourceCommit: flat.manifest.sourceCommit, sourceTree: flat.manifest.sourceTree,
     protocolVersion: 1, appearanceProtocolVersion: 1, hardwareStatus: 'no_hardware_demo', redistributionStatus: 'source_companion_required',
     layout: layout.layout, signing: layout.signing, application: layout.application,
-    sourceManifest, sourceManifestSha256: digest(await readFile(join(dir, sourceManifest), 'utf8')),
-    executableSha256: digest(flat.contents.jazzkeys!), workerSha256: digest(flat.contents['jazzkeys-device']!),
+    sourceManifest, sourceManifestScope:'pre-bundle flat build',
+    signingTransform: target === 'macos-arm64' ? {kind:'macos-adhoc-bundle-seal', inputExecutableSha256:digest(flat.contents.jazzkeys!), outputExecutableSha256:digest(flat.contents.jazzkeys! + 'Offline seal transformation\n'), resourceSealSha256:digest('Offline seal fixture\n')} : undefined,
+    sourceManifestSha256: digest(await readFile(join(dir, sourceManifest), 'utf8')),
+    executableSha256: digest(flat.contents.jazzkeys! + (target === 'macos-arm64' ? 'Offline seal transformation\n' : '')), workerSha256: digest(flat.contents['jazzkeys-device']!),
     appearanceHelperSha256: flat.manifest.appearanceHelperSha256, files: await bundleFileRecords(dir),
   }
   const save = () => writeFile(join(dir, 'bundle-manifest.json'), JSON.stringify(manifest))

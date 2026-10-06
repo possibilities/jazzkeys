@@ -7,8 +7,8 @@ toolchain is not required to use the download. See [installation](INSTALL.md).
 
 ## Scope
 
-This is an experimental **no-hardware demo**, without Developer ID signing or
-notarization. It supports the native staged-mapping editor and review flow. It
+This is an experimental **no-hardware demo**, with an ad-hoc development signature and sealed resources, without Developer ID
+signing or notarization. It supports the native staged-mapping editor and review flow. It
 has no production HID transport and cannot read or change a physical keyboard.
 Base/Fn capability, persistence, and actual unit compatibility remain unverified.
 
@@ -16,7 +16,9 @@ Native offscreen light/dark/compact rendering, control interactions, keyboard
 focus behavior, core fault tests, and compiled-package relocation are automated.
 The release ZIP is re-extracted with macOS `ditto` to a path containing spaces;
 all files/modes are verified and both renderer-free compiled self-tests run with
-an empty PATH. These checks establish packaging integrity, not ordinary GUI
+an empty PATH. The complete bundle and all three executables must pass strict
+code-signature verification before archiving and after extraction. An intentional
+change to a sealed resource in a disposable copy must fail verification. These checks establish packaging integrity, not ordinary GUI
 startup or a screen-reader evaluation.
 
 The packaged macOS app's ordinary GUI runtime network behavior and OS permission
@@ -86,3 +88,27 @@ enabled; a minimal public request for a private channel is the supported fallbac
 without exploit details or personal/device data. This document replaces the
 older source-only publication hold now that a complete-source demo release is
 explicitly requested; it does not mark unperformed acceptance tests as passed.
+
+## Signing correction in demo.2
+
+The initial demo.1 release had an invalid main application signature even though
+its executable self-tests and file checksums passed. A local read-only diagnosis
+confirmed the original extracted copy and installed copy failed ARM64 signature
+verification while both helpers verified and all executable modes were correct.
+It is superseded by demo.2; no quarantine or Gatekeeper workaround repairs that
+packaging defect.
+
+The build now signs helpers before their digests are embedded, signs the standalone
+compiled main executable, assembles the complete app, then seals the final bundle
+inside-out with credential-free ad-hoc signatures. It neither enables hardened
+runtime nor imports additional entitlements. It does not acquire an identity,
+certificate, keychain access, signing service, or notarization ticket.
+
+`source-manifest.json` is frozen pre-bundle flat-build provenance. Sealing changes
+the main executable and adds the fixed `Contents/_CodeSignature/CodeResources`.
+The external bundle manifest records the input executable hash, final executable
+hash, and resource-seal hash, with exact unchanged-byte checks for all other
+inputs. These transform records do not independently prove that only signing
+changed executable bytes. Native strict signature verification establishes the
+final seal's integrity; ad-hoc signatures do not authenticate a publisher.
+Nothing inside the app is rewritten after sealing.

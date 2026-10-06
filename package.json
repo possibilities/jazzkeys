@@ -1,6 +1,6 @@
 {
   "name": "jazzkeys",
-  "version": "0.1.0-demo.1",
+  "version": "0.1.0-demo.2",
   "private": true,
   "type": "module",
   "description": "A careful key mapper for your AK820 MAX.",

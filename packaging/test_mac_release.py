@@ -6,6 +6,8 @@ import stat
 import tempfile
 import unittest
 import zipfile
+from unittest.mock import patch
+from types import SimpleNamespace
 
 spec = importlib.util.spec_from_file_location('mac_release', Path(__file__).with_name('mac-release.py'))
 m = importlib.util.module_from_spec(spec)
@@ -55,6 +57,23 @@ class MacArchiveTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Unsafe'):
             m.create_archive(self.bundle, self.archive, self.manifest)
 
+    def test_tamper_check_aborts_if_pristine_copy_is_invalid(self):
+        with patch.object(m, 'verify_mac_signatures', side_effect=ValueError('copy invalid')) as baseline, patch.object(m.subprocess, 'run') as command:
+            with self.assertRaisesRegex(ValueError, 'copy invalid'):
+                m.reject_tampered_resources(self.bundle)
+            baseline.assert_called_once()
+            command.assert_not_called()
+
+    def test_tamper_check_requires_valid_baseline_and_rejected_resource_change(self):
+        install = self.bundle / 'Jazzkeys.app/Contents/Resources/INSTALL.txt'
+        install.write_bytes(b'pristine instructions')
+        def baseline(path):
+            self.assertEqual((path / 'Jazzkeys.app/Contents/Resources/INSTALL.txt').read_bytes(), b'pristine instructions')
+            return {'verified': True}
+        with patch.object(m, 'verify_mac_signatures', side_effect=baseline), patch.object(m.subprocess, 'run', return_value=SimpleNamespace(returncode=1, stderr='a sealed resource is missing or invalid')):
+            self.assertTrue(m.reject_tampered_resources(self.bundle))
+        self.assertEqual(install.read_bytes(), b'pristine instructions')
+
     def test_reject_missing_extra_duplicate_traversal_hash_and_modes(self):
         good = [(name, data, stat.S_IFREG | mode) for name, data, mode in self.files]
         bad_cases = [good[:1], good + [('../escape', b'x', stat.S_IFREG | 0o644)], good + [good[0]],
@@ -67,6 +86,40 @@ class MacArchiveTests(unittest.TestCase):
                 self.malicious(files)
                 with self.assertRaises(ValueError):
                     m.validate_archive(self.archive, self.manifest)
+
+
+class MacSignatureChecks(unittest.TestCase):
+    def display(self, args, **kwargs):
+        path = args[-1]
+        if path.endswith('/jazzkeys-device'):
+            identifier = 'io.jazzkeys.desktop.device'
+        elif path.endswith('/jazzkeys-appearance'):
+            identifier = 'io.jazzkeys.desktop.appearance'
+        else:
+            identifier = 'io.jazzkeys.desktop'
+        return SimpleNamespace(stderr=f'Identifier={identifier}\nSignature=adhoc\nSealed Resources version=2 rules=13 files=4\n')
+
+    def test_checks_app_and_all_three_executables(self):
+        with patch.object(m, 'run', return_value='') as verify, patch.object(m.subprocess, 'run', side_effect=self.display):
+            result = m.verify_mac_signatures(Path('/fixture'))
+        self.assertTrue(result['verified'])
+        self.assertEqual(verify.call_count, 4)
+        self.assertIn('--deep', verify.call_args_list[0].args)
+        self.assertTrue(all('--strict' in call.args for call in verify.call_args_list))
+
+    def test_invalid_signature_stops_even_if_display_would_succeed(self):
+        with patch.object(m, 'run', side_effect=RuntimeError('invalid signature')), patch.object(m.subprocess, 'run') as display:
+            with self.assertRaisesRegex(RuntimeError, 'invalid signature'):
+                m.verify_mac_signatures(Path('/fixture'))
+            display.assert_not_called()
+
+    def test_wrong_identity_unsealed_and_nonadhoc_status_are_rejected(self):
+        for text in ['Signature=adhoc\nIdentifier=other\n',
+                     'Signature=adhoc\nIdentifier=io.jazzkeys.desktop\n',
+                     'Identifier=io.jazzkeys.desktop\nAuthority=Developer ID\n']:
+            with self.subTest(text=text), patch.object(m, 'run', return_value=''), patch.object(m.subprocess, 'run', return_value=SimpleNamespace(stderr=text)):
+                with self.assertRaises(ValueError):
+                    m.verify_mac_signatures(Path('/fixture'))
 
 
 if __name__ == '__main__':

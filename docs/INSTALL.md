@@ -10,7 +10,9 @@ Requires **Apple silicon and macOS 14.8.9 or later**. Unzip it and move
 Bun, Node, Terminal command, account, installer, or background service is needed.
 Open the app in Finder when you are ready.
 
-This is an **experimental demo**, without Developer ID signing or notarization.
+This is an **experimental demo**, ad-hoc development-signed with sealed resources,
+without Developer ID signing or notarization. Use demo.2 or later: demo.1 had an
+invalid application signature and is superseded.
 macOS may block it. Follow [Apple's security guidance](https://support.apple.com/en-us/102445)
 and decide whether you trust this exact download; do not globally disable
 Gatekeeper or remove quarantine with shell commands. This project does not

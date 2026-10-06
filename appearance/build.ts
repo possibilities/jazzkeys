@@ -1,5 +1,6 @@
 import { mkdir } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
+import { signMacCode, requireValidMacCode } from '../packaging/sign-macos'
 
 /** Host-only build; callers hash and package this exact output next to Jazzkeys. */
 export async function buildAppearanceHelper(output: string): Promise<void> {
@@ -17,5 +18,9 @@ export async function buildAppearanceHelper(output: string): Promise<void> {
   args.push('-o', destination)
   const build = Bun.spawn(args, { cwd: root, stdout: 'inherit', stderr: 'inherit' })
   if (await build.exited !== 0) throw new Error('Appearance helper compilation failed')
+  if (process.platform === 'darwin') {
+    await signMacCode(destination, 'io.jazzkeys.desktop.appearance')
+    requireValidMacCode(destination)
+  }
 }
 if (import.meta.main) await buildAppearanceHelper(process.argv[2] ?? resolve(import.meta.dir, '../dist/appearance/jazzkeys-appearance'))

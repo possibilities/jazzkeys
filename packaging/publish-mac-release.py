@@ -36,9 +36,14 @@ def verify_assets(directory, commit, tree):
     source = json.loads((directory / source_name).read_text())
     if (mac['schemaVersion'] != 1 or mac['sourceCommit'] != commit or mac['sourceTree'] != tree
             or mac['target'] != 'macos-arm64' or mac['hardwareStatus'] != 'no_hardware_demo'
-            or mac['signing'] != 'no Developer ID or notarization'
+            or mac['signing'] != 'ad-hoc sealed bundle; no Developer ID or notarization'
             or source['schema_version'] != 1 or source['project_commit'] != commit or source['source_tree'] != tree):
         raise ValueError('Release source/target correspondence mismatch')
+    signatures = mac.get('bundleSignatureVerification', {})
+    if (signatures.get('beforeArchive', {}).get('verified') is not True
+            or signatures.get('afterExtraction', {}).get('verified') is not True
+            or signatures.get('resourceTamperRejected') is not True):
+        raise ValueError('Mac signature verification evidence is incomplete')
     if (mac['archive']['name'] != f'Jazzkeys-demo-macos-arm64-{commit}.zip'
             or mac['bundleManifest']['name'] != f'Jazzkeys-bundle-manifest-{commit}.json'
             or source['archive']['path'] != f'Jazzkeys-corresponding-source-{commit}.tar.gz'):
@@ -206,7 +211,9 @@ def main():
 
 Download **{mac['archive']['name']}**, unzip, and move Jazzkeys.app into Applications or a folder you own. No Rust, Xcode, Bun, or Node is needed. Quit and remove the app to uninstall. [Installation and Apple security guidance](https://github.com/{REPO}/blob/{commit}/docs/INSTALL.md).
 
-**No Developer ID signature or notarization. macOS may block opening it.** Do not disable system protections globally. This demo cannot read or change your keyboard. No hardware permission grant is part of exploring the demo.
+**Ad-hoc development-signed, without Developer ID or notarization. macOS may block opening it.** Do not disable system protections globally. This demo cannot read or change your keyboard. No hardware permission grant is part of exploring the demo.
+
+This revision corrects the first demo's invalid/unsealed application signature. Strict verification passes before and after extraction, and a modified-resource negative test is rejected. No system security settings were changed.
 
 The ordinary packaged GUI startup, network behavior, OS permission prompts, and VoiceOver acceptance remain unobserved. Native offscreen controls and relocated compiled self-tests passed; these do not establish full installation/runtime acceptance. [Exact scope](https://github.com/{REPO}/blob/{commit}/docs/RELEASE.md).
 

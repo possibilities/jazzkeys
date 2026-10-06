@@ -4,8 +4,9 @@ import { resolve, join } from 'node:path'
 import { packageFiles, verifyPackage } from './verify-package'
 import { buildAppearanceHelper } from '../appearance/build'
 import { copyCommittedDocs } from './committed-docs'
+import { inspectMacCode, signMacCode, requireValidMacCode } from './sign-macos'
 
-// Host-platform builds only. No installer, downloads, device access, or signing.
+// Host-platform builds with credential-free Mac development signatures. No installer or device access.
 if (Bun.version !== '1.3.10') throw new Error('Build requires Bun 1.3.10')
 const target = process.platform === 'darwin' && process.arch === 'arm64' ? 'macos-arm64'
   : process.platform === 'linux' && process.arch === 'x64' ? 'linux-x64-gnu' : null
@@ -32,6 +33,10 @@ async function run(args: string[]) {
 await run(['cargo', 'build', '--manifest-path', 'device/Cargo.toml', '--locked', '--release'])
 const worker = join(out, 'jazzkeys-device')
 await copyFile(join(root, 'device/target/release/jazzkeys-device'), worker)
+if (process.platform === 'darwin') {
+  await signMacCode(worker, 'io.jazzkeys.desktop.device')
+  requireValidMacCode(worker)
+}
 const sha256 = (bytes: Uint8Array) => createHash('sha256').update(bytes).digest('hex')
 const workerHash = sha256(await readFile(worker))
 await buildAppearanceHelper(join(out,'jazzkeys-appearance'))
@@ -47,13 +52,20 @@ await writeFile(entry,`import addonPath from ${JSON.stringify('../'+addon)} with
 await run([process.execPath, 'build', '--compile', entry, '--outfile', join(out, 'jazzkeys'),
   '--define', 'JAZZKEYS_PACKAGED=true', '--define', `JAZZKEYS_WORKER_SHA256=${JSON.stringify(workerHash)}`,
   '--define', `JAZZKEYS_APPEARANCE_SHA256=${JSON.stringify(appearanceHash)}`])
+let compilerSignatureBeforeRepair
+if (process.platform === 'darwin') {
+  compilerSignatureBeforeRepair = inspectMacCode(join(out, 'jazzkeys'))
+  console.log(JSON.stringify({compilerSignatureBeforeRepair}))
+  await signMacCode(join(out, 'jazzkeys'), 'io.jazzkeys.desktop.runtime')
+  requireValidMacCode(join(out, 'jazzkeys'))
+}
 await copyFile(join(root, 'LICENSE'), join(out, 'LICENSE'))
 await copyFile(join(root, 'THIRD-PARTY-NOTICES.md'), join(out, 'THIRD-PARTY-NOTICES.md'))
 // Preserve committed notices and links, excluding ignored caches and untracked assets.
 await copyCommittedDocs(root, commit, out)
 const manifest = { schemaVersion: 1, product: 'Jazzkeys', version: (await Bun.file(join(root,'package.json')).json()).version, target,
-  sourceCommit: commit, sourceTree, hardwareStatus: 'no_hardware_demo', signing: 'unsigned',
-  bun: Bun.version, gpuix: '0.10.0', embeddedNativeAddonSha256:addonHash, workerVersion: '0.1.0', protocolVersion: 1,
+  sourceCommit: commit, sourceTree, hardwareStatus: 'no_hardware_demo', signing: target === 'macos-arm64' ? 'ad-hoc development; no Developer ID or notarization' : 'unsigned',
+  compilerSignatureBeforeRepair, bun: Bun.version, gpuix: '0.10.0', embeddedNativeAddonSha256:addonHash, workerVersion: '0.1.0', protocolVersion: 1,
   appearanceProtocolVersion:1, appearanceHelperSha256:appearanceHash,
   files: await Promise.all((await packageFiles(out)).map(async name => ({
     name, bytes: (await stat(join(out, name))).size, sha256: sha256(await readFile(join(out, name)))

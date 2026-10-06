@@ -90,3 +90,42 @@ for (const target of ['macos-arm64', 'linux-x64-gnu'] as const) {
     } finally { await clean(fixture) }
   })
 }
+
+test('Mac bundle signing provenance binds the pre-seal input, sealed output, and fixed resource seal', async () => {
+  const fixture = await bundleFixture('macos-arm64')
+  try {
+    const original = structuredClone(fixture.manifest)
+    const variants = [
+      { signingTransform: undefined },
+      { sourceManifestScope: 'final sealed executable' },
+      { signingTransform: {...original.signingTransform!, kind:'unknown'} },
+      { signingTransform: {...original.signingTransform!, inputExecutableSha256:'f'.repeat(64)} },
+      { signingTransform: {...original.signingTransform!, outputExecutableSha256:'f'.repeat(64)} },
+      { signingTransform: {...original.signingTransform!, resourceSealSha256:'f'.repeat(64)} },
+      { executableSha256:'f'.repeat(64) },
+    ]
+    for (const variant of variants) {
+      await writeFile(join(fixture.dir,'bundle-manifest.json'),JSON.stringify({...original,...variant}))
+      await expect(verifyBundle(fixture.dir)).rejects.toThrow()
+    }
+    await fixture.save()
+    await verifyBundle(fixture.dir)
+    const seal = join(fixture.dir,'Jazzkeys.app/Contents/_CodeSignature/CodeResources')
+    await rm(seal)
+    await expect(verifyBundle(fixture.dir)).rejects.toThrow()
+  } finally {
+    await rm(fixture.dir,{recursive:true,force:true})
+    await rm(fixture.flat.dir,{recursive:true,force:true})
+  }
+})
+
+test('Linux bundles cannot claim a Mac signing transform', async () => {
+  const fixture = await bundleFixture('linux-x64-gnu')
+  try {
+    await writeFile(join(fixture.dir,'bundle-manifest.json'),JSON.stringify({...fixture.manifest,signingTransform:{kind:'macos-adhoc-bundle-seal'}}))
+    await expect(verifyBundle(fixture.dir)).rejects.toThrow('Unexpected bundle signing transform')
+  } finally {
+    await rm(fixture.dir,{recursive:true,force:true})
+    await rm(fixture.flat.dir,{recursive:true,force:true})
+  }
+})
