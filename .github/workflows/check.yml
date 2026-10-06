@@ -39,6 +39,7 @@ jobs:
         run: |
           bun run build
           for package in dist/jazzkeys-*; do bun packaging/verify-package.ts "$package"; bun packaging/smoke.ts "$package"; done
+          bun run build:bundle
       - name: Upload validation evidence (binary distribution remains gated)
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

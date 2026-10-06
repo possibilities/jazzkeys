@@ -1,0 +1,61 @@
+name: Linux native window acceptance
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - 'device/**'
+      - 'packaging/**'
+      - 'package.json'
+      - 'bun.lock'
+      - 'rust-toolchain.toml'
+      - 'tsconfig.json'
+      - '.github/workflows/linux-native.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: linux-native-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  live-x11:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version: 1.3.10
+      - name: Official Ubuntu native runtime and isolated display tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y xvfb xauth x11-utils xdotool \
+            imagemagick dbus-x11 libvulkan1 mesa-vulkan-drivers vulkan-tools \
+            libxkbcommon0 libxkbcommon-x11-0 libfontconfig1 fonts-dejavu-core \
+            strace python3-pil gcc
+      - name: Pinned toolchain and frozen published packages
+        run: |
+          rustup toolchain install 1.90.0 --profile minimal --component rustfmt --component clippy
+          bun install --frozen-lockfile --ignore-scripts
+          bun run check
+      - name: Build the real no-HID package and relocate it
+        run: |
+          bun run build
+          bun packaging/smoke.ts dist/jazzkeys-linux-x64-gnu
+          mkdir -p "$RUNNER_TEMP/Jazzkeys installed test"
+          cp -a dist/jazzkeys-linux-x64-gnu "$RUNNER_TEMP/Jazzkeys installed test/Jazzkeys"
+      - name: Exercise compiled app and stock live native fixtures in private Xvfb
+        run: bash packaging/linux-xvfb.sh "$RUNNER_TEMP/Jazzkeys installed test/Jazzkeys"
+      - name: Retain native pixels and trace evidence, never release binaries
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: jazzkeys-linux-native-${{ github.sha }}
+          path: |
+            artifacts/linux-native/
+            artifacts/runtime/**/runtime-report.json
+            artifacts/runtime/**/sensor-report.json
+          if-no-files-found: error
+          retention-days: 14

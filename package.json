@@ -16,7 +16,8 @@
     "check": "bun run typecheck && bun test app packaging",
     "build:worker": "cargo build --manifest-path device/Cargo.toml --locked --release",
     "build": "bun run packaging/build.ts",
-    "test:native": "bun run packaging/native-screenshots.ts"
+    "test:native": "bun run packaging/native-screenshots.ts",
+    "build:bundle": "bun run packaging/bundle.ts"
   },
   "dependencies": {
     "@gpuix/react": "0.10.0",
@@ -32,4 +33,3 @@
     "react-reconciler": "0.31.0"
   }
 }
-
