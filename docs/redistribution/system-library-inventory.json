@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "scope": "Appearance helper system-library evidence. These shared libraries are provided by the host OS, not copied into the current Jazzkeys package. This is a local measured artifact record, not the final-release or CI runtime library version.",
+  "review_date_utc": "2026-10-06",
+  "libraries": [
+    {
+      "name": "GLib / GIO / GObject",
+      "license_expression": "LGPL-2.1-or-later",
+      "official_documentation": "https://docs.gtk.org/glib/",
+      "source": "https://gitlab.gnome.org/GNOME/glib/",
+      "build_metadata_version": "2.84.4",
+      "build_metadata_basis": "Exact glib-2.0.pc and gio-2.0.pc from the development sysroot used by the successful local packaging build; records retained below.",
+      "distribution": "Dynamically linked host system libraries, not bundled",
+      "source_delivery": "Jazzkeys helper source and build recipe are in the project source companion. A source redistribution claim for separate GLib binaries is not made: none are copied by packaging. Reassess if future packaging bundles or statically links GLib.",
+      "replacement_route": "Ordinary ELF dynamic-loader selection of ABI-compatible shared libraries; the helper has no RPATH or RUNPATH. Recipients may use their own library installation/loader path, or rebuild the GPL helper/application with pkg-config pointing to their chosen library build. No restriction on library modification or debugging is imposed."
+    }
+  ],
+  "local_helper_measurement": {
+    "artifact": "dist/jazzkeys-linux-x64-gnu/jazzkeys-appearance",
+    "sha256": "57cabd0d53401dd3ce3245485007048ff2014a13960c84f330c21a2df2e25b70",
+    "bytes": 18224,
+    "package_source_commit": "7dd6db1fd73919369ac7074917f4a42105b82a9c",
+    "package_source_tree": "dad98182cb1aa9f709ff27b08d018d7467acd257",
+    "source_path": "appearance/native/linux.c",
+    "source_sha256": "df35cde2c3014e8543b77a13a52522ec0735321c4809d9be1d2dbb97c1531019",
+    "method": "Read-only readelf -d, -V, and -l on the existing helper; no binary execution or rebuild",
+    "dt_needed": [
+      "libgio-2.0.so.0",
+      "libgobject-2.0.so.0",
+      "libglib-2.0.so.0",
+      "libc.so.6"
+    ],
+    "rpath_runpath": [],
+    "interpreter": "/lib64/ld-linux-x86-64.so.2",
+    "glibc_symbol_versions": [
+      "GLIBC_2.2.5",
+      "GLIBC_2.34"
+    ],
+    "exact_runtime_glib_version": "Host-dependent; not established by SONAME or pkg-config metadata",
+    "platform_floor_note": "This helper references up to GLIBC_2.34. The separate current native addon still sets the stricter known GLIBC_2.39 package floor.",
+    "build_receipt": "Local clean-source packaging build using the recorded GLib 2.84.4 development sysroot completed successfully on 2026-10-06. The package manifest records the measured helper hash. This does not identify libraries loaded later on another host."
+  },
+  "ci_scope": {
+    "run_url": "https://github.com/possibilities/jazzkeys/actions/runs/37459777643",
+    "job_id": 112256158548,
+    "source_commit": "70086523f77c02bfdab38164f8252aa0a285f72b",
+    "dependency_request": "Ubuntu 24.04 official libglib2.0-dev",
+    "version_status": "Do not substitute the local 2.84.4 metadata for this CI host. Exact CI development/runtime package versions are not recorded in this inventory."
+  },
+  "macos": {
+    "build_recipe": "appearance/build.ts links the system Foundation framework with -fobjc-arc; Jazzkeys does not copy Apple framework binaries",
+    "binary_linkage_status": "Not remeasured in this Linux review; no unsupported version claim"
+  },
+  "notices": [
+    {
+      "retained_path": "docs/licenses/system/GLib-2.84.4-Debian-copyright",
+      "sha256": "b9fe78c8a0720c051c9ac8e8c6f25663b54f228e501d24fc0ba89c66cec7f7c1",
+      "bytes": 55072,
+      "provenance": "Unmodified metadata from the existing official-distribution GLib 2.84.4 development sysroot used for this local helper build; no new install or source download during this review."
+    },
+    {
+      "retained_path": "docs/licenses/system/GLib-2.84.4-LGPL-2.1-or-later.txt",
+      "sha256": "fa6f36630bb1e0c571d34b2bbdf188d08495c9dbf58f28cac112f303fc1f58fb",
+      "bytes": 25967,
+      "source_url": "https://github.com/GNOME/glib/blob/2.84.4/LICENSES/LGPL-2.1-or-later.txt",
+      "upstream_git_blob": "c9aa53018e7609d2481f8c617a23276cbdfd81ee"
+    },
+    {
+      "retained_path": "docs/licenses/system/GLib-2.84.4-gio-2.0.pc",
+      "sha256": "771d2cfe4264b375add9565e5ada1dfdcc284ae283210e878ac65e98d87ce357",
+      "bytes": 791,
+      "provenance": "Unmodified metadata from the existing official-distribution GLib 2.84.4 development sysroot used for this local helper build; no new install or source download during this review."
+    },
+    {
+      "retained_path": "docs/licenses/system/GLib-2.84.4-glib-2.0.pc",
+      "sha256": "acb899af5225e0e21514bdaa637999c31c01cabd567f8cb922d6ebca8e0c7afa",
+      "bytes": 561,
+      "provenance": "Unmodified metadata from the existing official-distribution GLib 2.84.4 development sysroot used for this local helper build; no new install or source download during this review."
+    }
+  ]
+}

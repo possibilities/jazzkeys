@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "description": "Verbatim deduplicated copyright-bearing source headers with provenance supplied by pinned source collector",
+  "files": [
+    {
+      "retained_path": "docs/licenses/bun/SOURCE-HEADER-NOTICES.txt",
+      "sha256": "913561e039676ec0ecb7218c25207581e3618f0fabbe9a92c60047a64314d53a"
+    }
+  ]
+}

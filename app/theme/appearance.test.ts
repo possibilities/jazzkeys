@@ -40,4 +40,15 @@ describe('system-only appearance presentation', () => {
     expect(controller.getSnapshot()).toEqual(fallback.getSnapshot());
     controller.dispose(); fallback.dispose();
   });
+  test('labels the latest retained observation accurately after live updates are lost', () => {
+    const os = observed({ appearance: 'light', availability: 'live' });
+    const controller = createAppearanceController({ source: os.source });
+    os.set({ appearance: 'dark', availability: 'live' });
+    os.set({ appearance: 'dark', availability: 'read-once' });
+    expect(controller.getSnapshot()).toEqual({
+      effectiveAppearance: 'dark',
+      availabilityLabel: 'Last observed system appearance · live updates unavailable',
+    });
+    controller.dispose();
+  });
 });

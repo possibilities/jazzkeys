@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "scope": "Pinned Bun 1.3.10 source/notice inventory for macOS ARM64 and Linux x86_64. Source/cache relative paths identify companion archive layout, not files committed in this repository.",
+  "entries": [
+    {
+      "path": "docs/licenses/bun/webkit/Source/JavaScriptCore/COPYING.LIB",
+      "git_blob_sha1": "87c4a33dd850415a33a816146eaf09a07912c4d6",
+      "bytes": 25584,
+      "url": "https://raw.githubusercontent.com/oven-sh/WebKit/4a6a32c32c11ffb9f5a94c310b10f50130bfe6de/Source/JavaScriptCore/COPYING.LIB",
+      "sha256": "5094ecb9c9dcd0eadc34f3c11511d9b5535063032bc150164ecd1a5d5a445547"
+    },
+    {
+      "path": "docs/licenses/bun/webkit/Source/JavaScriptCore/disassembler/ARM64/LICENSE-binja.txt",
+      "git_blob_sha1": "7d7e071e93cef688d8f156c702e34837ea34a214",
+      "bytes": 556,
+      "url": "https://raw.githubusercontent.com/oven-sh/WebKit/4a6a32c32c11ffb9f5a94c310b10f50130bfe6de/Source/JavaScriptCore/disassembler/ARM64/LICENSE-binja.txt",
+      "sha256": "94c095293b051622c4279153e94f8f69e6e9fd41c2d6eef07ad9ea02c30fb4c0"
+    },
+    {
+      "path": "docs/licenses/bun/webkit/Source/JavaScriptCore/disassembler/zydis/LICENSE-zycore.txt",
+      "git_blob_sha1": "4d9069aee5095035501934ae4a776556080b0f14",
+      "bytes": 1122,
+      "url": "https://raw.githubusercontent.com/oven-sh/WebKit/4a6a32c32c11ffb9f5a94c310b10f50130bfe6de/Source/JavaScriptCore/disassembler/zydis/LICENSE-zycore.txt",
+      "sha256": "bad974d260b4697edfdf3a126c33d451a512947b5265f6014fb66173f42ccab3"
+    },
+    {
+      "path": "docs/licenses/bun/webkit/Source/JavaScriptCore/disassembler/zydis/LICENSE-zydis.txt",
+      "git_blob_sha1": "11185a5a74d7b000aaf27ac978fc667ab5caf787",
+      "bytes": 1122,
+      "url": "https://raw.githubusercontent.com/oven-sh/WebKit/4a6a32c32c11ffb9f5a94c310b10f50130bfe6de/Source/JavaScriptCore/disassembler/zydis/LICENSE-zydis.txt",
+      "sha256": "1218751ea297d1559d768da22dfb95248d6b7c6fdcf3aedecd53a818694b6bf9"
+    },
+    {
+      "path": "docs/licenses/bun/webkit/Source/WTF/LICENSE-LLVM.txt",
+      "git_blob_sha1": "f9dc50615d7ec2b9913dc434fb243fc30889d2a9",
+      "bytes": 12263,
+      "url": "https://raw.githubusercontent.com/oven-sh/WebKit/4a6a32c32c11ffb9f5a94c310b10f50130bfe6de/Source/WTF/LICENSE-LLVM.txt",
+      "sha256": "f72b120d1385408e9e380acc020756eb6ba1b461d66c328ea67327ba08d7dcfd"
+    },
+    {
+      "path": "docs/licenses/bun/webkit/Source/WTF/LICENSE-dragonbox.txt",
+      "git_blob_sha1": "41f39ca24e23b37e8bc3d2c96da5c92405f5226b",
+      "bytes": 13858,
+      "url": "https://raw.githubusercontent.com/oven-sh/WebKit/4a6a32c32c11ffb9f5a94c310b10f50130bfe6de/Source/WTF/LICENSE-dragonbox.txt",
+      "sha256": "9bb1036ef8dcb42c59e2a23c9e465f43e75003e06898faf0edd18de662f3ecb8"
+    },
+    {
+      "path": "docs/licenses/bun/webkit/Source/WTF/LICENSE-libc++.txt",
+      "git_blob_sha1": "c278f2c92833887086b646b68e74f1f0422316c4",
+      "bytes": 3493,
+      "url": "https://raw.githubusercontent.com/oven-sh/WebKit/4a6a32c32c11ffb9f5a94c310b10f50130bfe6de/Source/WTF/LICENSE-libc++.txt",
+      "sha256": "c1938c0e9e90639d1e8f5a7f6bebaab83a3642e0ee44295a4c69934686d0bda8"
+    },
+    {
+      "path": "docs/licenses/bun/webkit/Source/WTF/LICENSE-simde.txt",
+      "git_blob_sha1": "c7f6b6d752a96f0a337351de7841cc5fe1ff780d",
+      "bytes": 1077,
+      "url": "https://raw.githubusercontent.com/oven-sh/WebKit/4a6a32c32c11ffb9f5a94c310b10f50130bfe6de/Source/WTF/LICENSE-simde.txt",
+      "sha256": "75ce0a8c5a7bff42fbd6f8f3b469b518132132c4f4948fb8d02b1ccb5d0df9d8"
+    },
+    {
+      "path": "docs/licenses/bun/webkit/Source/WTF/icu/LICENSE",
+      "git_blob_sha1": "545f3a8e870171072ad627da367f18b975b835e3",
+      "bytes": 21088,
+      "url": "https://raw.githubusercontent.com/oven-sh/WebKit/4a6a32c32c11ffb9f5a94c310b10f50130bfe6de/Source/WTF/icu/LICENSE",
+      "sha256": "de596f6e3482bab99d2425af16add38f959ebc17a5883c6302970355853b6539"
+    },
+    {
+      "path": "docs/licenses/bun/webkit/Source/WTF/wtf/dtoa/COPYING",
+      "git_blob_sha1": "933718a9ef9dae4cb4afa56e490211760d8a949f",
+      "bytes": 1527,
+      "url": "https://raw.githubusercontent.com/oven-sh/WebKit/4a6a32c32c11ffb9f5a94c310b10f50130bfe6de/Source/WTF/wtf/dtoa/COPYING",
+      "sha256": "4af93c12062c58058378de2397dc1c92bbff9ddfb1d583a01c84127557ce97ca"
+    },
+    {
+      "path": "docs/licenses/bun/webkit/Source/WTF/wtf/dtoa/LICENSE",
+      "git_blob_sha1": "933718a9ef9dae4cb4afa56e490211760d8a949f",
+      "bytes": 1527,
+      "url": "https://raw.githubusercontent.com/oven-sh/WebKit/4a6a32c32c11ffb9f5a94c310b10f50130bfe6de/Source/WTF/wtf/dtoa/LICENSE",
+      "sha256": "4af93c12062c58058378de2397dc1c92bbff9ddfb1d583a01c84127557ce97ca"
+    },
+    {
+      "path": "docs/licenses/bun/webkit/Source/WTF/wtf/fast_float/LICENSE",
+      "git_blob_sha1": "26f4398f24999c3908a11653e3b5ba6f9d681123",
+      "bytes": 10767,
+      "url": "https://raw.githubusercontent.com/oven-sh/WebKit/4a6a32c32c11ffb9f5a94c310b10f50130bfe6de/Source/WTF/wtf/fast_float/LICENSE",
+      "sha256": "097a889aa954d04e088b790b10a4014d6189561d0a6013935a73ce3d4ddaaf06"
+    },
+    {
+      "path": "docs/licenses/bun/webkit/Source/WTF/wtf/simdutf/LICENSE-simdutf.txt",
+      "git_blob_sha1": "74c8302ba92830e170dfae35957468edd2e25271",
+      "bytes": 1059,
+      "url": "https://raw.githubusercontent.com/oven-sh/WebKit/4a6a32c32c11ffb9f5a94c310b10f50130bfe6de/Source/WTF/wtf/simdutf/LICENSE-simdutf.txt",
+      "sha256": "fc8dbc04e03ad4efc08a647ffe7f995b811a95bc04c0e85a56d5277c6593fa5f"
+    },
+    {
+      "path": "docs/licenses/bun/webkit/Source/bmalloc/mimalloc/mimalloc/LICENSE",
+      "git_blob_sha1": "53315ebee557ac22f3396ea1781df0440c26bb15",
+      "bytes": 1096,
+      "url": "https://raw.githubusercontent.com/oven-sh/WebKit/4a6a32c32c11ffb9f5a94c310b10f50130bfe6de/Source/bmalloc/mimalloc/mimalloc/LICENSE",
+      "sha256": "82ade5d7d9b029044b5fbbc326207fc47c2d44ee4dd71e8a559c36d728217de9"
+    }
+  ]
+}

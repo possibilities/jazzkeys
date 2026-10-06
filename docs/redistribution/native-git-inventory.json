@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "scope": "Conservative native Cargo.lock Git source superset, plus Comet source-port attribution. Source archives include all target/build/dev contents.",
+  "repositories": [
+    {
+      "repository": "https://github.com/proptest-rs/proptest",
+      "revision": "3dca198a8fef1b32e3a66f1e1897c955b4dc5b5b",
+      "archive_url": "https://codeload.github.com/proptest-rs/proptest/tar.gz/3dca198a8fef1b32e3a66f1e1897c955b4dc5b5b",
+      "archive_sha256": "bbcee5bc92378ea21fe35392841b372f505e0cb444a1bbaa79647bbf849cd019",
+      "lock_packages": [
+        "proptest",
+        "proptest-macro"
+      ],
+      "packages": [
+        {
+          "name": "proptest-macro",
+          "license_expression": "MIT OR Apache-2.0",
+          "source_path": "proptest-macro/Cargo.toml"
+        },
+        {
+          "name": "proptest",
+          "license_expression": "MIT OR Apache-2.0",
+          "source_path": "proptest/Cargo.toml"
+        }
+      ],
+      "notices": [
+        {
+          "source_path": "LICENSE-APACHE",
+          "retained_path": "docs/licenses/native-git/proptest/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "source_path": "LICENSE-MIT",
+          "retained_path": "docs/licenses/native-git/proptest/LICENSE-MIT",
+          "sha256": "e32fbd428b915bc6bf2ed6a59c2ca56b25c0cdd7e05ec941127259e62485e3da"
+        },
+        {
+          "source_path": "proptest-derive/LICENSE-APACHE",
+          "retained_path": "docs/licenses/native-git/proptest/proptest-derive/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "source_path": "proptest-derive/LICENSE-MIT",
+          "retained_path": "docs/licenses/native-git/proptest/proptest-derive/LICENSE-MIT",
+          "sha256": "d8e0806926ce9f0a5030c382ecc0ffdf6de6fbea5c69a458435fd443fa7a5b92"
+        },
+        {
+          "source_path": "proptest-macro/LICENSE-APACHE",
+          "retained_path": "docs/licenses/native-git/proptest/proptest-macro/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "source_path": "proptest-macro/LICENSE-MIT",
+          "retained_path": "docs/licenses/native-git/proptest/proptest-macro/LICENSE-MIT",
+          "sha256": "d8e0806926ce9f0a5030c382ecc0ffdf6de6fbea5c69a458435fd443fa7a5b92"
+        },
+        {
+          "source_path": "proptest-state-machine/LICENSE-APACHE",
+          "retained_path": "docs/licenses/native-git/proptest/proptest-state-machine/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "source_path": "proptest-state-machine/LICENSE-MIT",
+          "retained_path": "docs/licenses/native-git/proptest/proptest-state-machine/LICENSE-MIT",
+          "sha256": "d8e0806926ce9f0a5030c382ecc0ffdf6de6fbea5c69a458435fd443fa7a5b92"
+        },
+        {
+          "source_path": "proptest/LICENSE-APACHE",
+          "retained_path": "docs/licenses/native-git/proptest/proptest/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "source_path": "proptest/LICENSE-MIT",
+          "retained_path": "docs/licenses/native-git/proptest/proptest/LICENSE-MIT",
+          "sha256": "d8e0806926ce9f0a5030c382ecc0ffdf6de6fbea5c69a458435fd443fa7a5b92"
+        }
+      ]
+    },
+    {
+      "repository": "https://github.com/zed-industries/wasm_thread",
+      "revision": "0cf96c7708dfb97ccf3da50347e25edcf75d6937",
+      "archive_url": "https://codeload.github.com/zed-industries/wasm_thread/tar.gz/0cf96c7708dfb97ccf3da50347e25edcf75d6937",
+      "archive_sha256": "4dc9b3324038ed7f761f8b32811c27eb8e5234a940fa741a6d5214eb88a7abb6",
+      "lock_packages": [
+        "wasm_thread"
+      ],
+      "packages": [
+        {
+          "name": "wasm_thread",
+          "license_expression": "Apache-2.0 OR MIT",
+          "source_path": "Cargo.toml"
+        }
+      ],
+      "notices": [
+        {
+          "source_path": "LICENSE-APACHE",
+          "retained_path": "docs/licenses/native-git/wasm_thread/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "source_path": "LICENSE-MIT",
+          "retained_path": "docs/licenses/native-git/wasm_thread/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ]
+    },
+    {
+      "repository": "https://github.com/zed-industries/xim-rs",
+      "revision": "16f35a2c881b815a2b6cdfd6687988e84f8447d8",
+      "archive_url": "https://codeload.github.com/zed-industries/xim-rs/tar.gz/16f35a2c881b815a2b6cdfd6687988e84f8447d8",
+      "archive_sha256": "a1a2163b226b6103e1ac39932832439ae7003c1e7bd559ce63dc50b6d68610cc",
+      "lock_packages": [
+        "xim-ctext",
+        "xim-parser",
+        "zed-xim"
+      ],
+      "packages": [
+        {
+          "name": "zed-xim",
+          "license_expression": "MIT",
+          "source_path": "Cargo.toml"
+        },
+        {
+          "name": "xim-ctext",
+          "license_expression": "MIT",
+          "source_path": "xim-ctext/Cargo.toml"
+        },
+        {
+          "name": "xim-parser",
+          "license_expression": "MIT",
+          "source_path": "xim-parser/Cargo.toml"
+        }
+      ],
+      "notices": [
+        {
+          "source_path": "LICENSE",
+          "retained_path": "docs/licenses/native-git/xim-rs/LICENSE",
+          "sha256": "efa1224931b98468f5005f77285457f8d2eab0a77a15941aa10abbab1ae9a74e"
+        }
+      ]
+    },
+    {
+      "repository": "https://github.com/zed-industries/font-kit",
+      "revision": "94b0f28166665e8fd2f53ff6d268a14955c82269",
+      "archive_url": "https://codeload.github.com/zed-industries/font-kit/tar.gz/94b0f28166665e8fd2f53ff6d268a14955c82269",
+      "archive_sha256": "902a9466b39fdcaa4a428b487474c4107028cbc92a8d2eee281193879f25f7a0",
+      "lock_packages": [
+        "zed-font-kit"
+      ],
+      "packages": [
+        {
+          "name": "zed-font-kit",
+          "license_expression": "MIT OR Apache-2.0",
+          "source_path": "Cargo.toml"
+        }
+      ],
+      "notices": [
+        {
+          "source_path": "LICENSE-APACHE",
+          "retained_path": "docs/licenses/native-git/font-kit/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "source_path": "LICENSE-MIT",
+          "retained_path": "docs/licenses/native-git/font-kit/LICENSE-MIT",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        },
+        {
+          "source_path": "resources/tests/eb-garamond/COPYING",
+          "retained_path": "docs/licenses/native-git/font-kit/resources/tests/eb-garamond/COPYING",
+          "sha256": "3cc1dfb6e7d9d72881010aaafe4d45cab4a6765b837ba4cf8d5aabe535ae8f13"
+        },
+        {
+          "source_path": "resources/tests/times-roman-pcf/COPYING",
+          "retained_path": "docs/licenses/native-git/font-kit/resources/tests/times-roman-pcf/COPYING",
+          "sha256": "ba3ff81e9d7af0079a4c2c749341851a6c93d10354cdfb6b790df6b43c1cf474"
+        }
+      ]
+    },
+    {
+      "repository": "https://github.com/zed-industries/reqwest",
+      "revision": "c15662463bda39148ba154100dd44d3fba5873a4",
+      "archive_url": "https://codeload.github.com/zed-industries/reqwest/tar.gz/c15662463bda39148ba154100dd44d3fba5873a4",
+      "archive_sha256": "a0c40719d6b44db6e6d9018756ae47a2c881441a6f3148f6cf3e60d8d4db8ab0",
+      "lock_packages": [
+        "zed-reqwest"
+      ],
+      "packages": [
+        {
+          "name": "zed-reqwest",
+          "license_expression": "MIT OR Apache-2.0",
+          "source_path": "Cargo.toml"
+        }
+      ],
+      "notices": [
+        {
+          "source_path": "LICENSE-APACHE",
+          "retained_path": "docs/licenses/native-git/reqwest/LICENSE-APACHE",
+          "sha256": "751963a8b88c0e3a9f27e98933079fbcf09b9998b2c13ac49c2e4d58444520d6"
+        },
+        {
+          "source_path": "LICENSE-MIT",
+          "retained_path": "docs/licenses/native-git/reqwest/LICENSE-MIT",
+          "sha256": "47d4e1803702728e03d30f8a848ae2249ba274bbd9f8443e803f7924d83cd371"
+        }
+      ]
+    },
+    {
+      "repository": "https://github.com/zed-industries/scap",
+      "revision": "4afea48c3b002197176fb19cd0f9b180dd36eaac",
+      "archive_url": "https://codeload.github.com/zed-industries/scap/tar.gz/4afea48c3b002197176fb19cd0f9b180dd36eaac",
+      "archive_sha256": "48f60b164435404d1389a090f7a2d06e43acc87c1abba3799109d20f171e7e1d",
+      "lock_packages": [
+        "zed-scap"
+      ],
+      "packages": [
+        {
+          "name": "zed-scap",
+          "license_expression": "MIT",
+          "source_path": "Cargo.toml"
+        }
+      ],
+      "notices": [
+        {
+          "source_path": "LICENSE",
+          "retained_path": "docs/licenses/native-git/scap/LICENSE",
+          "sha256": "ecfbd60891497a52b66390c5a47ee86d83c2d20b6bf061fbe6cc99a6d54eb957"
+        }
+      ]
+    },
+    {
+      "repository": "https://github.com/zeronsh/comet",
+      "revision": "b3fa51872f70c8f973c241b659cf0c166766f4f5",
+      "archive_url": "https://codeload.github.com/zeronsh/comet/tar.gz/b3fa51872f70c8f973c241b659cf0c166766f4f5",
+      "archive_sha256": "5d7d022cba44755b26e2d81689b8d46684c6fad7414f68acba94ab1bb65fafa7",
+      "lock_packages": [
+        "ported Comet source"
+      ],
+      "packages": [],
+      "notices": [
+        {
+          "source_path": "LICENSE",
+          "retained_path": "docs/licenses/native-git/comet/LICENSE",
+          "sha256": "e776600f641baae3fd37387829b40fe2d7c12d01785dc8b846658b7cbb0342e3"
+        },
+        {
+          "source_path": "THIRD_PARTY_NOTICES.md",
+          "retained_path": "docs/licenses/native-git/comet/THIRD_PARTY_NOTICES.md",
+          "sha256": "6b79b9bc18f14dc8adec011b876d20d6adc871a54eb491374329d0d7df31daa8"
+        },
+        {
+          "source_path": "crates/ui/assets/fonts/licenses/Geist-OFL.txt",
+          "retained_path": "docs/licenses/native-git/comet/crates/ui/assets/fonts/licenses/Geist-OFL.txt",
+          "sha256": "942560b236adfa83745b2c64e5fc09ebaf91cb331751b1157eb92187e5d6e930"
+        },
+        {
+          "source_path": "crates/ui/assets/fonts/licenses/THIRD_PARTY_NOTICES.md",
+          "retained_path": "docs/licenses/native-git/comet/crates/ui/assets/fonts/licenses/THIRD_PARTY_NOTICES.md",
+          "sha256": "c069d53f0142b28ad6dda6655d35e11f01fafe396d32c5eb1a54f428e22f462f"
+        }
+      ]
+    }
+  ]
+}

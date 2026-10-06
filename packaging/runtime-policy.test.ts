@@ -17,6 +17,14 @@ describe('runtime syscall acceptance, independent of app source',()=>{
     expect(categories(`1.1 socket(${family}, SOCK_STREAM, IPPROTO_TCP) = -1 EPERM (Operation not permitted)\n`)).toContain('internet-network-attempt')
     expect(categories(`1.2 connect(5, {sa_family=${family}, sin_port=htons(443)}, 16) = -1 ENETUNREACH (Network is unreachable)\n`)).toContain('internet-network-attempt')
   })
+  test('reports the exact local Wayland connection without allowing Internet or hardware attempts',()=>{
+    const lines='1.1 socket(AF_UNIX, SOCK_STREAM|SOCK_CLOEXEC, 0) = 5<UNIX-STREAM:[1]>\n1.2 connect(5<UNIX-STREAM:[1]>, {sa_family=AF_UNIX, sun_path="/tmp/private-ci/jazzkeys-1"}, 31) = 0\n'
+    const result=analyze(lines)
+    expect(result.passed).toBe(true)
+    expect(result.unixConnections).toEqual(['/tmp/private-ci/jazzkeys-1'])
+    expect(analyze(lines+'1.3 socket(AF_INET, SOCK_STREAM, 0) = -1 EPERM\n').passed).toBe(false)
+    expect(analyze(lines+'1.3 openat(AT_FDCWD, "/dev/hidraw0", O_RDWR) = -1 EACCES\n').passed).toBe(false)
+  })
   test('rejects other remote socket families, but reports kernel-local netlink separately',()=>{
     expect(categories('1.1 socket(AF_VSOCK, SOCK_STREAM, 0) = -1 EPERM\n')).toContain('unexpected-socket-family')
     const netlink = analyze('1.1 socket(AF_NETLINK, SOCK_RAW|SOCK_CLOEXEC, NETLINK_ROUTE) = 5\n')

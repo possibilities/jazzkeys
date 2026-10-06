@@ -14,7 +14,7 @@ export async function createSystemAppearanceSource(): Promise<ManagedSystemAppea
     const directory = await realpath(dirname(process.execPath))
     const path = join(directory, 'jazzkeys-appearance')
     const info = await lstat(path)
-    if (!info.isFile() || info.isSymbolicLink() || (info.mode & 0o022) !== 0 || !(info.mode & 0o111) ||
+    if (!info.isFile() || info.isSymbolicLink() || (info.mode & 0o6022) !== 0 || !(info.mode & 0o111) ||
         info.size > 4_194_304 || await realpath(path) !== path) return unavailableSource()
     if (createHash('sha256').update(await readFile(path)).digest('hex') !== JAZZKEYS_APPEARANCE_SHA256) return unavailableSource()
     const env: Record<string, string> = {}

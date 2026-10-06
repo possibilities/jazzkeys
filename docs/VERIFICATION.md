@@ -1,5 +1,39 @@
 # Verification receipt
 
+## Instrument Bench, October 6, 2026
+
+Exact reviewed public source:
+[`7008652`](https://github.com/possibilities/jazzkeys/commit/70086523f77c02bfdab38164f8252aa0a285f72b).
+
+- [Mac ARM64 and Ubuntu 24.04 checks](https://github.com/possibilities/jazzkeys/actions/runs/37459777643)
+  passed: strict TypeScript, 86 JavaScript tests, Rust formatting/clippy, 37 core
+  unit tests and 2 executable-boundary tests, native appearance fixtures, compiled
+  packaging and install-layout checks
+- The compiled UI now explicitly embeds the published native addon through Bun's
+  file loader. Its renderer-free native-binding self-test passes after relocation
+  with an empty PATH. Earlier private-worker handshakes did not establish this
+  native-UI loader property; they exercised only the worker bootstrap
+- [Native macOS screenshots and interaction](https://github.com/possibilities/jazzkeys/actions/runs/37459777478)
+  passed on the stock renderer. The four unobstructed editing views in light/dark
+  at 1180×780 and 960×680 were visually inspected. Review, uncertain, disconnected
+  and read-only captures were also inspected. Warning banners make the workbench
+  scroll; the action footer remains fixed. These are isolated demo pixels
+- The system appearance helper's native IPC/lifetime and compiled-host integrity
+  tests passed on both hosts. CI compares the tested production helper byte-for-byte
+  against the packaged helper. Actual macOS preference toggling was not performed
+- [Linux live-window acceptance](https://github.com/possibilities/jazzkeys/actions/runs/37459777622)
+  failed at the native layout-bounds query before any screenshot. Its bootstrap
+  and bounded demo runtime reports passed: ordinary runner account, separate
+  loopback-only namespace, no Internet/HID attempts, one exact adjacent appearance
+  helper, no package changes. These reports cover the observed startup interval,
+  not the unfinished interaction flow. Linux pixels and portal-to-pixel following
+  remain unverified
+
+The palettes, controller fixtures, and helper notifications are separate evidence
+from real desktop theme changes. There is no user appearance override. No hardware
+backend or release binary was enabled by this revision. Full screen-reader,
+desktop integration, distribution, and hardware gates below remain open.
+
 ## Reviewed source
 
 The first corrected native demo is commit

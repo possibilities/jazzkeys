@@ -8,8 +8,9 @@ import { windowKeyHandler } from '../app/ui/keyboard'
 // fixture arguments, and all states still use the production no-HID components.
 if (process.platform !== 'linux' || process.arch !== 'x64' || Bun.version !== '1.3.10'
   || __napiBindingTarget !== 'native' || process.env.GITHUB_ACTIONS !== 'true'
-  || process.env.JAZZKEYS_HEADLESS_X11 !== '1' || !process.env.DISPLAY
-  || process.env.WAYLAND_DISPLAY) throw new Error('Linux fixtures require the isolated native Xvfb CI session')
+  || process.env.JAZZKEYS_HEADLESS_WAYLAND !== '1' || !process.env.WAYLAND_DISPLAY
+  || process.env.DISPLAY || process.env.WAYLAND_SOCKET || process.getuid?.() === 0)
+  throw new Error('Linux fixtures require the isolated ordinary-user native Wayland CI session')
 
 const [scenario, appearance, dimensions] = process.argv.slice(2)
 const scenarios: NativeScenario[] = ['disconnected', 'read-only', 'editing', 'review', 'applying', 'verified', 'uncertain']

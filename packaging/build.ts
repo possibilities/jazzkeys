@@ -1,8 +1,9 @@
-import { copyFile, cp, mkdir, readFile, lstat, rm, stat, writeFile } from 'node:fs/promises'
+import { copyFile, mkdir, readFile, lstat, rm, stat, writeFile } from 'node:fs/promises'
 import { createHash } from 'node:crypto'
 import { resolve, join } from 'node:path'
 import { packageFiles, verifyPackage } from './verify-package'
 import { buildAppearanceHelper } from '../appearance/build'
+import { copyCommittedDocs } from './committed-docs'
 
 // Host-platform builds only. No installer, downloads, device access, or signing.
 if (Bun.version !== '1.3.10') throw new Error('Build requires Bun 1.3.10')
@@ -48,8 +49,8 @@ await run([process.execPath, 'build', '--compile', entry, '--outfile', join(out,
   '--define', `JAZZKEYS_APPEARANCE_SHA256=${JSON.stringify(appearanceHash)}`])
 await copyFile(join(root, 'LICENSE'), join(out, 'LICENSE'))
 await copyFile(join(root, 'THIRD-PARTY-NOTICES.md'), join(out, 'THIRD-PARTY-NOTICES.md'))
-// Preserve relative notice/source-manifest links instead of copying a broken index.
-await cp(join(root,'docs'),join(out,'docs'),{recursive:true})
+// Preserve committed notices and links, excluding ignored caches and untracked assets.
+await copyCommittedDocs(root, commit, out)
 const manifest = { schemaVersion: 1, product: 'Jazzkeys', version: '0.1.0-dev.0', target,
   sourceCommit: commit, sourceTree, hardwareStatus: 'no_hardware_demo', signing: 'unsigned',
   bun: Bun.version, gpuix: '0.10.0', embeddedNativeAddonSha256:addonHash, workerVersion: '0.1.0', protocolVersion: 1,

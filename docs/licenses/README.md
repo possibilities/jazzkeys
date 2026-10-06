@@ -1,8 +1,13 @@
 # License-text provenance
 
-These upstream texts are retained for attribution and future packaging review.
-They do not constitute a complete native/runtime license inventory. The remaining
-release gates are in [THIRD-PARTY-NOTICES.md](../../THIRD-PARTY-NOTICES.md).
+These upstream texts accompany the exact source/notice inventories in
+[docs/redistribution](../redistribution/README.md). They include a conservative
+native all-target/build/development superset, worker and Rust runtime notices,
+Bun/library/polyfill texts, source-derived copyright notices, and exact grammar
+acknowledgements. Retained hashes are checked by
+`python docs/redistribution/verify_inventory.py`. This is not by itself a shipped
+binary SBOM or a complete corresponding-source archive. Remaining integration
+gates are in [THIRD-PARTY-NOTICES.md](../../THIRD-PARTY-NOTICES.md).
 
 ## Official pinned sources
 
@@ -39,3 +44,34 @@ and `@types/node` packages. The remaining named MIT/TypeScript texts were copied
 from those exact installed packages' LICENSE/ThirdPartyNoticeText files, without
 changes. Versions are listed in the root inventory. Preserve the complete texts
 and copyright statements in any distribution where applicable.
+
+## Expanded inventory provenance
+
+- `native-registry/`: unmodified license/notice files from all 784 SHA256-verified
+  GPUIX native lockfile registry archives
+- `native-upstream/`: omitted monorepo notices recovered at the exact crate VCS
+  commit; archive and retained file hashes are recorded
+- `native-declarations/`: eighteen published crates without a separate notice
+  file; original Cargo grants and copyright-bearing source plus explicitly
+  labelled standard SPDX license terms, with no fabricated copyright statements
+- `native-git/`: pinned Git dependency notices and Comet source-port notice
+- `cargo-packager-updater/`: pinned 0.2.3 original licensing and copyright-bearing
+  source, including Tauri and CrabNebula attributions
+- `two-face-0.5.2-acknowledgements.md`: exact pinned human-readable grammar/theme
+  acknowledgements, verified against all 78 embedded license entries
+- `worker/`: all 21 locked worker crates, byte-for-byte verified source notices
+- `rust-runtime/`: standard-library copyright and terms from checksum-verified
+  official Rust 1.90.0 and 1.97.1 distributions
+- `bun/`: Bun 1.3.10's pinned linked-library, embedded-package and WebKit notices;
+  consult the companion Bun inventories for target scope and exact source pins
+- `system/`: GLib/GIO/GObject shared-system-library notice, distribution copyright
+  metadata and pkg-config version evidence for the Linux appearance helper;
+  see `system-library-inventory.json`. These records do not assert that the host
+  libraries are bundled or that another machine loads the same library version
+
+Some license terms are duplicated to preserve package-specific upstream files
+and copyrights. Some alternative licenses are retained although a permissive
+branch was elected. Do not infer a GPL-only obligation from an unused alternative
+text, nor discard AND terms such as Unicode, NCSA or BSD notices. Unmodified
+upstream text can contain links to mutable branches; use the pinned provenance
+manifest for source identity rather than interpreting those links as version pins.

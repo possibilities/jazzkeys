@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "name": "cargo-packager-updater",
+  "version": "0.2.3",
+  "license_expression": "MIT OR Apache-2.0",
+  "elected_license": "MIT",
+  "scope": "Ported source present in GPUIX addon; Jazzkeys does not call updater APIs",
+  "archive_url": "https://static.crates.io/crates/cargo-packager-updater/cargo-packager-updater-0.2.3.crate",
+  "archive_sha256": "eec09acab5c2227aba2e592d431708305bdeb6d507703f6cd8983fb57b6c5ef7",
+  "checksum_basis": "SHA256 of downloaded official registry archive; crates.io API metadata endpoint returned HTTP403; not falsely asserted against external checksum",
+  "vcs": {
+    "git": {
+      "sha1": "2e71af6d882157e706062b99f978c1723c9c5c64"
+    },
+    "path_in_vcs": "crates/updater"
+  },
+  "notices": [
+    {
+      "retained_path": "docs/licenses/cargo-packager-updater/LICENSE.spdx",
+      "source_path": "LICENSE.spdx",
+      "source_commit": "2e71af6d882157e706062b99f978c1723c9c5c64",
+      "sha256": "d90bcf085f0bf8f2d85fa2dbcb39510ddbb18753a4a5a2b7fbad43cd697b5527"
+    },
+    {
+      "retained_path": "docs/licenses/cargo-packager-updater/LICENSE_MIT",
+      "source_path": "LICENSE_MIT",
+      "source_commit": "2e71af6d882157e706062b99f978c1723c9c5c64",
+      "sha256": "9e17784d32fbb3ac50c6c543c307d0fbcb16969585cb4cee8839b50e774708f9"
+    },
+    {
+      "retained_path": "docs/licenses/cargo-packager-updater/LICENSE_APACHE-2.0",
+      "source_path": "LICENSE_APACHE-2.0",
+      "source_commit": "2e71af6d882157e706062b99f978c1723c9c5c64",
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    },
+    {
+      "retained_path": "docs/licenses/cargo-packager-updater/src/lib.rs",
+      "source_path": "src/lib.rs",
+      "sha256": "e14bbddd651cae30c43d2cd81691eab999919cb629d25588273ed0887e561778",
+      "role": "Preserved copyright-bearing source"
+    },
+    {
+      "retained_path": "docs/licenses/cargo-packager-updater/src/error.rs",
+      "source_path": "src/error.rs",
+      "sha256": "9f128ec2aba6527cf955e890cfc25e30f1c5e2348de6d270e86388c6b19598eb",
+      "role": "Preserved copyright-bearing source"
+    },
+    {
+      "retained_path": "docs/licenses/cargo-packager-updater/src/custom_serialization.rs",
+      "source_path": "src/custom_serialization.rs",
+      "sha256": "3f98ac6bd4808cdec35d9bcc7bb9579957c9baf24e7c8ac72daccdb09ea8dba4",
+      "role": "Preserved copyright-bearing source"
+    }
+  ],
+  "upstream_source_archive": {
+    "archive_url": "https://codeload.github.com/crabnebula-dev/cargo-packager/tar.gz/2e71af6d882157e706062b99f978c1723c9c5c64",
+    "archive_sha256": "92b2f4e12c462cd6bed51a51586e6fcd958feb3c47e533bb868e67df3b685d8f"
+  }
+}

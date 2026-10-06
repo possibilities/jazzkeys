@@ -1,107 +1,164 @@
 # Linux native acceptance
 
-## Scope and status
+## Scope and measured status
 
-The Linux acceptance workflow targets Ubuntu 24.04 x86-64 GNU, Bun 1.3.10,
-and the unmodified published `@gpuix/react` and `@gpuix/native` 0.10.0 packages.
-It uses a real native application window in a new Xvfb X11 session, with Mesa
-lavapipe software Vulkan. It is not a browser edition or the unavailable Linux
-offscreen test renderer. A workflow definition, tree dump, or PNG file alone is
-not a visual acceptance receipt: inspect the images from the exact tested commit
-and record the run before claiming a pass.
+Linux acceptance targets Ubuntu 24.04 x86-64 GNU, Bun 1.3.10, and unmodified
+published `@gpuix/react` / `@gpuix/native` 0.10.0. The current harness is intended
+to exercise a real **Wayland** application surface through Weston 13's kiosk
+shell, with Mesa lavapipe software Vulkan. Weston uses its X11 backend inside a
+fresh, authenticated Xvfb server solely to expose the dedicated output pixels.
+This is not the unavailable GPUIX Linux offscreen test renderer, a browser app,
+an inherited desktop session, or evidence of native X11 support.
 
-The production entrypoint stays disconnected and does not interpret fixture
-arguments. A separate `packaging/linux-fixture.ts` entrypoint mounts the existing
-bounded synthetic scenarios with the same production components. No hardware
-backend, device enumeration, device write, framework patch, or dependency change
-is part of this route.
+[Run 37459777622](https://github.com/possibilities/jazzkeys/actions/runs/37459777622),
+commit `70086523f77c02bfdab38164f8252aa0a285f72b`, passed typechecking, 86 JS tests,
+compiled package construction and relocated native-loader/worker smoke checks.
+Its original direct-X11 visual step failed at the stock automation bounds query.
+The retained `evidence.json` was empty: no system-follow pixels, interactions or
+fixture screenshots were established. Bootstrap and bounded early-GUI runtime
+receipts passed, including zero Internet/HID attempts, uid 1001, one verified
+appearance helper, an isolated loopback-only network namespace and unchanged
+package hashes. Those finite early traces do not establish a complete GUI flow.
 
-## Why a live X11 window
+The nested-Wayland harness is a correction to the test route. A definition and
+unit tests do not certify it: a successful run on the exact final commit, its
+runtime receipts, and direct inspection of all output images remain required.
 
-The [exact 0.10.0 release source](https://github.com/remorses/gpuix/tree/9fcd628863e354e9c58019fc3bf38981a1e64158)
-and the installed package were checked rather than assuming Linux support from
-the macOS test harness:
+## Why the stock addon cannot select X11
 
-- [`lib.rs`](https://github.com/remorses/gpuix/blob/9fcd628863e354e9c58019fc3bf38981a1e64158/packages/native/src/lib.rs)
-  makes `TestGpuixRenderer` unavailable on Linux and explicitly retains
-  `GpuixRenderer` there
-- [`renderer.rs`](https://github.com/remorses/gpuix/blob/9fcd628863e354e9c58019fc3bf38981a1e64158/packages/native/src/renderer.rs)
-  implements the live Linux UI thread, native input dispatch, tree/bounds/text
-  queries, and focus operations. Its `capture_screenshot` implementation requires
-  a macOS or Windows test-support build, so this harness never calls it on Linux
-- The published `@gpuix/native/automation` API supports private stdio `App`
-  connections to live renderers. It dispatches clicks and keystrokes through GPUI,
-  rather than invoking React handlers or changing the model directly
-- The release's [GPUI X11 implementation](https://github.com/remorses/zed/blob/81c99f816b4a5f69d3c014774068034c24d1d7af/crates/gpui_linux/src/linux/x11/window.rs)
-  uses `WgpuRenderer`. Xvfb supplies an X11 window and Mesa supplies the software
-  Vulkan device. X11's window-image capture supplies the pixels without needing
-  GPUI's unsupported Linux render-to-image API
+The published addon used by that run has SHA-256
+`a907deb0557f57d698599d635b02bd1452eeeeb0af44a0fe5029e4d4a70ea44d`.
+Its ELF symbol `gpui_linux::linux::current_platform` is at `0xec60a0`.
+Read-only disassembly of that same hash shows checks for `ZED_HEADLESS` and
+`WAYLAND_DISPLAY`, followed only by `WaylandClient::new` or
+`HeadlessClient::new`. There is no `DISPLAY` lookup or X11 selection branch.
 
-The stock stdio initialization reply in this version reports an 800×600 default;
-it is not trusted as the actual window size. Each screenshot must have the exact
-requested dimensions and is accompanied by `xwininfo` and native painted bounds.
-The live automation tree intentionally omits style fields. The paint-text registry
-is thread-local, while Linux runs painting on its UI thread, so retained text plus
-actual UI-thread painted bounds are used for readiness; `getPaintedText` is not a
-Linux acceptance gate. Pixel evidence remains independent of those metadata APIs.
+The pinned release source explains the omission:
 
-## Reproduction and artifacts
+- [Native Cargo features](https://github.com/remorses/gpuix/blob/9fcd628863e354e9c58019fc3bf38981a1e64158/packages/native/Cargo.toml)
+  enable `gpui_platform/x11`
+- [Platform Cargo features](https://github.com/remorses/zed/blob/81c99f816b4a5f69d3c014774068034c24d1d7af/crates/gpui_platform/Cargo.toml)
+  forward that to `gpui_linux/x11`
+- [Linux Cargo features](https://github.com/remorses/zed/blob/81c99f816b4a5f69d3c014774068034c24d1d7af/crates/gpui_linux/Cargo.toml)
+  omit `gpui/x11` from that feature, while Wayland forwards `gpui/wayland`
+- [Compositor selection](https://github.com/remorses/zed/blob/81c99f816b4a5f69d3c014774068034c24d1d7af/crates/gpui/src/platform.rs)
+conditionally compiles its `DISPLAY` read under the missing `gpui/x11` feature;
+  [workspace dependencies](https://github.com/remorses/zed/blob/81c99f816b4a5f69d3c014774068034c24d1d7af/Cargo.toml)
+  disable GPUI default features
 
-Run `.github/workflows/linux-native.yml` on the reviewed commit. The workflow:
+The matched addon can be inspected without executing or changing native code:
 
-1. Installs native display/runtime tools only from the official Ubuntu package
-   repositories, uses pinned action commits and Bun/Rust versions, and performs a
-   frozen dependency installation with lifecycle scripts disabled
-2. Builds the actual UI executable and reviewed worker, checks package integrity,
-   then relocates the shipset into a directory containing spaces. This is an
-   installed-style executable check, not proof of distribution/package-manager or
-   desktop-menu installation
-3. Starts a new authenticated Xvfb display with TCP disabled, a private D-Bus
-   session, a fresh runtime directory, and the sole Mesa lavapipe ICD. It does not
-   connect to an inherited display or any user's desktop
-4. Creates a disposable network namespace, drops back to the ordinary runner
-   account with an explicit clean environment and temporary HOME before executing
-   application code, and checks that only loopback and
-   no routes remain. It does not modify host network settings or AppArmor policy
-5. Traces the compiled bootstrap/private-worker handshake separately, then the
-   compiled GUI demo. The executable runs with an empty PATH. Runtime evidence
-   comes from the app descendants, not from the screenshot/test driver
-6. Starts the test-only Settings portal on that private bus before the compiled
-   app. Checks an initial dark read and live light → dark → light signals through
-   the actual packaged appearance observer and React app. Every transition must
-   repaint a known canvas margin to the expected palette in captured X11 pixels.
-   No actual desktop preference or user-facing appearance override is changed
-7. Exercises native hit testing and native key dispatch through open demo → select
-   Caps → search/choose Escape → stage → review → Escape dismissal → Enter reopen
-   through restored focus → simulate → verified. These are synthetic local editor
-   actions; they do not test physical key input
-8. Captures light/dark disconnected, read-only, editing, review, applying, verified
-   and uncertain states at 1180×780 and 960×680 in the single Instrument Bench
-   composition, including its height-aware compact geometry. Captures only the single visible window matching the native app's
-   PID and expected title, never a desktop/root-window image
+```sh
+sha256sum node_modules/@gpuix/native-linux-x64-gnu/*.node
+nm -C node_modules/@gpuix/native-linux-x64-gnu/*.node | grep 'gpui_linux::linux::current_platform'
+objdump -d -C --start-address=0xec60a0 --stop-address=0xec62af node_modules/@gpuix/native-linux-x64-gnu/*.node
+```
 
-`artifacts/linux-native/` records the source commit, runner image version, OS,
-kernel, Bun, libc, package versions, Vulkan device, native addon SHA-256 and ELF
-version requirements, individual window geometry, PNGs, text and tree records.
-`artifacts/runtime/` contains the bounded syscall evidence and reports documented
-in [runtime verification](RUNTIME-VERIFICATION.md). Only its summary reports are
-uploaded; raw syscall streams and traced-process stderr stay on the ephemeral
-runner. Uploaded artifacts are retained for 14 days; the workflow does not
-publish binary releases or send screenshots to users.
+With no Wayland display, the addon selects GPUI's headless platform. Its
+[window implementation](https://github.com/remorses/zed/blob/81c99f816b4a5f69d3c014774068034c24d1d7af/crates/gpui_linux/src/linux/headless/window.rs)
+no-ops drawing/frame callbacks, explaining the bounds timeout and absent X11
+connection in the receipt. Increasing the test timeout cannot create a window.
+An upstream correction would forward `gpui/x11` and rebuild the addon. Jazzkeys
+neither patches that binary nor substitutes a fork: the supported stock Wayland
+branch is used instead. X11 remains unverified/unavailable for this release.
 
-The pixel checker rejects wrong-sized or essentially blank images and verifies
-the explicit system-follow canvas-color assertions. It cannot
-judge text clipping, hierarchy, focus clarity, readable labels, or visual polish.
-Those still require inspecting the actual output pixels. A screenshot matrix
-does not establish AT-SPI/screen-reader behavior, Wayland, a physical GPU,
-distribution installation, hardware correctness, or a lower glibc floor. The
-published Linux addon requires GLIBC 2.39; Ubuntu 22.04 is not claimed.
+## Isolated native route
+
+[Ubuntu Noble's Weston manual](https://manpages.ubuntu.com/manpages/noble/man1/weston.1.html)
+documents the X11 backend, one output, pixman renderer, kiosk shell, explicit
+socket/dimensions/scale, no-config/no-input modes and disabled idle timeout. The
+[official Weston 13 source](https://wayland.freedesktop.org/releases/weston-13.0.0.tar.xz)
+confirms that kiosk makes the sole application fullscreen and output-sized.
+No shell panel or launcher is created. No Xwayland, DRM backend, real device,
+framework patch, or dependency change is part of this route.
+
+The X11 backend's `--no-input` still creates a `wl_seat` global, then skips
+keyboard/pointer-device creation (`x11_input_create` in Weston 13's
+`libweston/backend-x11/x11.c`). GPUI requires the seat, but its keyboard/pointer
+capabilities are optional. All test input uses stock GPUI native UI-thread
+automation. This also avoids a Weston 13 cursor trap: X11 LeaveNotify calls
+`clear_pointer_focus`, which is an empty stub in `libweston/input.c`; merely
+moving the outer X11 pointer away does not reliably remove a Wayland cursor.
+No-input initialization and the actual input flow still require a CI receipt.
+
+The workflow is designed to:
+
+1. Install native tools from official Ubuntu repositories, use pinned actions and
+   Bun/Rust, and run frozen package installation with lifecycle scripts disabled
+2. Build the actual compiled executable and reviewed sidecars, verify integrity,
+   then relocate them into a directory containing spaces, with no system Bun/Node
+   or PATH dependency in the compiled executable
+3. Start a fresh authenticated Xvfb server with TCP disabled, private D-Bus,
+   mode-0700 runtime directory, temporary HOME and the sole lavapipe Vulkan ICD
+4. Create a disposable network namespace, drop to the ordinary runner account
+   before running app/test/native code, and require only loopback with no routes;
+   host network settings and AppArmor are not changed
+5. Validate the negative-control syscall sensor; trace the compiled bootstrap and
+   GUI separately under the existing runtime policy and package-hash checks
+6. Start a new Weston kiosk compositor for the installed app and for each fixture.
+   It inherits only the private Xvfb display. The app receives its fresh Wayland
+   socket with `DISPLAY` and `WAYLAND_SOCKET` removed, so it cannot silently use
+   an inherited X11 or Wayland connection
+7. Start the test-only Settings portal on the private bus. Require initial dark
+   and live light → dark → light transitions through the packaged observer and
+   React app. Every transition must repaint a known canvas margin to the exact
+   expected palette in real output pixels; no user theme setting is changed
+8. Exercise stock GPUI native hit testing/key dispatch: open demo → select Caps →
+   search/choose Escape → stage → review → Escape dismissal → Enter reopen through
+   restored focus → simulate → verified. This is synthetic local editor input,
+   not physical keyboard or HID evidence
+9. Capture disconnected, read-only, editing, review, applying, verified and
+   uncertain fixtures in light/dark at 1180×780 and 960×680. Each new compositor
+   has exactly that output size, avoiding inferred crop coordinates or scaling
+
+## Pixel ownership and evidence
+
+Before and after each capture, `weston-debug scene-graph` obtains the one-shot
+scene from the private compositor. The parser requires one output with exact
+size and scale 1; one mapped `xdg_toplevel` surface with the expected native PID,
+title and app ID; exact full-output bounds; and no other client surface. Only the
+fixed compositor-owned kiosk background is allowed. Weston obtains PID from
+`wl_client_get_credentials`, independently of the application automation tree.
+Cursor/unknown client surfaces fail the gate; no compositor pointer device is
+created, while stock native GPUI automation remains mandatory.
+
+Weston 13's output window sets class `Weston Compositor` and name
+`Weston Compositor - screen0` (the actual scene output name is checked), but no
+`_NET_WM_PID`. The harness requires no pre-existing compositor window, exactly one
+new visible class match, a stable XID, matching `xprop` identity, exact
+`xwininfo` dimensions and zero border. ImageMagick captures only that XID,
+never the X11 root, a screen crop, or any user desktop. Pixel dimensions and
+nonblank content remain mandatory; system-follow checks also validate the
+actual canvas color.
+
+The ephemeral compositor enables `--debug` only to attest scene ownership.
+Weston's debug interface can expose sensitive information and must never be
+enabled on a user's compositor. Here the socket lives in a newly created private
+0700 directory, only synthetic Jazzkeys windows exist, and the process/socket
+are destroyed at the end of each test. Protocol traffic, credentials, and user
+files are not collected.
+
+`artifacts/linux-native/` retains environment/package versions, native-addon
+hash/ELF requirements, Weston logs, per-output startup identity, scene graphs,
+X11 output identity/geometry, PNGs, native trees/text and `evidence.json`.
+`artifacts/runtime/` retains only summary receipts described in
+[runtime verification](RUNTIME-VERIFICATION.md); raw traces and traced-process
+stderr stay on the disposable runner. Artifacts expire after 14 days. The
+workflow never publishes release binaries.
+
+Stock automation's initialization size is not an acceptance measurement.
+Native painted bounds, compositor geometry and pixel size are independent
+gates. Linux's thread-local painted-text registry remains informational only.
+Inspect all final screenshots for clipping, labels, contrast, spacing and focus;
+nonblank pixels do not prove visual quality. This route does not establish
+AT-SPI, actual distribution installation, a physical GPU, native X11, macOS
+permissions, hardware safety, or a lower libc floor. The measured addon requires
+GLIBC 2.39; Ubuntu 22.04 support is not claimed.
 
 ## Failure handling
 
-Missing native rendering, software Vulkan, isolated network/display setup,
-automation responses, expected states, trace permissions, or valid images fails
-the job. There is no success-by-skip and no fallback to a mock/browser renderer.
-The app runs under bounded timeouts; Xvfb and the namespace end with the test.
-Inspect the uploaded stderr, Vulkan report, screenshots, and syscall report to
-diagnose a failure before changing the app or declaring Linux unavailable.
+Missing compositor/window identity, mapped surface, native bounds, software
+Vulkan, namespace/display isolation, expected interaction, trace permission or
+valid pixels fails the job. There is no success-by-skip or mock/browser fallback.
+All processes have bounded startup/runtime/shutdown deadlines. Diagnose the
+retained receipts before changing the app or claiming the new route works.

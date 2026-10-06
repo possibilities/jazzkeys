@@ -1,0 +1,489 @@
+{
+  "schema_version": 1,
+  "version": "0.5.2+bat-0.26.1",
+  "repository_commit": "67b64e632ceefe70e5f20f3eb797d9e33560a11c",
+  "markdown_source_url": "https://codeberg.org/CosmicHarper/two-face/raw/commit/67b64e632ceefe70e5f20f3eb797d9e33560a11c/generated/acknowledgements_full.md",
+  "markdown_sha256": "66512fea2f515b498c2972b2cdf361b1405735ec934a85e48fbe39d917074a7f",
+  "embedded_license_data_sha256": "e4bf45ad159b67de6a7152874904728adb6421996eb15da01ca75406e6cd51fb",
+  "verification": "Decoded exact registry crate zlib+bincode license data using its published struct layout. Every embedded license text is present verbatim in pinned upstream full Markdown. Themes retained as attribution superset; GPUIX source uses syntax set.",
+  "license_entries": {
+    "syntaxes": [
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/01_Packages/Rust/LICENSE.txt",
+        "license_text_sha256": "89807acf2309bd285f033404ee78581602f3cd9b819a16ac2f0e5f60ff4a473e",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/AWK/LICENSE",
+        "license_text_sha256": "23e70f20b5df560ccf7cb0394d684b1f5509f653c31abc325e9a9a4a8a51be5e",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Ada/LICENSE",
+        "license_text_sha256": "bc2e7f8a2291603a1372a70775d08a8934d9f28b48ca63ac77f734d8dc7f97bd",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 3,
+        "relative_path": "syntaxes/02_Extra/Apache/LICENSE",
+        "license_text_sha256": "6be6dcf42ae600521f6b1e0c29671ec5b77f41f89574cad6e884737bca64ecb5",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/AsciiDoc/LICENSE",
+        "license_text_sha256": "d4e3159e5a0ef59e31fe6f5655ee94613d90bcccf0c24fec4523438092a7fb03",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/CFML/LICENSE.md",
+        "license_text_sha256": "c0be9ad7f3e2240058471932ea6bf19d4070e34d53501e26fde7e240e806c315",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/CMake/LICENSE",
+        "license_text_sha256": "c601a2d768dce487003a94772fac751963dac65784b32b62bebbeb62c5aecc9e",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/CoffeeScript/LICENSE",
+        "license_text_sha256": "efc908bdf4c2595656db91efb5c716d6e49aa7801ed02fc4b2041f763f28c3b4",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Crontab/LICENSE",
+        "license_text_sha256": "bf034c3232a099fe8bed3fe74c6af2b29c1dd86fe55a7acdb55b9d3e93facce2",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Crontab/cron_descriptor/LICENSE",
+        "license_text_sha256": "30775ed2b70aa7c234473f5ac99f0b566dffa7daa602534f3bc0e6d5e0735166",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 6,
+        "relative_path": "syntaxes/02_Extra/Crystal/LICENSE",
+        "license_text_sha256": "12f385120b2e25096d00e1f1124a734593c68a8b4faa4e718d1e978d0381d233",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Dart/LICENSE",
+        "license_text_sha256": "02b6be6464a1519d5248ba1a056aeb5d630a48ae845435360b3c7ae290aeab0e",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Docker/LICENSE",
+        "license_text_sha256": "d1458f02d452165e6df0cfa8c4ec014a903844923d87c9583819366c7316b1cb",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/DotENV/LICENSE",
+        "license_text_sha256": "621d6a510dc26b4cc8ddca1ce58bd7f41460e3c3a5222dea328ed4035cf5dbc8",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Elixir/LICENSE",
+        "license_text_sha256": "9ea3900c433bd24d4c93751ee262a0c097ebae0676ad433943dbb9e4a4e57f91",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Elm/LICENSE",
+        "license_text_sha256": "c82d5622191555d76c441102266040b98f1a0ab5835dca1cbb65a993bcb611d0",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Email/LICENSE.md",
+        "license_text_sha256": "df8bdaaa4edc6ba340c7900f6394e160f63a4085d3032d672ed2ab8602fe1df8",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Fish/LICENSE",
+        "license_text_sha256": "38c6dd7d4d22e53108cc45077daeceee398b1d190db44e992929e220545bb7a5",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/GDScript-sublime/LICENSE.txt",
+        "license_text_sha256": "e328dcaefe45d5d3dfe7e14bc9f2ad88cb00c2a3f3200a98e497599b68c86f73",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Groff/LICENSE",
+        "license_text_sha256": "b3c712761cf941346994112e8250b45838a7542931570e0e2a10f4ae76c1807e",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 5,
+        "relative_path": "syntaxes/02_Extra/HTML_(Twig)/LICENSE",
+        "license_text_sha256": "98ff426448cd50e811532ab74fdd203189f74bd0f25a7f83399a4b0fd8714f1e",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 6,
+        "relative_path": "syntaxes/02_Extra/Idris2/LICENSE",
+        "license_text_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/JavaScript_(Babel)/LICENSE",
+        "license_text_sha256": "1784efc54a3ed6978f0910a2b2df1fa0b75adab00ca8929c231e79e0526876e7",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 6,
+        "relative_path": "syntaxes/02_Extra/Jsonnet/LICENSE",
+        "license_text_sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Julia/LICENSE",
+        "license_text_sha256": "b8a3a4021a4f2cc820b9853c0af603f20260c8541cebb153172838fcad89dbcb",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 6,
+        "relative_path": "syntaxes/02_Extra/Kotlin/LICENSE",
+        "license_text_sha256": "28926b41b87ba22c0828ff025419d4698663698666f826d6ea924a512432c3a8",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/LLVM/LICENSE.txt",
+        "license_text_sha256": "9a8950ee24056322ed285794b97e8cf6df0260e65753dbf45de814b7191f8b99",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 6,
+        "relative_path": "syntaxes/02_Extra/Lean/LICENSE",
+        "license_text_sha256": "69849221bfb90053de2134ef5e6d540287b4b98062326492f1f96f5da685524b",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 6,
+        "relative_path": "syntaxes/02_Extra/Lean/lean4-unicode-input/LICENSE",
+        "license_text_sha256": "69849221bfb90053de2134ef5e6d540287b4b98062326492f1f96f5da685524b",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 6,
+        "relative_path": "syntaxes/02_Extra/Lean/lean4-unicode-input-component/LICENSE",
+        "license_text_sha256": "69849221bfb90053de2134ef5e6d540287b4b98062326492f1f96f5da685524b",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 6,
+        "relative_path": "syntaxes/02_Extra/Lean/vscode-lean4/LICENSE",
+        "license_text_sha256": "69849221bfb90053de2134ef5e6d540287b4b98062326492f1f96f5da685524b",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/MediaWiki/license.md",
+        "license_text_sha256": "31228b88b9256c1914098f53b9b684858d80ec9e699b136c5bc5f42099eecfaa",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 6,
+        "relative_path": "syntaxes/02_Extra/NSIS/LICENSE",
+        "license_text_sha256": "7741ba17df67e68c5f1910e90031a85622da75674db062cea2a836c655eced22",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Nginx/LICENSE.md",
+        "license_text_sha256": "ad4ca7ff0d8e906c4832e3018f15b1f3872d98c7b6eea80a194852d651591701",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Ninja/LICENSE",
+        "license_text_sha256": "8bede0e292452141636fc96e14c0dc7d69ae591c97b6ff409e642da30ab869db",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Nix/LICENSE",
+        "license_text_sha256": "1cb5064b01955e4c356b66ab02a410b250d86060ad8afc57cb1ee05d515c12ee",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 2,
+        "relative_path": "syntaxes/02_Extra/Org_mode/LICENSE",
+        "license_text_sha256": "80b0263c8d03f9675b8c6b6fb5ee8e8495be127534ef91ec157d0339df65c008",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/PowerShell/LICENSE",
+        "license_text_sha256": "1dd685a63af94df709490fbbc874cda8a6e98bdd957da4ae0bf7b85e363748a7",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Protobuf/LICENSE",
+        "license_text_sha256": "1d069693b399cdd45433bd5b35f4c7ed8759eedfa746065e12114cafc1956aa1",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Puppet/LICENSE",
+        "license_text_sha256": "53ecf969709939cd714c8d4d76a637da389009a1334fa59810a173e93106f4a2",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/PureScript/NOTICE",
+        "license_text_sha256": "a3e39e03b053f9ce63ebd7419f47568ccac69204ed22fa5faab94ee743cb3c32",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/QML/LICENSE",
+        "license_text_sha256": "aca41e9ce32f5bdecb80710b7cbc2ad8bc27b4a17f65ca3bb48e50989d71d410",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Robot/LICENSE",
+        "license_text_sha256": "c909d3ef438d2382497fc15d68546c3788204bb80551a8de5078c0bed112a075",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/SCSS_Sass/LICENSE",
+        "license_text_sha256": "85d2388e22b8374813173e0b33ba5df519affd817cff7b4f5dd8d9e58007a650",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 6,
+        "relative_path": "syntaxes/02_Extra/SLS/LICENSE",
+        "license_text_sha256": "d68db6267b9c0bc23f5c18a680fdd8cef6a8a55386697d3d5ceb1a3afc7e0fc5",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Slim/LICENSE",
+        "license_text_sha256": "d5cd21eb674ec238f8455e131821b0109d582341d4bcad4e890be5dde494a867",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 6,
+        "relative_path": "syntaxes/02_Extra/SmartVHDL/LICENSE",
+        "license_text_sha256": "d93682b28067850e50b70cec11e5a5d5648d21098fd926b098be2e081139c401",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Stylus/LICENSE",
+        "license_text_sha256": "237a04ec714783f75909e526e3ac25bd324338ec82f93342f4073cf48c5c8fc8",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/SublimeEthereum/LICENSE",
+        "license_text_sha256": "f09afe269175b19a53d0437671dd3cce669b958d251557abbcd2a3531ab50f16",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Svelte/LICENSE",
+        "license_text_sha256": "edcfae5116a0e388fb34a836338224b9caf07018401be2df5ebf5f18d04cc23e",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Swift/LICENSE",
+        "license_text_sha256": "1bfc3346cd7faebb3d465e43c5624ec185f205dda97c389e753ac60b3f1a111c",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 6,
+        "relative_path": "syntaxes/02_Extra/SystemVerilog/LICENSE",
+        "license_text_sha256": "d93682b28067850e50b70cec11e5a5d5648d21098fd926b098be2e081139c401",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/TOML/LICENSE",
+        "license_text_sha256": "87e6d5f3c4b540cbf3ae86bafce242a3cad366eb16799a123cde73b5ff5211f3",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Terraform/LICENSE",
+        "license_text_sha256": "414a7a0a7baeb30b4ef368adda3951e47e359112ec780bd9d089187fae9be406",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 6,
+        "relative_path": "syntaxes/02_Extra/TypeScript/LICENSE",
+        "license_text_sha256": "cb5e8e7e5f4a3988e1063c142c60dc2df75605f4c46515e776e3aca6df976e14",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/VimL/LICENSE",
+        "license_text_sha256": "c7e4d510e636014a59e95a1592d02cd99323c89a15f82d5417031908a00c9cad",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Vue/LICENSE",
+        "license_text_sha256": "375b3c9da1c3e0a38840908b6bc6e824d430e61938410d36894fcc12e49ad533",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/Zig/LICENSE",
+        "license_text_sha256": "f7fe1c04fc1c5c8bad50ac8503fbf8b9de705d250432dc47d4fbe638e8155038",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/cmd-help/LICENSE.txt",
+        "license_text_sha256": "86cc896e0e28a340548ff94358a7fea62967830c3570bcb411b2f77e8ea380b8",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/gnuplot/LICENSE",
+        "license_text_sha256": "245ff4d070746f0321cce873ebddc2d5aeb2db4b7d2c73e92ca6cb19b27245ce",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/hosts/LICENSE",
+        "license_text_sha256": "c309f3fc2e04cac668eace0a8d98ad8634a2e6deff787526afe2a99d8734715f",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/http-request-response/LICENSE",
+        "license_text_sha256": "0ff423ab33146010750f475257bfed2cb3046a73b6b7b406a7846102beadc03c",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/sublime-odin/LICENSE",
+        "license_text_sha256": "5f555e5e18ab5e99a92f65d5650bbe255383648982d60c9f4907fc996e53241d",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/typst-syntax-highlight/LICENSE.txt",
+        "license_text_sha256": "68f19a073ee5d9411300182519f56205f06c7e93f0d05b94f77951b921ba5d59",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/varlink/LICENSE",
+        "license_text_sha256": "feb87a2e0c305de3464cc44077da5393c52d8ca6362d37427157d04ec6f4510d",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "syntaxes/02_Extra/vscode-wgsl/LICENSE",
+        "license_text_sha256": "9ed918769b7adc91a91f626a54a646c328760060ec3eb7fe9e016c26efdae88b",
+        "text_present_in_pinned_markdown": true
+      }
+    ],
+    "themes": [
+      {
+        "license_enum": 1,
+        "relative_path": "themes/1337-Scheme/LICENSE",
+        "license_text_sha256": "fd0b82a6b6b4cb4b5cfef8e867797683c875f17a8134ead526f98637e10c7eeb",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "themes/Catppuccin/LICENSE",
+        "license_text_sha256": "814096d2c34cc216c624738a49356f32b7237733b4f7edb0685f4e50ef5074ba",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "themes/Coldark/LICENSE",
+        "license_text_sha256": "5379c95df406b886f57a5a8fb55c42f62979d3f3e3627b4fb5a94cacaf568d15",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "themes/Nord-sublime/LICENSE",
+        "license_text_sha256": "25ac8188d670bd2ad2ce2f4f55ab88573010ee9f7a4502543cb1eea1e2274f8a",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "themes/Solarized/LICENSE",
+        "license_text_sha256": "5dc2079d54e3f8f30fa8c1bec303bddc84da7776b677700ef083252835c0f77c",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "themes/TwoDark/LICENSE",
+        "license_text_sha256": "1ad437347553bea4124214ef14efe2bd9b159b7e6377b1015b35cbe449ccc97e",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "themes/dracula-sublime/LICENSE",
+        "license_text_sha256": "21ab5b51be129196203d9e9cd1a2d51451fe913bc972fc1462a2fe11633692a1",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "themes/gruvbox/LICENSE",
+        "license_text_sha256": "33e25d05af614c66ff497dc08faa43f79f55dac2c21e6cdb92557c123246e0d0",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "themes/onehalf/LICENSE.txt",
+        "license_text_sha256": "bb4a23db094e79ed8ffd9a38fbc6ff45cbdf9a1f4182fc7ff2667793a012c9a1",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "themes/sublime-monokai-extended/LICENSE",
+        "license_text_sha256": "b49f1b1dc97c416ae65a38497d251a0c90357473f93d6d2d224f24fea9eb8439",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 1,
+        "relative_path": "themes/sublime-snazzy/LICENSE",
+        "license_text_sha256": "82987ff3dfdd5b96268c907420e20741b89313548898161ab2400daa279a4f88",
+        "text_present_in_pinned_markdown": true
+      },
+      {
+        "license_enum": 3,
+        "relative_path": "themes/zenburn/LICENSE",
+        "license_text_sha256": "2ff0cdc8e25d8da4c73e4014406c4582587f3a9ccdb28c91d737e64768729cf8",
+        "text_present_in_pinned_markdown": true
+      }
+    ]
+  },
+  "notices": [
+    {
+      "retained_path": "docs/licenses/two-face-0.5.2-acknowledgements.md",
+      "sha256": "66512fea2f515b498c2972b2cdf361b1405735ec934a85e48fbe39d917074a7f"
+    }
+  ]
+}

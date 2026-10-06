@@ -1,0 +1,3416 @@
+{
+  "schema_version": 1,
+  "scope": "Pinned Bun 1.3.10 source/notice inventory for macOS ARM64 and Linux x86_64. Source/cache relative paths identify companion archive layout, not files committed in this repository.",
+  "entries": [
+    {
+      "ecosystem": "npm",
+      "name": "abort-controller",
+      "version": "3.0.0",
+      "url": "https://registry.npmjs.org/abort-controller/-/abort-controller-3.0.0.tgz",
+      "integrity": "sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==",
+      "bytes": 17548,
+      "sha256": "d2e249d5d010eb18e57c12c610d63e3ca3fa9dd0a5378009c1f465e21f50ab2f",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-abort-controller-3.0.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/abort-controller-3.0.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1071,
+          "sha256": "dbbf03317f0101fed5643cd87ca80fb769e358fa4f428445bf2315deeb23a154"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "asn1.js",
+      "version": "4.10.1",
+      "url": "https://registry.npmjs.org/asn1.js/-/asn1.js-4.10.1.tgz",
+      "integrity": "sha512-p32cOF5q0Zqs9uBiONKYLm6BClCoBCM5O9JfeUSlnQLBTxYdTK+pW+nXflm8UkKd2UYlEbYz5qEi0JuZR9ckSw==",
+      "bytes": 12480,
+      "sha256": "bda81e4bac55f74f62a1e9244017b80fcd1e1b7de947a9a67f3e37694fcf12d5",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-asn1.js-4.10.1.tgz",
+      "licenses": [],
+      "license_evidence": [
+        {
+          "path": "docs/licenses/bun/npm/asn1.js-4.10.1/package.json",
+          "sha256": "05bce6e135215a34075fdff8461d8477cd6a6788300264bd22e3fc6c5162f1d7",
+          "bytes": 730
+        },
+        {
+          "path": "docs/licenses/bun/npm/asn1.js-4.10.1/README.md",
+          "sha256": "d370e2963b49b85d9a321d5c9973c372f0d212e87ba10009ab2c78683fb0cec3",
+          "bytes": 2480
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "assert",
+      "version": "2.1.0",
+      "url": "https://registry.npmjs.org/assert/-/assert-2.1.0.tgz",
+      "integrity": "sha512-eLHpSK/Y4nhMJ07gDaAzoX/XAKS8PSaojml3M0DM4JpV1LAi5JOJ/p6H/XWrl8L+DzVEvVCW1z3vWAaB9oTsQw==",
+      "bytes": 21877,
+      "sha256": "90027e5efd4bc03eabe781aa7a05d6bcef7098bf125f75c0452830558d66a054",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-assert-2.1.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/assert-2.1.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1096,
+          "sha256": "6239c6144c31e58cf925c34483606969c555574d64ffa96518ab5d7f45c75d43"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "available-typed-arrays",
+      "version": "1.0.7",
+      "url": "https://registry.npmjs.org/available-typed-arrays/-/available-typed-arrays-1.0.7.tgz",
+      "integrity": "sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==",
+      "bytes": 7360,
+      "sha256": "8b140e0fa3fede3d81d1dffcc400c9755d7388e8a4add228487f5e20c9cf7863",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-available-typed-arrays-1.0.7.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/available-typed-arrays-1.0.7/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1067,
+          "sha256": "6d0917530cf3b3dca12c1ab7798e4d38ad0a6798ecc1bd27849a3048ba91d265"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "base64-js",
+      "version": "1.5.1",
+      "url": "https://registry.npmjs.org/base64-js/-/base64-js-1.5.1.tgz",
+      "integrity": "sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==",
+      "bytes": 4109,
+      "sha256": "b1b7a945b52685269083425216d6597e33d97bf21699d656e92fdb3eb5210a85",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-base64-js-1.5.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/base64-js-1.5.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1081,
+          "sha256": "5b37224c080cdcc97c871ada971c224e9926370fe74f11b539aa1cf9f3b1aca1"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "bn.js",
+      "version": "5.2.2",
+      "url": "https://registry.npmjs.org/bn.js/-/bn.js-5.2.2.tgz",
+      "integrity": "sha512-v2YAxEmKaBLahNwE1mjp4WON6huMNeuDvagFZW+ASCuA/ku0bXR9hSMw0XpiqMoA3+rmnyck/tPRSFQkoC9Cuw==",
+      "bytes": 21983,
+      "sha256": "6c776e2fc33ea1eb38dd3d03cb532d27b4abcedc527c7f67961a323d0054cede",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-bn.js-5.2.2.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/bn.js-5.2.2/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1055,
+          "sha256": "445739f5b5eb63e5aeff5aeb0f35a45080a421615dce0d97f9939aeea498acdd"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "brorand",
+      "version": "1.1.0",
+      "url": "https://registry.npmjs.org/brorand/-/brorand-1.1.0.tgz",
+      "integrity": "sha512-cKV8tMCEpQs4hK/ik71d6LrPOnpkpGBR0wzxqr68g2m/LB2GxVYQroAjMJZRVM1Y4BCjCKc3vAamxSzOY2RP+w==",
+      "bytes": 2509,
+      "sha256": "6add0656db12f5694a96d922916edf764f1a52ee332e2773271733a38fa51225",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-brorand-1.1.0.tgz",
+      "licenses": [],
+      "license_evidence": [
+        {
+          "path": "docs/licenses/bun/npm/brorand-1.1.0/package.json",
+          "sha256": "6a271145938041a44e1fb46558a4df1a70d2d82ebab42652c488a0e42c86c6de",
+          "bytes": 654
+        },
+        {
+          "path": "docs/licenses/bun/npm/brorand-1.1.0/README.md",
+          "sha256": "d506a235e27d2912c7c93be50beaaffaa9cd11e5c3852acc08362005108b61dc",
+          "bytes": 1130
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "browserify-aes",
+      "version": "1.2.0",
+      "url": "https://registry.npmjs.org/browserify-aes/-/browserify-aes-1.2.0.tgz",
+      "integrity": "sha512-+7CHXqGuspUn/Sl5aO7Ea0xWGAtETPXNSAjHo48JfLdPWcMng33Xe4znFvQweqc/uzk5zSOI3H52CYnjCfb5hA==",
+      "bytes": 7794,
+      "sha256": "9b64ba05c9ad861e2f61933cda370d031d0adcb0582428a212b6746c9ca2e168",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-browserify-aes-1.2.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/browserify-aes-1.2.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1099,
+          "sha256": "82ba430b068b75a41438568e1e4ed1f96e02699c9b51735154af03e9b59d6b0d"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "browserify-cipher",
+      "version": "1.0.1",
+      "url": "https://registry.npmjs.org/browserify-cipher/-/browserify-cipher-1.0.1.tgz",
+      "integrity": "sha512-sPhkz0ARKbf4rRQt2hTpAHqn47X3llLkUGn+xEJzLjwY8LRs2p0v7ljvI5EyoRO/mexrNunNECisZs+gw2zz1w==",
+      "bytes": 2363,
+      "sha256": "2d28155c2ae999ae5b69a6223f591ffcced3985d607d5d63238327327c6a06e4",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-browserify-cipher-1.0.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/browserify-cipher-1.0.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1101,
+          "sha256": "dc09aa476634db0dbae1a296f099d5bd39e27c96b876d4d20b236fa565002bb6"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "browserify-des",
+      "version": "1.0.2",
+      "url": "https://registry.npmjs.org/browserify-des/-/browserify-des-1.0.2.tgz",
+      "integrity": "sha512-BioO1xf3hFwz4kc6iBhI3ieDFompMhrMlnDFC4/0/vd5MokpuAc3R+LYbwTA9A5Yc9pq9UYPqffKpW2ObuwX5A==",
+      "bytes": 2310,
+      "sha256": "b7503b6a58abbd1a3b0f0aabfcd978edff54ad33ebf97a6f0bbdf45bebda9421",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-browserify-des-1.0.2.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/browserify-des-1.0.2/license",
+          "upstream_path": "license",
+          "bytes": 1116,
+          "sha256": "e54f1a2edadb1d8d3a482bcd0712acad2947337ae35e40ca34b22eb77940863f"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "browserify-rsa",
+      "version": "4.1.1",
+      "url": "https://registry.npmjs.org/browserify-rsa/-/browserify-rsa-4.1.1.tgz",
+      "integrity": "sha512-YBjSAiTqM04ZVei6sXighu679a3SqWORA3qZTEqZImnlkDIFtKc6pNutpjyZ8RJTjQtuYfeetkxM11GwoYXMIQ==",
+      "bytes": 4274,
+      "sha256": "a08e2687fed5134712e22e814a3afcbcb9d6aa033259fd080824e0e46aeb0d46",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-browserify-rsa-4.1.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/browserify-rsa-4.1.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1101,
+          "sha256": "d7314f44f0873f703b3cbaad5d60b947eb252a70072df586488e20a236c1223f"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "browserify-sign",
+      "version": "4.2.5",
+      "url": "https://registry.npmjs.org/browserify-sign/-/browserify-sign-4.2.5.tgz",
+      "integrity": "sha512-C2AUdAJg6rlM2W5QMp2Q4KGQMVBwR1lIimTsUnutJ8bMpW5B52pGpR2gEnNBNwijumDo5FojQ0L9JrXA8m4YEw==",
+      "bytes": 11902,
+      "sha256": "b11875fb8c15cf5a26d459d9e084ab84a569e491b11031740253130a63fc5ae0",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-browserify-sign-4.2.5.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/browserify-sign-4.2.5/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 770,
+          "sha256": "a0e06d86a5a17341fa6134ee30ef18d73251cf32b8a577cdfd6aad6ad34af61d"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "browserify-zlib",
+      "version": "0.2.0",
+      "url": "https://registry.npmjs.org/browserify-zlib/-/browserify-zlib-0.2.0.tgz",
+      "integrity": "sha512-Z942RysHXmJrhqk88FmKBVq/v5tqmSkDz7p54G/MGyjMnCFFnC79XWNbg+Vta8W6Wb2qtSZTSxIGkJrRpCFEiA==",
+      "bytes": 48061,
+      "sha256": "f6c4d0f3881e160ba83900fa38cfa22aec5073ee5d44950842495a1bb8bda36e",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-browserify-zlib-0.2.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/browserify-zlib-0.2.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 3486,
+          "sha256": "ddd770379e07bf0574dfaa4485be80a23b3248b36d09f33ec79276c09b829daf"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "buffer",
+      "version": "6.0.3",
+      "url": "https://registry.npmjs.org/buffer/-/buffer-6.0.3.tgz",
+      "integrity": "sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==",
+      "bytes": 23108,
+      "sha256": "555b6f49224afcf6b2c5a9aea7cd34a7f443f395b10532bc5580022d57aa51f5",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-buffer-6.0.3.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/buffer-6.0.3/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1106,
+          "sha256": "06bafa45fdad2579ba0e43b0c9b2c6290287c99c4203c300254a462b38a307f6"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "buffer-xor",
+      "version": "1.0.3",
+      "url": "https://registry.npmjs.org/buffer-xor/-/buffer-xor-1.0.3.tgz",
+      "integrity": "sha512-571s0T7nZWK6vB67HI5dyUF7wXiNcfaPPPTl6zYCNApANjIvYJTg7hlud/+cJpdAhS7dVzqMLmfhfHR3rAcOjQ==",
+      "bytes": 2294,
+      "sha256": "6befb068400e62690f9da28489425f3eaf6ef50f2943e49d0126969ed4c64f4a",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-buffer-xor-1.0.3.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/buffer-xor-1.0.3/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1081,
+          "sha256": "51ad9defd71911dbe413daf277bcb2e1077743f5ee5ae48d0a3b90a5b7486f55"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "builtin-status-codes",
+      "version": "3.0.0",
+      "url": "https://registry.npmjs.org/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz",
+      "integrity": "sha512-HpGFw18DgFWlncDfjTa2rcQ4W88O1mC8e8yZ2AvQY5KDaktSTwo+KRf6nHK6FRI5FyRyb/5T6+TSxfP7QyGsmQ==",
+      "bytes": 2374,
+      "sha256": "316e1896e859fcbfb492c4af3e7bf5d74e2443e98c04929b36e96c7541b79db8",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-builtin-status-codes-3.0.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/builtin-status-codes-3.0.0/license",
+          "upstream_path": "license",
+          "bytes": 1111,
+          "sha256": "f057f36739d53d228a746de4440c1e0c644ecde06d6beab45337d39c9d12a393"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "call-bind",
+      "version": "1.0.8",
+      "url": "https://registry.npmjs.org/call-bind/-/call-bind-1.0.8.tgz",
+      "integrity": "sha512-oKlSFMcMwpUg2ednkhQ454wfWiU/ul3CkJe/PEHcTKuiX6RpbehUiFMXu13HalGZxfUwCQzZG747YXBn1im9ww==",
+      "bytes": 7779,
+      "sha256": "30e2bdf3ce00c012527ae4161df4145cbf4c797e9fa30e43fc7324b2e07b0523",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-call-bind-1.0.8.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/call-bind-1.0.8/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1071,
+          "sha256": "39c5ec504cf6bd5cd782a7c695828e09189df79f5d94840e4f08feb97b9fd416"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "call-bind-apply-helpers",
+      "version": "1.0.2",
+      "url": "https://registry.npmjs.org/call-bind-apply-helpers/-/call-bind-apply-helpers-1.0.2.tgz",
+      "integrity": "sha512-Sp1ablJ0ivDkSzjcaJdxEunN5/XvksFJ2sMBFfq6x0ryhQV/2b/KwFe21cMpmHtPOSij8K99/wSfoEuTObmuMQ==",
+      "bytes": 6067,
+      "sha256": "073e9ff9dbabedf5c128020a677381e9f92c90188d118830b30a7656a7c37d2c",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-call-bind-apply-helpers-1.0.2.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/call-bind-apply-helpers-1.0.2/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1071,
+          "sha256": "5e325595b4ea8cfec3802f545b1def5d7b73e4a5b8e9ba63e32a320f67732292"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "call-bound",
+      "version": "1.0.4",
+      "url": "https://registry.npmjs.org/call-bound/-/call-bound-1.0.4.tgz",
+      "integrity": "sha512-+ys997U96po4Kx/ABpBCqhA9EuxJaQWDQg7295H4hBphv3IZg0boBKuwYpt4YXp6MZ5AmZQnU/tyMTlRpaSejg==",
+      "bytes": 6382,
+      "sha256": "32086f492fedf1b9b34811f2ee50ca2cca53da5c783f7cd5f939d3f1e86bbd32",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-call-bound-1.0.4.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/call-bound-1.0.4/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1071,
+          "sha256": "5e325595b4ea8cfec3802f545b1def5d7b73e4a5b8e9ba63e32a320f67732292"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "cipher-base",
+      "version": "1.0.7",
+      "url": "https://registry.npmjs.org/cipher-base/-/cipher-base-1.0.7.tgz",
+      "integrity": "sha512-Mz9QMT5fJe7bKI7MH31UilT5cEK5EHHRCccw/YRFsRY47AuNgaV6HY3rscp0/I4Q+tTW/5zoqpSeRRI54TkDWA==",
+      "bytes": 5621,
+      "sha256": "ad2a22688accc96cd6a42624821931427b9f61d04f5e20ab11eb92928577044b",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-cipher-base-1.0.7.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/cipher-base-1.0.7/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1097,
+          "sha256": "cf93ad78cfd5f3523248675aeb2a46e003367596883d4fa26a0c38d553ab0f61"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "console-browserify",
+      "version": "1.2.0",
+      "url": "https://registry.npmjs.org/console-browserify/-/console-browserify-1.2.0.tgz",
+      "integrity": "sha512-ZMkYO/LkF17QvCPqM0gxw8yUzigAOZOSWSHg91FH6orS7vcEj5dVZTidN2fQ14yBSdg97RqhSNwLUXInd52OTA==",
+      "bytes": 4227,
+      "sha256": "2e6d867f73d5829174cf20868c80360c8ec434867ea68a8baf5cbb9d532c1040",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-console-browserify-1.2.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/console-browserify-1.2.0/LICENCE",
+          "upstream_path": "LICENCE",
+          "bytes": 1050,
+          "sha256": "19338d17a974d1c747b3f6c618f08975b8908fdebccbc047c0e72b09daf6ddd3"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "constants-browserify",
+      "version": "1.0.0",
+      "url": "https://registry.npmjs.org/constants-browserify/-/constants-browserify-1.0.0.tgz",
+      "integrity": "sha512-xFxOwqIzR/e1k1gLiWEophSCMqXcwVHIH7akf7b/vxcUeGunlj3hvZaaqxwHsTgn+IndtkQJgSztIDWeumWJDQ==",
+      "bytes": 3383,
+      "sha256": "ea9307fd609ddce9497e3ca6b49e6102d7326bd337f66c10143b7b326f931f59",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-constants-browserify-1.0.0.tgz",
+      "licenses": [],
+      "license_evidence": [
+        {
+          "path": "docs/licenses/bun/npm/constants-browserify-1.0.0/package.json",
+          "sha256": "5668ea647a849a7295dc82ee264368a23c07e49d0db20166ea0ddbd1da4ce3fb",
+          "bytes": 761
+        },
+        {
+          "path": "docs/licenses/bun/npm/constants-browserify-1.0.0/README.md",
+          "sha256": "b06569bf170a015c56cbad9b45756519d0b8a682770fe30d66bc1e235e26196a",
+          "bytes": 1668
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "core-util-is",
+      "version": "1.0.3",
+      "url": "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.3.tgz",
+      "integrity": "sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==",
+      "bytes": 1897,
+      "sha256": "4430fdc71f2cf3b5e297113b9a692da2d6cff96cf84da00f0ecef5e5a6e74d0c",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-core-util-is-1.0.3.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/core-util-is-1.0.3/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1077,
+          "sha256": "33b734d60042d0fe0c92dd1fc1e874193a1c899ec3e276a2eb935d2d0bf5b710"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "create-ecdh",
+      "version": "4.0.4",
+      "url": "https://registry.npmjs.org/create-ecdh/-/create-ecdh-4.0.4.tgz",
+      "integrity": "sha512-mf+TCx8wWc9VpuxfP2ht0iSISLZnt0JgWlrOKZiNqyUZWnjIaCIVNQArMHnCZKfEYRg6IM7A+NeJoN8gf/Ws0A==",
+      "bytes": 2486,
+      "sha256": "990182d062df4f280785c5eac9cd0c28d10d0105b93fcf53e4580c3901713ce1",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-create-ecdh-4.0.4.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/create-ecdh-4.0.4/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1095,
+          "sha256": "d4ad87ad0bb7d57c17ae73b46e064243b972edc3036c38c222172c9600a20b56"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "create-hash",
+      "version": "1.2.0",
+      "url": "https://registry.npmjs.org/create-hash/-/create-hash-1.2.0.tgz",
+      "integrity": "sha512-z00bCGNHDG8mHAkP7CtT1qVu+bFQUPjYq/4Iv3C3kWjTFV10zIjfSoeqXo9Asws8gwSHDGj/hl2u4OGIjapeCg==",
+      "bytes": 2444,
+      "sha256": "fe4079490bd932ccf1f1530f49a88aaca57dbdb6f337c9144749a225e2014bad",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-create-hash-1.2.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/create-hash-1.2.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1097,
+          "sha256": "cf93ad78cfd5f3523248675aeb2a46e003367596883d4fa26a0c38d553ab0f61"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "create-hmac",
+      "version": "1.1.7",
+      "url": "https://registry.npmjs.org/create-hmac/-/create-hmac-1.1.7.tgz",
+      "integrity": "sha512-MJG9liiZ+ogc4TzUwuvbER1JRdgvUFSB5+VR/g5h82fGaIRWMWddtKBHi7/sVhfjQZ6SehlyhvQYrcYkaUIpLg==",
+      "bytes": 2429,
+      "sha256": "fd77daf860b84566d8ccc30561eaba00a9efc4fbba94d4a5f417f4f636337aa7",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-create-hmac-1.1.7.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/create-hmac-1.1.7/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1097,
+          "sha256": "cf93ad78cfd5f3523248675aeb2a46e003367596883d4fa26a0c38d553ab0f61"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "crypto-browserify",
+      "version": "3.12.1",
+      "url": "https://registry.npmjs.org/crypto-browserify/-/crypto-browserify-3.12.1.tgz",
+      "integrity": "sha512-r4ESw/IlusD17lgQi1O20Fa3qNnsckR126TdUuBgAu7GBYSIPvdNyONd3Zrxh0xCwA4+6w/TDArBPsMvhur+KQ==",
+      "bytes": 17139,
+      "sha256": "ef67d3aa5192e1596bcabe5e7f3e76bca80f94584fe55a83c98e2d9bb7c1fe85",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-crypto-browserify-3.12.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/crypto-browserify-3.12.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1087,
+          "sha256": "6134c69bc22c8289252e70de3af20bd67071233459055be74d83acfcc4865e7e"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "define-data-property",
+      "version": "1.1.4",
+      "url": "https://registry.npmjs.org/define-data-property/-/define-data-property-1.1.4.tgz",
+      "integrity": "sha512-rBMvIzlpA8v6E+SJZoo++HAYqsLrkg7MSfIinMPFhmkorw7X+dOXVJQs+QT69zGkzMyfDnIMN2Wid1+NbL3T+A==",
+      "bytes": 8913,
+      "sha256": "16304ad73df1364ca8623c28a8969de01cd7189b4f9b05668fadb598f110e4d2",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-define-data-property-1.1.4.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/define-data-property-1.1.4/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1071,
+          "sha256": "b41d08bc3624d8c436fc80237d73ebb361985a67f4504bbcd703e5ca2b27254c"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "define-properties",
+      "version": "1.2.1",
+      "url": "https://registry.npmjs.org/define-properties/-/define-properties-1.2.1.tgz",
+      "integrity": "sha512-8QmQKqEASLd5nx0U1B1okLElbUuuttJ/AnYmRXbbbGDWh6uS208EjD4Xqq/I9wK7u0v6O08XhTWnt5XtEbR6Dg==",
+      "bytes": 5203,
+      "sha256": "5de7e3804fadee9d773cd494b695e6efedfee8837e751fd9b9b77c3e9c6b40f4",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-define-properties-1.2.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/define-properties-1.2.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1080,
+          "sha256": "00d402c2bbe7c67369bd01ce2c16b8ed46ccc949a1ee2d6bb8f9606afa8c7434"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "des.js",
+      "version": "1.1.0",
+      "url": "https://registry.npmjs.org/des.js/-/des.js-1.1.0.tgz",
+      "integrity": "sha512-r17GxjhUCjSRy8aiJpr8/UadFIzMzJGexI3Nmz4ADi9LYSFx4gTBp80+NaX/YsXWWLhpZ7v/v/ubEc/bCNfKwg==",
+      "bytes": 9982,
+      "sha256": "9a06b8294e38ca9bb70a6257290cc217e9172dfc0059f7639f59f074a924ef9d",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-des.js-1.1.0.tgz",
+      "licenses": [],
+      "license_evidence": [
+        {
+          "path": "docs/licenses/bun/npm/des.js-1.1.0/package.json",
+          "sha256": "496fdbc2d178f6ddfa4c3efe48d3345c3948bff762ead4e14beb508c20a4f156",
+          "bytes": 742
+        },
+        {
+          "path": "docs/licenses/bun/npm/des.js-1.1.0/README.md",
+          "sha256": "7bd8e5c11d17eac3766b25d421e158cdb7bacb0bcc520ac4a614520b7fd56c08",
+          "bytes": 1127
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "diffie-hellman",
+      "version": "5.0.3",
+      "url": "https://registry.npmjs.org/diffie-hellman/-/diffie-hellman-5.0.3.tgz",
+      "integrity": "sha512-kqag/Nl+f3GwyK25fhUMYj81BUOrZ9IuJsjIcDE5icNM9FJHAVm3VcUDxdLPoQtTuUylWm6ZIknYJwwaPxsUzg==",
+      "bytes": 5334,
+      "sha256": "67809ae0f25353a16b0dae4c4faffecf32525d238e45506fa27da6d2d4fbe53a",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-diffie-hellman-5.0.3.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/diffie-hellman-5.0.3/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1058,
+          "sha256": "db6109f994692150ed82cd904bb053c73b97b23678bf52047f747bfec11e1934"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "domain-browser",
+      "version": "4.23.0",
+      "url": "https://registry.npmjs.org/domain-browser/-/domain-browser-4.23.0.tgz",
+      "integrity": "sha512-ArzcM/II1wCCujdCNyQjXrAFwS4mrLh4C7DZWlaI8mdh7h3BfKdNd3bKXITfl2PT9FtfQqaGvhi1vPRQPimjGA==",
+      "bytes": 7210,
+      "sha256": "7120ea4ac2e85039a17cb45f5987ee5b6741efc59853644de9c729a6138e0cf0",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-domain-browser-4.23.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/domain-browser-4.23.0/LICENSE.md",
+          "upstream_path": "LICENSE.md",
+          "bytes": 9094,
+          "sha256": "4380ef327b7e7b1f291d74bdccc2995758d76d7f9d179ad1ac41c5fadea9feb5"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "dunder-proto",
+      "version": "1.0.1",
+      "url": "https://registry.npmjs.org/dunder-proto/-/dunder-proto-1.0.1.tgz",
+      "integrity": "sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==",
+      "bytes": 5049,
+      "sha256": "ed1342228c82c10df9921c59d684df516a0cd6ed25b61e5f9d6330895326cfdb",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-dunder-proto-1.0.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/dunder-proto-1.0.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1073,
+          "sha256": "2b770a704c15de238c3f622b01b0044ddd60b49ee30608ea6991ebf19db7a7a1"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "elliptic",
+      "version": "6.6.1",
+      "url": "https://registry.npmjs.org/elliptic/-/elliptic-6.6.1.tgz",
+      "integrity": "sha512-RaddvvMatK2LJHqFJ+YA4WysVN5Ita9E35botqIYspQ4TkRAlCicdzKOjlyv/1Za5RyTNn7di//eEV0uTAfe3g==",
+      "bytes": 41251,
+      "sha256": "ae5132b694f62afc1738293c1b319be9a8822a4823fe15c515e39e7152a229c0",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-elliptic-6.6.1.tgz",
+      "licenses": [],
+      "license_evidence": [
+        {
+          "path": "docs/licenses/bun/npm/elliptic-6.6.1/package.json",
+          "sha256": "6fc56c88cf0e6bd7050d7f2630e9ef91b6687b8163f8dbe7444f11242052d51a",
+          "bytes": 1396
+        },
+        {
+          "path": "docs/licenses/bun/npm/elliptic-6.6.1/README.md",
+          "sha256": "361389f7c5c5e493c2af0e89333b4dce12cf6f4c8901b30f035475d2c0215473",
+          "bytes": 7194
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "es-define-property",
+      "version": "1.0.1",
+      "url": "https://registry.npmjs.org/es-define-property/-/es-define-property-1.0.1.tgz",
+      "integrity": "sha512-e3nRfgfUZ4rNGL232gUgX06QNyyez04KdjFrF+LTRoOXmrOgFKDg4BCdsjW8EnT69eqdYGmRpJwiPVYNrCaW3g==",
+      "bytes": 4431,
+      "sha256": "5986b8b13121340a8b0d5c7d8f0f961aa80ef3a74515ca9cb7a78d86ed0385f7",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-es-define-property-1.0.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/es-define-property-1.0.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1071,
+          "sha256": "5e325595b4ea8cfec3802f545b1def5d7b73e4a5b8e9ba63e32a320f67732292"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "es-errors",
+      "version": "1.3.0",
+      "url": "https://registry.npmjs.org/es-errors/-/es-errors-1.3.0.tgz",
+      "integrity": "sha512-Zf5H2Kxt2xjTvbJvP2ZWLEICxA6j+hAmMzIlypy4xcBg1vKVnx89Wy0GbS+kf5cwCVFFzdCFh2XSCFNULS6csw==",
+      "bytes": 5338,
+      "sha256": "d14dd1c35b4bd3b8aca3219fd3627eb7f3eb49cf6b4c8a7ca58b91fd7a190993",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-es-errors-1.3.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/es-errors-1.3.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1071,
+          "sha256": "5e325595b4ea8cfec3802f545b1def5d7b73e4a5b8e9ba63e32a320f67732292"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "es-object-atoms",
+      "version": "1.1.1",
+      "url": "https://registry.npmjs.org/es-object-atoms/-/es-object-atoms-1.1.1.tgz",
+      "integrity": "sha512-FGgH2h8zKNim9ljj7dankFPcICIK9Cp5bm+c2gQSYePhpaG5+esrLODihIorn+Pe6FGJzWhXQotPv73jTaldXA==",
+      "bytes": 4658,
+      "sha256": "3e18e4d757818aee7bf1921686c6c3e7f9676d17c5c6fec560567c6beee579ce",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-es-object-atoms-1.1.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/es-object-atoms-1.1.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1071,
+          "sha256": "5e325595b4ea8cfec3802f545b1def5d7b73e4a5b8e9ba63e32a320f67732292"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "event-target-shim",
+      "version": "5.0.1",
+      "url": "https://registry.npmjs.org/event-target-shim/-/event-target-shim-5.0.1.tgz",
+      "integrity": "sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==",
+      "bytes": 37216,
+      "sha256": "f0717da2cde5c703b92e66906623724959c23ac14e9439c436b84c8a4f5b26bc",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-event-target-shim-5.0.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/event-target-shim-5.0.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1082,
+          "sha256": "97d87142793695cd73243de7258694abe85b3b6060fca7f247b0a2afa8219678"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "events",
+      "version": "3.3.0",
+      "url": "https://registry.npmjs.org/events/-/events-3.3.0.tgz",
+      "integrity": "sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==",
+      "bytes": 16574,
+      "sha256": "2c30dd630b58299bdfaac8688f763c6f312d29779c500b1e3701a1d4fb3b534b",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-events-3.3.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/events-3.3.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1081,
+          "sha256": "631987b7616a325a5b97566c232418481ddf7dbb5ecadefb991e791876cc2599"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "evp_bytestokey",
+      "version": "1.0.3",
+      "url": "https://registry.npmjs.org/evp_bytestokey/-/evp_bytestokey-1.0.3.tgz",
+      "integrity": "sha512-/f2Go4TognH/KvCISP7OUsHn85hT9nUkxxA9BEWxFn+Oj9o8ZNLm/40hdlgSLyuOimsrTKLUMEorQexp/aPQeA==",
+      "bytes": 2610,
+      "sha256": "c10a145896ed84fb886f273bd583d3895390561d6b513b17f5cf70312f7c40e1",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-evp_bytestokey-1.0.3.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/evp_bytestokey-1.0.3/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1097,
+          "sha256": "cf93ad78cfd5f3523248675aeb2a46e003367596883d4fa26a0c38d553ab0f61"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "for-each",
+      "version": "0.3.5",
+      "url": "https://registry.npmjs.org/for-each/-/for-each-0.3.5.tgz",
+      "integrity": "sha512-dKx12eRCVIzqCxFGplyFKJMPvLEWgmNtUrpTiJIR5u97zEhRG8ySrtboPHZXx7daLxQVrl643cTzbab2tkQjxg==",
+      "bytes": 8133,
+      "sha256": "4bd2cfc8e674c93cf7abb3bd3d6fd8e388fa10324bec011223a8fa4f287185d1",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-for-each-0.3.5.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/for-each-0.3.5/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1075,
+          "sha256": "d07913d776eef217a95d7ee3ee83577fc3c365b9c870f5a3411f785b81090614"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "function-bind",
+      "version": "1.1.2",
+      "url": "https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz",
+      "integrity": "sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==",
+      "bytes": 9799,
+      "sha256": "704402651b02a1454f17d445fc7dd716efc282d059407126d58ef30a47e807aa",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-function-bind-1.1.2.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/function-bind-1.1.2/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1052,
+          "sha256": "773e131a7684726005a7e4688a80b4620033bc08499bc1404dd1a1eb3bca725e"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "generator-function",
+      "version": "2.0.1",
+      "url": "https://registry.npmjs.org/generator-function/-/generator-function-2.0.1.tgz",
+      "integrity": "sha512-SFdFmIJi+ybC0vjlHN0ZGVGHc3lgE0DxPAT0djjVg+kjOnSqclqmj0KQ7ykTOLP6YxoqOvuAODGdcHJn+43q3g==",
+      "bytes": 4441,
+      "sha256": "817d539f17b5c53295c82f50380c4c79608a15d70f753d26496cdf1a194acb66",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-generator-function-2.0.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/generator-function-2.0.1/LICENSE.md",
+          "upstream_path": "LICENSE.md",
+          "bytes": 1070,
+          "sha256": "1ac0263302bfb8eedc54a10a44175b0df51419306d5bc1539bfd7a7da121bd08"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "get-intrinsic",
+      "version": "1.3.0",
+      "url": "https://registry.npmjs.org/get-intrinsic/-/get-intrinsic-1.3.0.tgz",
+      "integrity": "sha512-9fSjSaos/fRIVIp+xSJlE6lfwhES7LNtKaCBIamHsjr2na1BiABJPo0mOjjz8GJDURarmCPGqaiVg5mfjb98CQ==",
+      "bytes": 13800,
+      "sha256": "662e27e54e00fe46fbb08f9f4aacb054e3695dbe72cc14b436613fbcfb780544",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-get-intrinsic-1.3.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/get-intrinsic-1.3.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1071,
+          "sha256": "39c5ec504cf6bd5cd782a7c695828e09189df79f5d94840e4f08feb97b9fd416"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "get-proto",
+      "version": "1.0.1",
+      "url": "https://registry.npmjs.org/get-proto/-/get-proto-1.0.1.tgz",
+      "integrity": "sha512-sTSfBjoXBp89JvIKIefqw7U2CCebsc74kiY6awiGogKtoSGbgjYE/G/+l9sF3MWFPNc9IcoOC4ODfKHfxFmp0g==",
+      "bytes": 4474,
+      "sha256": "eb2cc52afb1f1fd82c5fc2a58c2380f0f16fdcdb5631538f3c66887435d70681",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-get-proto-1.0.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/get-proto-1.0.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1071,
+          "sha256": "be46ce1e3b0479af9ce82d22b465a6d7d2ff084fca0aaf3d54172da2b5eb5781"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "gopd",
+      "version": "1.2.0",
+      "url": "https://registry.npmjs.org/gopd/-/gopd-1.2.0.tgz",
+      "integrity": "sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==",
+      "bytes": 4584,
+      "sha256": "d536d0de4dd285dc1468fbb7f39334a47ee0eec9c27f9b626a6e71466c9fda82",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-gopd-1.2.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/gopd-1.2.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1071,
+          "sha256": "d90bf0a089da4cf43d644ed240a0b3825dcdb705e64e38371d56995a4cc9e4c5"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "has-property-descriptors",
+      "version": "1.0.2",
+      "url": "https://registry.npmjs.org/has-property-descriptors/-/has-property-descriptors-1.0.2.tgz",
+      "integrity": "sha512-55JNKuIW+vq4Ke1BjOTjM2YctQIvCT7GFzHwmfZPGo5wnrgkid0YQtnAleFSqumZm4az3n2BS+erby5ipJdgrg==",
+      "bytes": 4429,
+      "sha256": "0219bbd8f32e268eeb6efff55a2c6ff2d502098f49c583ff023b2d9d5a8bfa87",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-has-property-descriptors-1.0.2.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/has-property-descriptors-1.0.2/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1067,
+          "sha256": "0f0ca96f50793990031ebc488a38f7292ff70bce8ab6a8e5eeda674abc32ccdf"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "has-symbols",
+      "version": "1.1.0",
+      "url": "https://registry.npmjs.org/has-symbols/-/has-symbols-1.1.0.tgz",
+      "integrity": "sha512-1cDNdwJ2Jaohmb3sg4OmKaMBwuC48sYni5HUw2DvsC8LjGTLK9h+eb1X6RyuOHe4hT0ULCW68iomhjUoKUqlPQ==",
+      "bytes": 8059,
+      "sha256": "4460c7532f28b8df2ddc9a1ec17816d43c24d4b9591dc6c5936b82f7f86ae7c5",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-has-symbols-1.1.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/has-symbols-1.1.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1071,
+          "sha256": "206c1adcf206dc0031b11232f5b054ec5f1662407ab1ca415247921cab2068ab"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "has-tostringtag",
+      "version": "1.0.2",
+      "url": "https://registry.npmjs.org/has-tostringtag/-/has-tostringtag-1.0.2.tgz",
+      "integrity": "sha512-NqADB8VjPFLM2V0VvHUewwwsw0ZWBaIdgo+ieHtK3hasLz4qeCRjYcqfB6AQrBggRKppKF8L52/VqdVsO47Dlw==",
+      "bytes": 6465,
+      "sha256": "dc1c74e3f1179a6271f84747d72c89f258aa46ad3e6464fae0e41737a7f0ef7b",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-has-tostringtag-1.0.2.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/has-tostringtag-1.0.2/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1067,
+          "sha256": "e2560e002e13281578c75c850061d9255c33d16d732939e8c2db64c2506642fa"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "hash-base",
+      "version": "3.0.5",
+      "url": "https://registry.npmjs.org/hash-base/-/hash-base-3.0.5.tgz",
+      "integrity": "sha512-vXm0l45VbcHEVlTCzs8M+s0VeYsB2lnlAaThoLKGXr3bE/VWDOelNUnycUPEhKEaXARL2TEFjBOyUiM6+55KBg==",
+      "bytes": 3270,
+      "sha256": "879ae6664433339b002938a96b603e9cd7df5c92d857d93f3d802c40af0536ee",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-hash-base-3.0.5.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/hash-base-3.0.5/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1082,
+          "sha256": "898f204abbbbde58c6230a31842c59aeb8040fbcffa924db28e6d0b1d7631a3a"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "hash.js",
+      "version": "1.1.7",
+      "url": "https://registry.npmjs.org/hash.js/-/hash.js-1.1.7.tgz",
+      "integrity": "sha512-taOaskGt4z4SOANNseOviYDvjEJinIkRgmp7LbKP2YTTmVxWBl87s/uzK9r+44BclBSp2X7K1hqeNfz9JbBeXA==",
+      "bytes": 12589,
+      "sha256": "8eadfe0cbd33052fedb65ed4bf9acfe4645eafaabf877d99e3b1d9d771668ca6",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-hash.js-1.1.7.tgz",
+      "licenses": [],
+      "license_evidence": [
+        {
+          "path": "docs/licenses/bun/npm/hash.js-1.1.7/package.json",
+          "sha256": "b97d8c10d1ed1b3355394a6a0cf9846716e39e87d32ee13e7edd56195b9b8950",
+          "bytes": 855
+        },
+        {
+          "path": "docs/licenses/bun/npm/hash.js-1.1.7/README.md",
+          "sha256": "5df660fe115c8ddcdb81c5d733c117b94abb706b91c26dac3ab7dc817dd9ba71",
+          "bytes": 1515
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "hasown",
+      "version": "2.0.2",
+      "url": "https://registry.npmjs.org/hasown/-/hasown-2.0.2.tgz",
+      "integrity": "sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==",
+      "bytes": 4109,
+      "sha256": "50cdc4d2cd11ae04b6ee29f328d09022244962e5dfab303c8fc223ff8dfa807d",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-hasown-2.0.2.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/hasown-2.0.2/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1083,
+          "sha256": "bf9b0d665be2a689851eea667ca9f42066ea1d903b38349c51e6a44b2577680a"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "hmac-drbg",
+      "version": "1.0.1",
+      "url": "https://registry.npmjs.org/hmac-drbg/-/hmac-drbg-1.0.1.tgz",
+      "integrity": "sha512-Tti3gMqLdZfhOQY1Mzf/AanLiqh1WTiJgEj26ZuYQ9fbkLomzGchCws4FyrSd4VkpBfiNhaE1On+lOz894jvXg==",
+      "bytes": 12509,
+      "sha256": "321370d938a49a55cbdfcef124f63cde6d3a947b7231aeab1a5ba0ca62e35962",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-hmac-drbg-1.0.1.tgz",
+      "licenses": [],
+      "license_evidence": [
+        {
+          "path": "docs/licenses/bun/npm/hmac-drbg-1.0.1/package.json",
+          "sha256": "51686d06bb1a95461ccd713a0dbbdbd7af6f4c1738d172345598660f19af3e8e",
+          "bytes": 752
+        },
+        {
+          "path": "docs/licenses/bun/npm/hmac-drbg-1.0.1/README.md",
+          "sha256": "31de905f4580f7a7f0eef6f2f09be85b261c64560bd072bc58d9b61ae225551f",
+          "bytes": 1723
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "https-browserify",
+      "version": "1.0.0",
+      "url": "https://registry.npmjs.org/https-browserify/-/https-browserify-1.0.0.tgz",
+      "integrity": "sha512-J+FkSdyD+0mA0N+81tMotaRMfSL9SGi+xpD3T6YApKsc3bGSXJlfXri3VyFOeYkfLRQisDk1W+jIFFKBeUBbBg==",
+      "bytes": 1586,
+      "sha256": "d4f14d0676ed3c0c43a2cdd081bb2e2355db116d4c46e07493ea3d499c8107bc",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-https-browserify-1.0.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/https-browserify-1.0.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1103,
+          "sha256": "ff151c00207c908581639851dd8504ce4255be0650b2b236edec2aa90342b0cd"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "ieee754",
+      "version": "1.2.1",
+      "url": "https://registry.npmjs.org/ieee754/-/ieee754-1.2.1.tgz",
+      "integrity": "sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==",
+      "bytes": 2886,
+      "sha256": "8ef14b9b397e339db89db97881fb714f49319d8f0eb1275901f45567b28f9dac",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-ieee754-1.2.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/ieee754-1.2.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1465,
+          "sha256": "18d45466ba3253deae04667e267a91ea8de8548f18c1125264d1c9db28194cc1"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "inherits",
+      "version": "2.0.4",
+      "url": "https://registry.npmjs.org/inherits/-/inherits-2.0.4.tgz",
+      "integrity": "sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==",
+      "bytes": 2030,
+      "sha256": "d94dbc6c1bb3c5ac0fb12a73ade187108fc60de273a1b754f55044eb5e24afaf",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-inherits-2.0.4.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/inherits-2.0.4/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 749,
+          "sha256": "5ffe28e7ade7d8f10d85d5337a73fd793dac5c462fb9a28fbf8c5046c7fbca3b"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "is-arguments",
+      "version": "1.2.0",
+      "url": "https://registry.npmjs.org/is-arguments/-/is-arguments-1.2.0.tgz",
+      "integrity": "sha512-7bVbi0huj/wrIAOzb8U1aszg9kdi3KN/CyU19CTI7tAoZYEZoL9yCDXpbXN+uPsuWnP02cyug1gleqq+TU+YCA==",
+      "bytes": 11027,
+      "sha256": "476c29799ec4f51b694d576fc70a27631c8ffe00e4269b7608027e12c7b0e51c",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-is-arguments-1.2.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/is-arguments-1.2.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1081,
+          "sha256": "dc0fe5a22d9336f345ee984f9bf56f11f22877a3aa5fd16a1db9a8ca0e23a5d1"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "is-callable",
+      "version": "1.2.7",
+      "url": "https://registry.npmjs.org/is-callable/-/is-callable-1.2.7.tgz",
+      "integrity": "sha512-1BC0BVFhS/p0qtw6enp8e+8OD0UrK0oFLztSjNzhcKA3WDuJxxAPXzPuPtKkjEY9UUoEWlX/8fgKeu2S8i9JTA==",
+      "bytes": 9896,
+      "sha256": "1b5c6e4e8ab142a6857fca2fb79d880ba64f2c4ad87907b583934d04b503c3a1",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-is-callable-1.2.7.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/is-callable-1.2.7/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1082,
+          "sha256": "c61652db3d2808f667b48af0a358f0d85fd07ad4a0d0b1a50882dec3b764c522"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "is-generator-function",
+      "version": "1.1.2",
+      "url": "https://registry.npmjs.org/is-generator-function/-/is-generator-function-1.1.2.tgz",
+      "integrity": "sha512-upqt1SkGkODW9tsGNG5mtXTXtECizwtS2kA161M+gJPc1xdb/Ax629af6YrTwcOeQHbewrPNlE5Dx7kzvXTizA==",
+      "bytes": 11594,
+      "sha256": "11b6db078092427ac985003432e9ae1fad56d1df398ad87a02b8ce1b81d803d0",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-is-generator-function-1.1.2.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/is-generator-function-1.1.2/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1081,
+          "sha256": "dc0fe5a22d9336f345ee984f9bf56f11f22877a3aa5fd16a1db9a8ca0e23a5d1"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "is-nan",
+      "version": "1.3.2",
+      "url": "https://registry.npmjs.org/is-nan/-/is-nan-1.3.2.tgz",
+      "integrity": "sha512-E+zBKpQ2t6MEo1VsonYmluk9NxGrbzpeeLC2xIViuO2EjU2xsXsBPwTr3Ykv9l08UYEVEdWeRZNouaZqF6RN0w==",
+      "bytes": 4501,
+      "sha256": "f0a66f9818c5cd398979ad3acc8fc21526c586622fb62697524c0e3f2a628653",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-is-nan-1.3.2.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/is-nan-1.3.2/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1081,
+          "sha256": "dc0fe5a22d9336f345ee984f9bf56f11f22877a3aa5fd16a1db9a8ca0e23a5d1"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "is-regex",
+      "version": "1.2.1",
+      "url": "https://registry.npmjs.org/is-regex/-/is-regex-1.2.1.tgz",
+      "integrity": "sha512-MjYsKHO5O7mCsmRGxWcLWheFqN9DJ/2TmngvjKXihe6efViPqc274+Fx/4fYj/r03+ESvBdTXK0V6tA3rgez1g==",
+      "bytes": 12196,
+      "sha256": "a73e499153621af82d1f0f1ba77f21a01f95612b09d50d57253fc9e123a98b0d",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-is-regex-1.2.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/is-regex-1.2.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1081,
+          "sha256": "dc0fe5a22d9336f345ee984f9bf56f11f22877a3aa5fd16a1db9a8ca0e23a5d1"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "is-typed-array",
+      "version": "1.1.15",
+      "url": "https://registry.npmjs.org/is-typed-array/-/is-typed-array-1.1.15.tgz",
+      "integrity": "sha512-p3EcsicXjit7SaskXHs1hA91QxgTw46Fv6EFKKGS5DRFLD8yKnohjF3hxoju94b/OcMZoQukzpPpBE9uLVKzgQ==",
+      "bytes": 7454,
+      "sha256": "d1ef6229208ce395c816f88637e45b970f6d742d616d3c980fb0dbb679cb7690",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-is-typed-array-1.1.15.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/is-typed-array-1.1.15/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1082,
+          "sha256": "c61652db3d2808f667b48af0a358f0d85fd07ad4a0d0b1a50882dec3b764c522"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "isarray",
+      "version": "1.0.0",
+      "url": "https://registry.npmjs.org/isarray/-/isarray-1.0.0.tgz",
+      "integrity": "sha512-VLghIWNM6ELQzo7zwmcg0NmTVyWKYjvIeM83yjp0wRDTmUnrM678fQbcKBo6n2CJEF0szoG//ytg+TKla89ALQ==",
+      "bytes": 2021,
+      "sha256": "e23c76f14f5222e07e39d89858b61e8e33f96956de9e0df3659cbdf8db950c87",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-isarray-1.0.0.tgz",
+      "licenses": [],
+      "license_evidence": [
+        {
+          "path": "docs/licenses/bun/npm/isarray-1.0.0/package.json",
+          "sha256": "93165ce56e458216c18240cd961a522af5b18e51da06f55d88ac552234455d95",
+          "bytes": 958
+        },
+        {
+          "path": "docs/licenses/bun/npm/isarray-1.0.0/README.md",
+          "sha256": "ff138e683771b187f3629c383db72ee7d632009010a36d08e18e8d2a34222ec7",
+          "bytes": 1890
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "math-intrinsics",
+      "version": "1.1.0",
+      "url": "https://registry.npmjs.org/math-intrinsics/-/math-intrinsics-1.1.0.tgz",
+      "integrity": "sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==",
+      "bytes": 6355,
+      "sha256": "b8c2c35575493dc086df88cfc468a9e2651b6617336480ab3f00fcf853f443a7",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-math-intrinsics-1.1.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/math-intrinsics-1.1.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1073,
+          "sha256": "2b770a704c15de238c3f622b01b0044ddd60b49ee30608ea6991ebf19db7a7a1"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "md5.js",
+      "version": "1.3.5",
+      "url": "https://registry.npmjs.org/md5.js/-/md5.js-1.3.5.tgz",
+      "integrity": "sha512-xitP+WxNPcTTOgnTJcrhM0xvdPepipPSf3I8EIpGKeFLjt3PlJLIDG3u8EX53ZIubkb+5U2+3rELYpEhHhzdkg==",
+      "bytes": 3147,
+      "sha256": "06777b61b01229c755ab4c6f4208d8f692222db4201abc9263877e4415693d03",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-md5.js-1.3.5.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/md5.js-1.3.5/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1082,
+          "sha256": "898f204abbbbde58c6230a31842c59aeb8040fbcffa924db28e6d0b1d7631a3a"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "miller-rabin",
+      "version": "4.0.1",
+      "url": "https://registry.npmjs.org/miller-rabin/-/miller-rabin-4.0.1.tgz",
+      "integrity": "sha512-115fLhvZVqWwHPbClyntxEVfVDfl9DLLTuJvq3g2O/Oxi8AiNouAHvDSzHS0viUJc+V5vm3eq91Xwqn9dp4jRA==",
+      "bytes": 4146,
+      "sha256": "55bc46e7a4150804a546e634a971ea28844b47abbbe3136cb895951d84d6b8c9",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-miller-rabin-4.0.1.tgz",
+      "licenses": [],
+      "license_evidence": [
+        {
+          "path": "docs/licenses/bun/npm/miller-rabin-4.0.1/package.json",
+          "sha256": "70955d243f4ae216ce34afeb188d96284ab1428d3a544f648ca0401ec935906c",
+          "bytes": 725
+        },
+        {
+          "path": "docs/licenses/bun/npm/miller-rabin-4.0.1/README.md",
+          "sha256": "cca039d99212195a60c68f10f717c22fb53089df8eefca0aaab77515e858019a",
+          "bytes": 1135
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "minimalistic-assert",
+      "version": "1.0.1",
+      "url": "https://registry.npmjs.org/minimalistic-assert/-/minimalistic-assert-1.0.1.tgz",
+      "integrity": "sha512-UtJcAD4yEaGtjPezWuO9wC4nwUnVH/8/Im3yEHQP4b67cXlD/Qr9hdITCU1xDbSEXg2XKNaP8jsReV7vQd00/A==",
+      "bytes": 1020,
+      "sha256": "f16522c947d6dbe3a99f5ff4296ccc253090b838959abdddc45fe81edb03f3a0",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-minimalistic-assert-1.0.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/minimalistic-assert-1.0.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 727,
+          "sha256": "136fee1129ea96ce18b41c26a72f5d4ba196ee41bfd73b55d0b8509cdda148e9"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "minimalistic-crypto-utils",
+      "version": "1.0.1",
+      "url": "https://registry.npmjs.org/minimalistic-crypto-utils/-/minimalistic-crypto-utils-1.0.1.tgz",
+      "integrity": "sha512-JIYlbt6g8i5jKfJ3xz7rF0LXmv2TkDxBLUkiBeZ7bAx4GnnNMr8xFpGnOxn6GhTEHx3SjRrZEoU+j04prX1ktg==",
+      "bytes": 3039,
+      "sha256": "f35f6e02efe1b2d6e8764fea48ef6d1211693c838f54d6ef50f0bc9fe6fa9db3",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-minimalistic-crypto-utils-1.0.1.tgz",
+      "licenses": [],
+      "license_evidence": [
+        {
+          "path": "docs/licenses/bun/npm/minimalistic-crypto-utils-1.0.1/package.json",
+          "sha256": "4a73d64162b21429dde273e9565a986bab12abd253487b9ba6b2c5c2a124ffc6",
+          "bytes": 693
+        },
+        {
+          "path": "docs/licenses/bun/npm/minimalistic-crypto-utils-1.0.1/README.md",
+          "sha256": "64608431631207282f74532d8b9eeda5cb42fced09c663f21e1462987270950c",
+          "bytes": 1882
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "object-inspect",
+      "version": "1.13.4",
+      "url": "https://registry.npmjs.org/object-inspect/-/object-inspect-1.13.4.tgz",
+      "integrity": "sha512-W67iLl4J2EXEGTbfeHCffrjDfitvLANg0UlX3wFUUSTx92KXRFegMHUVgSqE+wvhAbi4WqjGg9czysTV2Epbew==",
+      "bytes": 28026,
+      "sha256": "8324967a3afd8a45b0401e3554aebc1843f493bec46a89a7ce8cf072e62e90bf",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-object-inspect-1.13.4.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/object-inspect-1.13.4/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1071,
+          "sha256": "bd40cc437e28a3ad7bef2ad34e6b72e757b182e67bda1acadbab4ef0476f8232"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "object-is",
+      "version": "1.1.6",
+      "url": "https://registry.npmjs.org/object-is/-/object-is-1.1.6.tgz",
+      "integrity": "sha512-F8cZ+KfGlSGi09lJT7/Nd6KJZ9ygtvYC0/UYYLI9nmQKLMnydpB9yvbv9K1uSkEu7FU9vYPmVwLg328tX+ot3Q==",
+      "bytes": 9493,
+      "sha256": "ed20196adebc0396b4fa793a13730858771ff7ea4b6cce14e30442f1b75eea2c",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-object-is-1.1.6.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/object-is-1.1.6/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1081,
+          "sha256": "dc0fe5a22d9336f345ee984f9bf56f11f22877a3aa5fd16a1db9a8ca0e23a5d1"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "object-keys",
+      "version": "1.1.1",
+      "url": "https://registry.npmjs.org/object-keys/-/object-keys-1.1.1.tgz",
+      "integrity": "sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==",
+      "bytes": 7677,
+      "sha256": "9678d9055619767c8a134033709e88a6e0a19600f3d3f2cda40acdfd75e7f212",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-object-keys-1.1.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/object-keys-1.1.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1080,
+          "sha256": "5640e5cbe2e9f57f6ccfdd8dbfbeadb875495bdbcb69d2666ce3177ccd0942e4"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "object.assign",
+      "version": "4.1.7",
+      "url": "https://registry.npmjs.org/object.assign/-/object.assign-4.1.7.tgz",
+      "integrity": "sha512-nK28WOo+QIjBkDduTINE4JkF/UJJKyf2EJxvJKfblDpyg0Q+pkOHNTL0Qwy6NP6FhE/EnzV73BxxqcJaXY9anw==",
+      "bytes": 20235,
+      "sha256": "08e4dcd218f7ac619100ac3d3bb76b54c66257cabf0b2409dbfbb6dff01bfcf3",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-object.assign-4.1.7.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/object.assign-4.1.7/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1080,
+          "sha256": "a596744eec6b05682ed972bf93937668bbc8da2caed93fbf6510389de019b5c0"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "os-browserify",
+      "version": "0.3.0",
+      "url": "https://registry.npmjs.org/os-browserify/-/os-browserify-0.3.0.tgz",
+      "integrity": "sha512-gjcpUc3clBf9+210TRaDWbf+rZZZEshZ+DlXMRCeAjp0xhTrnQsKHypIy1J3d5hKdUzj69t708EHtU8P6bUn0A==",
+      "bytes": 1594,
+      "sha256": "7df96551e0d82458745fb7dea7e9c0739f5a0c06d20607592f9a0a00af60b738",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-os-browserify-0.3.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/os-browserify-0.3.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1077,
+          "sha256": "d25d1d6d28c35cb6f358e2833e405c4e53fec2fa24d156323ddea5cd438d3407"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "pako",
+      "version": "1.0.11",
+      "url": "https://registry.npmjs.org/pako/-/pako-1.0.11.tgz",
+      "integrity": "sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==",
+      "bytes": 204482,
+      "sha256": "0d4028dc0352a740c30cbfd772917f2744986d42bfa0b06ec7642bffe7ad3941",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-pako-1.0.11.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/pako-1.0.11/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1104,
+          "sha256": "a04665b3b2de56c66730c1f720f528175739e4104f79073614aa611da1e85539"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "parse-asn1",
+      "version": "5.1.9",
+      "url": "https://registry.npmjs.org/parse-asn1/-/parse-asn1-5.1.9.tgz",
+      "integrity": "sha512-fIYNuZ/HastSb80baGOuPRo1O9cf4baWw5WsAp7dBuUzeTD/BoaG8sVTdlPFksBE2lF21dN+A1AnrpIjSWqHHg==",
+      "bytes": 8508,
+      "sha256": "73b5e179260ce351067fba0cd28e9aeeeb2706ec3c99c0b1782d0aa43498a9f1",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-parse-asn1-5.1.9.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/parse-asn1-5.1.9/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 749,
+          "sha256": "bc5ed4eed738303bf403ec3b7e0a8e76760ef60664ad050a0ff61db23da77e66"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "path-browserify",
+      "version": "1.0.1",
+      "url": "https://registry.npmjs.org/path-browserify/-/path-browserify-1.0.1.tgz",
+      "integrity": "sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==",
+      "bytes": 12477,
+      "sha256": "74ad6965c6f8cb61d17b1798d48095c3238eca5707b517640a12150f17b8f93d",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-path-browserify-1.0.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/path-browserify-1.0.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1071,
+          "sha256": "a22b9d5763f574e5db347c30acc0b33eaf4846767c03d2e27d012e864e79a824"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "pbkdf2",
+      "version": "3.1.5",
+      "url": "https://registry.npmjs.org/pbkdf2/-/pbkdf2-3.1.5.tgz",
+      "integrity": "sha512-Q3CG/cYvCO1ye4QKkuH7EXxs3VC/rI1/trd+qX2+PolbaKG0H+bgcZzrTt96mMyRtejk+JMCiLUn3y29W8qmFQ==",
+      "bytes": 13833,
+      "sha256": "f63117895bd2e95853d14bcb53735ce7fe163fd98aee7301d4e71f41cae9d669",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-pbkdf2-3.1.5.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/pbkdf2-3.1.5/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1081,
+          "sha256": "a9667a8bf55e7f20cf894cb47774f94ebd4eb366408aafb980f1f6547bcdc10a"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "possible-typed-array-names",
+      "version": "1.1.0",
+      "url": "https://registry.npmjs.org/possible-typed-array-names/-/possible-typed-array-names-1.1.0.tgz",
+      "integrity": "sha512-/+5VFTchJDoVj3bhoqi6UeymcD00DAwb1nJwamzPvHEszJ4FpF6SNNbUbOS8yI56qHzdV8eK0qEfOSiodkTdxg==",
+      "bytes": 4178,
+      "sha256": "c29791211b8e2f181c049247214843292380e4134c140c5105376b7c6ae3e3c7",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-possible-typed-array-names-1.1.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/possible-typed-array-names-1.1.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1071,
+          "sha256": "5e325595b4ea8cfec3802f545b1def5d7b73e4a5b8e9ba63e32a320f67732292"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "process",
+      "version": "0.11.10",
+      "url": "https://registry.npmjs.org/process/-/process-0.11.10.tgz",
+      "integrity": "sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A==",
+      "bytes": 4669,
+      "sha256": "7c10569b3c9cb056152ad630d40f9f4fcc321a0013c2bb8384f036aaa674e6bb",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-process-0.11.10.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/process-0.11.10/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1098,
+          "sha256": "59a400d04c5078579acc27ddd6452c1bdf763f9506e01364700935fbb1a7c91b"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "process-nextick-args",
+      "version": "2.0.1",
+      "url": "https://registry.npmjs.org/process-nextick-args/-/process-nextick-args-2.0.1.tgz",
+      "integrity": "sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==",
+      "bytes": 1654,
+      "sha256": "425bf8c725d23bc5ac76bcedd10d9cdbbd6354c7273dd7def44417cfbca8889b",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-process-nextick-args-2.0.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/process-nextick-args-2.0.1/license.md",
+          "upstream_path": "license.md",
+          "bytes": 1064,
+          "sha256": "ecdccbcf39024f624ded480c01c0b25458e1eca8f26ecf040933865ce56d9a4f"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "public-encrypt",
+      "version": "4.0.3",
+      "url": "https://registry.npmjs.org/public-encrypt/-/public-encrypt-4.0.3.tgz",
+      "integrity": "sha512-zVpa8oKZSz5bTMTFClc1fQOnyyEzpl5ozpi1B5YcvBrdohMjH2rfsBtyXcuNuwjsDIXmBYlF2N5FlJYhR29t8Q==",
+      "bytes": 13647,
+      "sha256": "7f0eeca034a7bf643451b10706af9e3ac5f1501a7ab022db4d25bcf011c2014b",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-public-encrypt-4.0.3.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/public-encrypt-4.0.3/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1058,
+          "sha256": "db6109f994692150ed82cd904bb053c73b97b23678bf52047f747bfec11e1934"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "punycode",
+      "version": "2.3.1",
+      "url": "https://registry.npmjs.org/punycode/-/punycode-2.3.1.tgz",
+      "integrity": "sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==",
+      "bytes": 7603,
+      "sha256": "e4ce59f9fbac44349abab87279ab658f6b4614916bec5e088ae3be9323e193bb",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-punycode-2.3.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/punycode-2.3.1/LICENSE-MIT.txt",
+          "upstream_path": "LICENSE-MIT.txt",
+          "bytes": 1077,
+          "sha256": "483acb265f182907d1caf6cff9c16c96f31325ed23792832cc5d8b12d5f88c8a"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "qs",
+      "version": "6.14.0",
+      "url": "https://registry.npmjs.org/qs/-/qs-6.14.0.tgz",
+      "integrity": "sha512-YWWTjgABSKcvs/nWBi9PycY/JiPJqOD4JA6o9Sej2AtvSGarXxKC3OQSk4pAarbdQlKAh5D4FCQkJNkW+GAn3w==",
+      "bytes": 58040,
+      "sha256": "308840dee22931d8457dfc2442a5c34019f0461815164ee3929be7ae73f54a9b",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-qs-6.14.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/qs-6.14.0/LICENSE.md",
+          "upstream_path": "LICENSE.md",
+          "bytes": 1600,
+          "sha256": "e7dc37bf662d7f786efcb46c545615e70c1daf458a38385521c63cf6607cdfe1"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "querystring-es3",
+      "version": "1.0.0-0",
+      "url": "https://registry.npmjs.org/querystring-es3/-/querystring-es3-1.0.0-0.tgz",
+      "integrity": "sha512-0etE6Uj4NYut0/y/6pFgVRDAaFtf6x/n4xnBRL82c8n6yigRBepcgPaBAn2o8EhA9QQR1l8b1Je5s+LsJ+zS+g==",
+      "bytes": 15199,
+      "sha256": "2f64c1d17723c8d1c6933fa9c5efcb31700072ba311de01a10254b5a1dbf0f12",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-querystring-es3-1.0.0-0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/querystring-es3-1.0.0-0/License.md",
+          "upstream_path": "License.md",
+          "bytes": 2242,
+          "sha256": "a2d84514bf60e8dab31c3db9b25bf2fcb644171ec91f3a7463173f3e9ac6b8b4"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "randombytes",
+      "version": "2.1.0",
+      "url": "https://registry.npmjs.org/randombytes/-/randombytes-2.1.0.tgz",
+      "integrity": "sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==",
+      "bytes": 2667,
+      "sha256": "b8a6d3e6532817912ad3dacbb0e64be75026941a5167549aa1d7fecbafd1bcaa",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-randombytes-2.1.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/randombytes-2.1.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1074,
+          "sha256": "ddc0dd5947bd2966b9a4cfde098566b011de0acfbe7814536955636ce9e3eced"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "randomfill",
+      "version": "1.0.4",
+      "url": "https://registry.npmjs.org/randomfill/-/randomfill-1.0.4.tgz",
+      "integrity": "sha512-87lcbR8+MhcWcUiQ+9e+Rwx8MyR2P7qnt15ynUlbm3TU/fjbgz4GsvfSUDTemtCCtVCqb4ZcEFlyPNTh9bBTLw==",
+      "bytes": 2814,
+      "sha256": "3b0c2fec576a572e139563606102e0ffd9dc8a2853525eb7aa1a30e0de754fa6",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-randomfill-1.0.4.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/randomfill-1.0.4/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1074,
+          "sha256": "ddc0dd5947bd2966b9a4cfde098566b011de0acfbe7814536955636ce9e3eced"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "react-refresh",
+      "version": "0.17.0",
+      "url": "https://registry.npmjs.org/react-refresh/-/react-refresh-0.17.0.tgz",
+      "integrity": "sha512-z6F7K9bV85EfseRCp2bzrpyQ0Gkw1uLoCel9XBVWPg/TjRj94SkJzUTGfOa4bs7iJvBWtQG0Wq7wnI0syw3EBQ==",
+      "bytes": 9998,
+      "sha256": "40aa26f7cbb282b754ac0cdc7c5b6a1a1170c9cd74d61f863b8644397afec09f",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-react-refresh-0.17.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/react-refresh-0.17.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1088,
+          "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "readable-stream",
+      "version": "4.7.0",
+      "url": "https://registry.npmjs.org/readable-stream/-/readable-stream-4.7.0.tgz",
+      "integrity": "sha512-oIGGmcpTLwPga8Bn6/Z75SVaH1z5dUut2ibSyAMVhmUggWpmDn2dapB0n7f8nwaSiRtepAsfJyfXIO5DCVAODg==",
+      "bytes": 54820,
+      "sha256": "0997e49cb71927b91714dad852147bacfe28bf8cd2f4e1b5a99959c3d0dde5fd",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-readable-stream-4.7.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/readable-stream-4.7.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 2337,
+          "sha256": "ec62dc96da0099b87f4511736c87309335527fb7031639493e06c95728dc8c54"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "ripemd160",
+      "version": "2.0.3",
+      "url": "https://registry.npmjs.org/ripemd160/-/ripemd160-2.0.3.tgz",
+      "integrity": "sha512-5Di9UC0+8h1L6ZD2d7awM7E/T4uA1fJRlx6zk/NvdCCVEoAnFqvHmCuNeIKoCeIixBX/q8uM+6ycDvF8woqosA==",
+      "bytes": 5356,
+      "sha256": "2f5abb3220b688d2614da886d6d9f65f956c1aa103f5e21f0d329e0c61601f24",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-ripemd160-2.0.3.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/ripemd160-2.0.3/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1084,
+          "sha256": "4847d2fd9ed54cc006dd79f5a14fa5dd35eb8274dca511418166e195e277c05b"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "safe-buffer",
+      "version": "5.2.1",
+      "url": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.2.1.tgz",
+      "integrity": "sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==",
+      "bytes": 9972,
+      "sha256": "5d181804516c4a693a384272a7bd0e42d17e0d4b301ccfbe408669ccafdcb3e8",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-safe-buffer-5.2.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/safe-buffer-5.2.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1081,
+          "sha256": "c7cc929b57080f4b9d0c6cf57669f0463fc5b39906344dfc8d3bc43426b30eac"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "safe-regex-test",
+      "version": "1.1.0",
+      "url": "https://registry.npmjs.org/safe-regex-test/-/safe-regex-test-1.1.0.tgz",
+      "integrity": "sha512-x/+Cz4YrimQxQccJf5mKEbIa1NzeCRNI5Ecl/ekmlYaampdNLPalVyIcCZNNH3MvmqBugV5TMYZXv0ljslUlaw==",
+      "bytes": 5064,
+      "sha256": "e92ad20e8549ef06adab664f8a6e9c0a349e38f34c9548ebb526f24f7d8cf12e",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-safe-regex-test-1.1.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/safe-regex-test-1.1.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1071,
+          "sha256": "d90bf0a089da4cf43d644ed240a0b3825dcdb705e64e38371d56995a4cc9e4c5"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "set-function-length",
+      "version": "1.2.2",
+      "url": "https://registry.npmjs.org/set-function-length/-/set-function-length-1.2.2.tgz",
+      "integrity": "sha512-pgRc4hJ4/sNjWCSS9AmnS40x3bNMDTknHgL5UaMBTMyJnU90EgWh1Rz+MC9eFu4BuN/UwZjKQuY/1v3rM7HMfg==",
+      "bytes": 5784,
+      "sha256": "a339df70dfa3507a3fe2137464915212d69a9585d201c253b90f0c13fd952b4a",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-set-function-length-1.2.2.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/set-function-length-1.2.2/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1083,
+          "sha256": "bf9b0d665be2a689851eea667ca9f42066ea1d903b38349c51e6a44b2577680a"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "setimmediate",
+      "version": "1.0.5",
+      "url": "https://registry.npmjs.org/setimmediate/-/setimmediate-1.0.5.tgz",
+      "integrity": "sha512-MATJdZp8sLqDl/68LfQmbP8zKPLQNV6BIZoIgrscFDQ+RsvK/BxeDQOgyxKKoh0y/8h3BqVFnCqQ/gd+reiIXA==",
+      "bytes": 3255,
+      "sha256": "5cb9fc22698364ed42c02d6aa3dc50ffeafa68452ae84699672e3dfd74922c9e",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-setimmediate-1.0.5.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/setimmediate-1.0.5/LICENSE.txt",
+          "upstream_path": "LICENSE.txt",
+          "bytes": 1103,
+          "sha256": "c4b4ad3a5746f1f5249a6dd90396ec519264e1bb02e01e48a6522c48a3a97cb4"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "sha.js",
+      "version": "2.4.12",
+      "url": "https://registry.npmjs.org/sha.js/-/sha.js-2.4.12.tgz",
+      "integrity": "sha512-8LzC5+bvI45BjpfXU8V5fdU2mfeKiQe1D1gIMn7XUlF3OTUrpdJpPPH4EMAnF0DsHHdSZqCdSss5qCmJKuiO3w==",
+      "bytes": 21478,
+      "sha256": "c8c1e04584e822b3514907388030e3bc451293f5ead31d0bd076e56661ee9dc0",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-sha.js-2.4.12.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/sha.js-2.4.12/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 2557,
+          "sha256": "58dcf38be1438f739412b87eb70d64bf00e9976d529bb119f700d8b3167924f0"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "side-channel",
+      "version": "1.1.0",
+      "url": "https://registry.npmjs.org/side-channel/-/side-channel-1.1.0.tgz",
+      "integrity": "sha512-ZX99e6tRweoUXqR+VBrslhda51Nh5MTQwou5tnUDgbtyM0dBgmhEDtWGP/xbKn6hqfPRHujUNwz5fy/wbbhnpw==",
+      "bytes": 7750,
+      "sha256": "8493e77b990b242efebd824d0912df161bf640fc75071d5bc844ce0d7706a485",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-side-channel-1.1.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/side-channel-1.1.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1071,
+          "sha256": "cfc3f455254c0af0655cc3ff46a41ed644b67599f6043346169d285bf2b3cf3b"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "side-channel-list",
+      "version": "1.0.0",
+      "url": "https://registry.npmjs.org/side-channel-list/-/side-channel-list-1.0.0.tgz",
+      "integrity": "sha512-FCLHtRD/gnpCiCHEiJLOwdmFP+wzCmDEkc9y7NsYxeF4u7Btsn1ZuwgwJGxImImHicJArLP4R0yX4c2KCrMrTA==",
+      "bytes": 5659,
+      "sha256": "58074eb0c2ebc8aca9945cdbe405dbed0b43106ae5265879b7049424b27d1ccd",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-side-channel-list-1.0.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/side-channel-list-1.0.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1071,
+          "sha256": "5e325595b4ea8cfec3802f545b1def5d7b73e4a5b8e9ba63e32a320f67732292"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "side-channel-map",
+      "version": "1.0.1",
+      "url": "https://registry.npmjs.org/side-channel-map/-/side-channel-map-1.0.1.tgz",
+      "integrity": "sha512-VCjCNfgMsby3tTdo02nbjtM/ewra6jPHmpThenkTYh8pG9ucZ/1P8So4u4FGBek/BjpOVsDCMoLA/iuBKIFXRA==",
+      "bytes": 5280,
+      "sha256": "3b256b6421300bcc962d891b1588fd4b64e84e339b9c29f78c61b72f2a7116d6",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-side-channel-map-1.0.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/side-channel-map-1.0.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1071,
+          "sha256": "5e325595b4ea8cfec3802f545b1def5d7b73e4a5b8e9ba63e32a320f67732292"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "side-channel-weakmap",
+      "version": "1.0.2",
+      "url": "https://registry.npmjs.org/side-channel-weakmap/-/side-channel-weakmap-1.0.2.tgz",
+      "integrity": "sha512-WPS/HvHQTYnHisLo9McqBHOJk2FkHO/tlpvldyrnem4aeQp4hai3gythswg6p01oSoTl58rcpiFAjF2br2Ak2A==",
+      "bytes": 5442,
+      "sha256": "3b2a54f0c5e7ad898c8f0ffda2a6805fb2cc5d68f53addf0b4a9ec0db9d0d06e",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-side-channel-weakmap-1.0.2.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/side-channel-weakmap-1.0.2/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1071,
+          "sha256": "cfc3f455254c0af0655cc3ff46a41ed644b67599f6043346169d285bf2b3cf3b"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "stream-http",
+      "version": "3.2.0",
+      "url": "https://registry.npmjs.org/stream-http/-/stream-http-3.2.0.tgz",
+      "integrity": "sha512-Oq1bLqisTyK3TSCXpPbT4sdeYNdmyZJv1LxpEm2vu1ZhK89kSE5YXwZc3cWk0MagGaKriBh9mCFbVGtO+vY29A==",
+      "bytes": 9669,
+      "sha256": "82bd244a642c4e7429531f314aef8c139f5f461464b4575882006d6a44cbb03c",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-stream-http-3.2.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/stream-http-3.2.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1086,
+          "sha256": "a0e6357a5e8ea65827addeb383e0948a1874d2f46bc7feaf6349b7a376ed6e98"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "string_decoder",
+      "version": "1.3.0",
+      "url": "https://registry.npmjs.org/string_decoder/-/string_decoder-1.3.0.tgz",
+      "integrity": "sha512-hkRX8U1WjJFd8LsDJ2yQ/wWWxaopEsABU1XfkM8A+j0+85JAGppt16cr1Whg6KIbb4okU6Mql6BOj+uup/wKeA==",
+      "bytes": 4622,
+      "sha256": "7d036900940345e423538371ae45b23bfaf4b454bc398c6ba604063b0597b3ad",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-string_decoder-1.3.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/string_decoder-1.3.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 2338,
+          "sha256": "11f2aafb37d06b3ee5bdaf06e9811141d0da05263c316f3d627f45c20d43261b"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "timers-browserify",
+      "version": "2.0.12",
+      "url": "https://registry.npmjs.org/timers-browserify/-/timers-browserify-2.0.12.tgz",
+      "integrity": "sha512-9phl76Cqm6FhSX9Xe1ZUAMLtm1BLkKj2Qd5ApyWkXzsMRaA7dgr81kf4wJmQf/hAvg8EEyJxDo3du/0KlhPiKQ==",
+      "bytes": 4059,
+      "sha256": "51d5ab28b1f36c565515a2a346e12b37f5ac053d9f6f9ddf34121a6d20791432",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-timers-browserify-2.0.12.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/timers-browserify-2.0.12/LICENSE.md",
+          "upstream_path": "LICENSE.md",
+          "bytes": 2505,
+          "sha256": "d5f14c3258420dfe5a3b641a143d6e6dd90eabb5962244d937e25699c3a45ec9"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "to-buffer",
+      "version": "1.2.2",
+      "url": "https://registry.npmjs.org/to-buffer/-/to-buffer-1.2.2.tgz",
+      "integrity": "sha512-db0E3UJjcFhpDhAF4tLo03oli3pwl3dbnzXOUIlRKrp+ldk/VUxzpWYZENsw2SZiuBjHAk7DfB0VU7NKdpb6sw==",
+      "bytes": 5694,
+      "sha256": "fb7f547d563da95ad5f6ce742e28defe340ed78dfd6a0751cec3c9a441bbe73c",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-to-buffer-1.2.2.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/to-buffer-1.2.2/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1079,
+          "sha256": "6a134e51aa31496c15a741592fc5d782b2dbf8d8b6b8524e15c8520ae0cd6374"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "tty-browserify",
+      "version": "0.0.1",
+      "url": "https://registry.npmjs.org/tty-browserify/-/tty-browserify-0.0.1.tgz",
+      "integrity": "sha512-C3TaO7K81YvjCgQH9Q1S3R3P3BtN3RIM8n+OvX4il1K1zgE8ZhI0op7kClgkxtutIE8hQrcrHBXvIheqKUUCxw==",
+      "bytes": 1253,
+      "sha256": "28c43ee36a83f988043256adb53da3fc76a4bae4783da70974e4fce7dbac0cf7",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-tty-browserify-0.0.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/tty-browserify-0.0.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1073,
+          "sha256": "435a6722c786b0a56fbe7387028f1d9d3f3a2d0fb615bb8fee118727c3f59b7b"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "typed-array-buffer",
+      "version": "1.0.3",
+      "url": "https://registry.npmjs.org/typed-array-buffer/-/typed-array-buffer-1.0.3.tgz",
+      "integrity": "sha512-nAYYwfY3qnzX30IkA6AQZjVbtK6duGontcQm1WSG1MD94YLqK0515GNApXkoxKOWMusVssAHWLh9SeaoefYFGw==",
+      "bytes": 5117,
+      "sha256": "0feb415846d1ae52a89710494bfbabdef311988d9a239a29fa917d6663e561ad",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-typed-array-buffer-1.0.3.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/typed-array-buffer-1.0.3/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1071,
+          "sha256": "b41d08bc3624d8c436fc80237d73ebb361985a67f4504bbcd703e5ca2b27254c"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "url",
+      "version": "0.11.4",
+      "url": "https://registry.npmjs.org/url/-/url-0.11.4.tgz",
+      "integrity": "sha512-oCwdVC7mTuWiPyjLUz/COz5TLk6wgp0RCsN+wHZ2Ekneac9w8uuV0njcbbie2ME+Vs+d6duwmYuR3HgQXs1fOg==",
+      "bytes": 18322,
+      "sha256": "0fb0d60d58e26a9e5af8555f6baaa9c94f68416c6a399ad7470851aa65e4014a",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-url-0.11.4.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/url-0.11.4/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1104,
+          "sha256": "00bfc53d658b2173d23e8c2a0f52332a5cfc6044525dafc5ecbe9a733bc3a49d"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "util",
+      "version": "0.12.5",
+      "url": "https://registry.npmjs.org/util/-/util-0.12.5.tgz",
+      "integrity": "sha512-kZf/K6hEIrWHI6XqOFUiiMa+79wE/D8Q+NCNAWclkyg3b4d2k7s0QGepNjiABc+aR3N1PAyHL7p6UcLY6LmrnA==",
+      "bytes": 9981,
+      "sha256": "d3b9dac1449f7d6b6995355f5cc73179fec7b90bfa8967ff7d3c0654525ab282",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-util-0.12.5.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/util-0.12.5/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1096,
+          "sha256": "6239c6144c31e58cf925c34483606969c555574d64ffa96518ab5d7f45c75d43"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "util-deprecate",
+      "version": "1.0.2",
+      "url": "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz",
+      "integrity": "sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==",
+      "bytes": 2246,
+      "sha256": "79a1de983c1b393180c47456d6b73caab278a00ea6e37d5c6675f2dcdec2a3e5",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-util-deprecate-1.0.2.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/util-deprecate-1.0.2/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1102,
+          "sha256": "0154425673db15cdfa80ecba2c9b1f1a867f7197a006764712849bfc3a93cbb7"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "vm-browserify",
+      "version": "1.1.2",
+      "url": "https://registry.npmjs.org/vm-browserify/-/vm-browserify-1.1.2.tgz",
+      "integrity": "sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==",
+      "bytes": 4931,
+      "sha256": "56133f3423c06c08b780869f528d28cf11a192792bdc93f03f14630974630a46",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-vm-browserify-1.1.2.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/vm-browserify-1.1.2/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1036,
+          "sha256": "3a62887f73cd035ac1068bc0127ce94291f7a03843391f56df3520e2ca2037f8"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "which-typed-array",
+      "version": "1.1.19",
+      "url": "https://registry.npmjs.org/which-typed-array/-/which-typed-array-1.1.19.tgz",
+      "integrity": "sha512-rEvr90Bck4WZt9HHFC4DJMsjvu7x+r6bImz0/BrbWb7A2djJ8hnZMrWnHo9F8ssv0OMErasDhftrfROTyqSDrw==",
+      "bytes": 12962,
+      "sha256": "aaccea91985a6e1731f84192d4682f474aea76f64a210982576e488732b0ad3f",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-which-typed-array-1.1.19.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/which-typed-array-1.1.19/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1082,
+          "sha256": "c61652db3d2808f667b48af0a358f0d85fd07ad4a0d0b1a50882dec3b764c522"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "xtend",
+      "version": "4.0.2",
+      "url": "https://registry.npmjs.org/xtend/-/xtend-4.0.2.tgz",
+      "integrity": "sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==",
+      "bytes": 2529,
+      "sha256": "bd22a01d43c799be7bb53dfa9e775b132045e39525e51efb977528a00041ba48",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-xtend-4.0.2.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/xtend-4.0.2/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1078,
+          "sha256": "82e67379203d5794e7c44549847d8d64ae6904591381682360470898bd306821"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "bn.js",
+      "version": "4.12.2",
+      "url": "https://registry.npmjs.org/bn.js/-/bn.js-4.12.2.tgz",
+      "integrity": "sha512-n4DSx829VRTRByMRGdjQ9iqsN0Bh4OolPsFnaZBLcbi8iXcB+kJ9s7EnRt4wILZNV3kPLHkRVfOc/HvhC3ovDw==",
+      "bytes": 21853,
+      "sha256": "2f551372e49a2905d8915b2fd2252fdda0e12b46cde9a233f944b290a3a59a68",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-bn.js-4.12.2.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/bn.js-4.12.2/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1055,
+          "sha256": "445739f5b5eb63e5aeff5aeb0f35a45080a421615dce0d97f9939aeea498acdd"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "readable-stream",
+      "version": "2.3.8",
+      "url": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.3.8.tgz",
+      "integrity": "sha512-8p0AUk4XODgIewSi0l8Epjs+EVnWiK7NoDIEGU0HhE7+ZyY8D1IMY7odu5lRrFXGg71L15KG8QrPmum45RTtdA==",
+      "bytes": 25747,
+      "sha256": "1648613948f68ac9cbbe8f72a3f93a67ecdb862ffb57946a2c0bbb5a1479a532",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-readable-stream-2.3.8.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/readable-stream-2.3.8/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 2337,
+          "sha256": "ec62dc96da0099b87f4511736c87309335527fb7031639493e06c95728dc8c54"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "buffer",
+      "version": "5.0.5",
+      "url": "https://registry.npmjs.org/buffer/-/buffer-5.0.5.tgz",
+      "integrity": "sha512-ye69HVxM0Htf+E5YhFLOfHX8dXOkammTDtqCU5xLFMlPYTQkNJ7Kv6I90TjZiPH1yXBHQdRvSAK28EZSwSm3Dg==",
+      "bytes": 55573,
+      "sha256": "a088304aa705c94739533a8a83c7a1d40fe7577e9894d32eb76e715af9e864d8",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-buffer-5.0.5.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/buffer-5.0.5/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1106,
+          "sha256": "06bafa45fdad2579ba0e43b0c9b2c6290287c99c4203c300254a462b38a307f6"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "hash-base",
+      "version": "3.1.2",
+      "url": "https://registry.npmjs.org/hash-base/-/hash-base-3.1.2.tgz",
+      "integrity": "sha512-Bb33KbowVTIj5s7Ked1OsqHUeCpz//tPwR+E2zJgJKo9Z5XolZ9b6bdUgjmYlwnWhoOQKoTd1TYToZGn5mAYOg==",
+      "bytes": 6596,
+      "sha256": "d953692177a8ca0513399bb009702cefd54cc62605ec2b4a99c2e1f092b4eb0d",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-hash-base-3.1.2.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/hash-base-3.1.2/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1082,
+          "sha256": "898f204abbbbde58c6230a31842c59aeb8040fbcffa924db28e6d0b1d7631a3a"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "readable-stream",
+      "version": "3.6.2",
+      "url": "https://registry.npmjs.org/readable-stream/-/readable-stream-3.6.2.tgz",
+      "integrity": "sha512-9u/sniCrY3D5WdsERHzHE4G2YCXqoG5FTHUiCC4SIbr6XcLZBY05ya9EKjYek9O5xOAwjGq+1JdGBAS7Q9ScoA==",
+      "bytes": 33238,
+      "sha256": "edd866c05e318aa9c091763eebdd4207409b7a7648be19c5317a96047305ab5d",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-readable-stream-3.6.2.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/readable-stream-3.6.2/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 2337,
+          "sha256": "ec62dc96da0099b87f4511736c87309335527fb7031639493e06c95728dc8c54"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "isarray",
+      "version": "2.0.5",
+      "url": "https://registry.npmjs.org/isarray/-/isarray-2.0.5.tgz",
+      "integrity": "sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw==",
+      "bytes": 1859,
+      "sha256": "72bae463b81a604b4a118c00012c76ee9b8d155b9da62d1f362876c9f8b5f793",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-isarray-2.0.5.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/isarray-2.0.5/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1096,
+          "sha256": "68f12f6e2c33688699249c01d8f9623c534da20aa71989c57b061b7bc1676d14"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "punycode",
+      "version": "1.4.1",
+      "url": "https://registry.npmjs.org/punycode/-/punycode-1.4.1.tgz",
+      "integrity": "sha512-jmYNElW7yvO7TV33CjSmvSiE2yco3bV2czu/OzDKdMNVZQWfxCblURLhf+47syQRBntjfLdd/H0egrzIG+oaFQ==",
+      "bytes": 8058,
+      "sha256": "452bca7369ca14bc47711c79063f5f0f3939095918508ca7400f5859448ded89",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-punycode-1.4.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/punycode-1.4.1/LICENSE-MIT.txt",
+          "upstream_path": "LICENSE-MIT.txt",
+          "bytes": 1077,
+          "sha256": "483acb265f182907d1caf6cff9c16c96f31325ed23792832cc5d8b12d5f88c8a"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "safe-buffer",
+      "version": "5.1.2",
+      "url": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.2.tgz",
+      "integrity": "sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==",
+      "bytes": 9822,
+      "sha256": "e09206c60fccafb952c854af7629cbb031a98d6da2e143fb3aa3c8a48402aa22",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-safe-buffer-5.1.2.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/safe-buffer-5.1.2/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1081,
+          "sha256": "c7cc929b57080f4b9d0c6cf57669f0463fc5b39906344dfc8d3bc43426b30eac"
+        }
+      ]
+    },
+    {
+      "ecosystem": "npm",
+      "name": "string_decoder",
+      "version": "1.1.1",
+      "url": "https://registry.npmjs.org/string_decoder/-/string_decoder-1.1.1.tgz",
+      "integrity": "sha512-n/ShnvDi6FHbbVfviro+WojiFzv+s8MPMHBczVePfUpDJLwoLT0ht1l4YwBCbi8pJAveEEdnkHyPyTP/mzRfwg==",
+      "bytes": 4831,
+      "sha256": "af8262434508fa8292407f7fef4690d19eabb73387ca230b41f2a1155216963a",
+      "integrity_verified": true,
+      "path": "sources/packages/npm-string_decoder-1.1.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/npm/string_decoder-1.1.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 2338,
+          "sha256": "11f2aafb37d06b3ee5bdaf06e9811141d0da05263c316f3d627f45c20d43261b"
+        }
+      ]
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "allocator-api2",
+      "version": "0.2.21",
+      "url": "https://static.crates.io/crates/allocator-api2/allocator-api2-0.2.21.crate",
+      "sha256_expected": "683d7910e743518b0e34f1186f92494becacb047c7b6bf616c96772180fef923",
+      "bytes": 63622,
+      "sha256": "683d7910e743518b0e34f1186f92494becacb047c7b6bf616c96772180fef923",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-allocator-api2-0.2.21.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/allocator-api2-0.2.21/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 9899,
+          "sha256": "20fe7b00e904ed690e3b9fd6073784d3fc428141dbd10b81c01fd143d0797f58"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/allocator-api2-0.2.21/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1046,
+          "sha256": "36516aefdc84c5d5a1e7485425913a22dbda69eb1930c5e84d6ae4972b5194b9"
+        }
+      ],
+      "declared_license": "MIT OR Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "bitflags",
+      "version": "2.10.0",
+      "url": "https://static.crates.io/crates/bitflags/bitflags-2.10.0.crate",
+      "sha256_expected": "812e12b5285cc515a9c72a5c1d3b6d46a19dac5acfef5265968c166106e31dd3",
+      "bytes": 48427,
+      "sha256": "812e12b5285cc515a9c72a5c1d3b6d46a19dac5acfef5265968c166106e31dd3",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-bitflags-2.10.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/bitflags-2.10.0/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 10847,
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/bitflags-2.10.0/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1071,
+          "sha256": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+        }
+      ],
+      "declared_license": "MIT OR Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "cfg-if",
+      "version": "1.0.4",
+      "url": "https://static.crates.io/crates/cfg-if/cfg-if-1.0.4.crate",
+      "sha256_expected": "9330f8b2ff13f34540b44e946ef35111825727b38d33286ef986142615121801",
+      "bytes": 9360,
+      "sha256": "9330f8b2ff13f34540b44e946ef35111825727b38d33286ef986142615121801",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-cfg-if-1.0.4.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/cfg-if-1.0.4/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 10847,
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/cfg-if-1.0.4/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1057,
+          "sha256": "378f5840b258e2779c39418f3f2d7b2ba96f1c7917dd6be0713f88305dbda397"
+        }
+      ],
+      "declared_license": "MIT OR Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "cssparser",
+      "version": "0.36.0",
+      "url": "https://static.crates.io/crates/cssparser/cssparser-0.36.0.crate",
+      "sha256_expected": "dae61cf9c0abb83bd659dab65b7e4e38d8236824c85f0f804f173567bda257d2",
+      "bytes": 56357,
+      "sha256": "dae61cf9c0abb83bd659dab65b7e4e38d8236824c85f0f804f173567bda257d2",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-cssparser-0.36.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/cssparser-0.36.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 16726,
+          "sha256": "fab3dd6bdab226f1c08630b1dd917e11fcb4ec5e1e020e2c16f83a0a13863e85"
+        }
+      ],
+      "declared_license": "MPL-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "cssparser-macros",
+      "version": "0.6.1",
+      "url": "https://static.crates.io/crates/cssparser-macros/cssparser-macros-0.6.1.crate",
+      "sha256_expected": "13b588ba4ac1a99f7f2964d24b3d896ddc6bf847ee3855dbd4366f058cfcd331",
+      "bytes": 7914,
+      "sha256": "13b588ba4ac1a99f7f2964d24b3d896ddc6bf847ee3855dbd4366f058cfcd331",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-cssparser-macros-0.6.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/cssparser-macros-0.6.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 16726,
+          "sha256": "fab3dd6bdab226f1c08630b1dd917e11fcb4ec5e1e020e2c16f83a0a13863e85"
+        }
+      ],
+      "declared_license": "MPL-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "derive_more",
+      "version": "2.1.1",
+      "url": "https://static.crates.io/crates/derive_more/derive_more-2.1.1.crate",
+      "sha256_expected": "d751e9e49156b02b44f9c1815bcb94b984cdcc4396ecc32521c739452808b134",
+      "bytes": 88632,
+      "sha256": "d751e9e49156b02b44f9c1815bcb94b984cdcc4396ecc32521c739452808b134",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-derive_more-2.1.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/derive_more-2.1.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1080,
+          "sha256": "8a35369f3ca263b3c62fbb5032947e53b6bfebc6c8a4d1bb982de1c069f6fba5"
+        }
+      ],
+      "declared_license": "MIT",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "derive_more-impl",
+      "version": "2.1.1",
+      "url": "https://static.crates.io/crates/derive_more-impl/derive_more-impl-2.1.1.crate",
+      "sha256_expected": "799a97264921d8623a957f6c3b9011f3b5492f557bbb7a5a19b7fa6d06ba8dcb",
+      "bytes": 99094,
+      "sha256": "799a97264921d8623a957f6c3b9011f3b5492f557bbb7a5a19b7fa6d06ba8dcb",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-derive_more-impl-2.1.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/derive_more-impl-2.1.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1080,
+          "sha256": "8a35369f3ca263b3c62fbb5032947e53b6bfebc6c8a4d1bb982de1c069f6fba5"
+        }
+      ],
+      "declared_license": "MIT",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "dtoa",
+      "version": "1.0.11",
+      "url": "https://static.crates.io/crates/dtoa/dtoa-1.0.11.crate",
+      "sha256_expected": "4c3cf4824e2d5f025c7b531afcb2325364084a16806f6d47fbc1f5fbd9960590",
+      "bytes": 21122,
+      "sha256": "4c3cf4824e2d5f025c7b531afcb2325364084a16806f6d47fbc1f5fbd9960590",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-dtoa-1.0.11.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/dtoa-1.0.11/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 9723,
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/dtoa-1.0.11/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1023,
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ],
+      "declared_license": "MIT OR Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "dtoa-short",
+      "version": "0.3.5",
+      "url": "https://static.crates.io/crates/dtoa-short/dtoa-short-0.3.5.crate",
+      "sha256_expected": "cd1511a7b6a56299bd043a9c167a6d2bfb37bf84a6dfceaba651168adfb43c87",
+      "bytes": 8287,
+      "sha256": "cd1511a7b6a56299bd043a9c167a6d2bfb37bf84a6dfceaba651168adfb43c87",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-dtoa-short-0.3.5.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/dtoa-short-0.3.5/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 16725,
+          "sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5"
+        }
+      ],
+      "declared_license": "MPL-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "encoding_rs",
+      "version": "0.8.35",
+      "url": "https://static.crates.io/crates/encoding_rs/encoding_rs-0.8.35.crate",
+      "sha256_expected": "75030f3c4f45dafd7586dd6780965a8c7e8e285a5ecb86713e63a79c5b2766f3",
+      "bytes": 1381050,
+      "sha256": "75030f3c4f45dafd7586dd6780965a8c7e8e285a5ecb86713e63a79c5b2766f3",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-encoding_rs-0.8.35.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/encoding_rs-0.8.35/COPYRIGHT",
+          "upstream_path": "COPYRIGHT",
+          "bytes": 713,
+          "sha256": "11789f45bb180841cd362a5eee6789c68ddb573a11105e30768c308a6add0190"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/encoding_rs-0.8.35/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 11358,
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/encoding_rs-0.8.35/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1053,
+          "sha256": "3fa4ca83dcc9237839b1bdeb2e6d16bdfb5ec0c5ce42b24694d8bbf0dcbef72c"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/encoding_rs-0.8.35/LICENSE-WHATWG",
+          "upstream_path": "LICENSE-WHATWG",
+          "bytes": 1501,
+          "sha256": "838118388fe5c2e7f1dbbaeed13e1c7f3ebf88be91319c7c1d77c18e987d1a50"
+        }
+      ],
+      "declared_license": "(Apache-2.0 OR MIT) AND BSD-3-Clause",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "equivalent",
+      "version": "1.0.2",
+      "url": "https://static.crates.io/crates/equivalent/equivalent-1.0.2.crate",
+      "sha256_expected": "877a4ace8713b0bcf2a4e7eec82529c029f1d0619886d18145fea96c3ffe5c0f",
+      "bytes": 7419,
+      "sha256": "877a4ace8713b0bcf2a4e7eec82529c029f1d0619886d18145fea96c3ffe5c0f",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-equivalent-1.0.2.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/equivalent-1.0.2/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 10847,
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/equivalent-1.0.2/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1049,
+          "sha256": "7365cc8878a1d7ce155a58c4ca09c3d7a6be413efa5334a80ea842912b669349"
+        }
+      ],
+      "declared_license": "Apache-2.0 OR MIT",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "fastrand",
+      "version": "2.3.0",
+      "url": "https://static.crates.io/crates/fastrand/fastrand-2.3.0.crate",
+      "sha256_expected": "37909eebbb50d72f9059c3b6d82c0463f2ff062c9e95845c43a6c9c0355411be",
+      "bytes": 15076,
+      "sha256": "37909eebbb50d72f9059c3b6d82c0463f2ff062c9e95845c43a6c9c0355411be",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-fastrand-2.3.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/fastrand-2.3.0/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 10847,
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/fastrand-2.3.0/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1023,
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ],
+      "declared_license": "Apache-2.0 OR MIT",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "foldhash",
+      "version": "0.2.0",
+      "url": "https://static.crates.io/crates/foldhash/foldhash-0.2.0.crate",
+      "sha256_expected": "77ce24cb58228fbb8aa041425bb1050850ac19177686ea6e0f41a70416f56fdb",
+      "bytes": 23329,
+      "sha256": "77ce24cb58228fbb8aa041425bb1050850ac19177686ea6e0f41a70416f56fdb",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-foldhash-0.2.0.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/foldhash-0.2.0/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 856,
+          "sha256": "b1181a40b2a7b25cf66fd01481713bc1005df082c53ef73e851e55071b102744"
+        }
+      ],
+      "declared_license": "Zlib",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "hashbrown",
+      "version": "0.16.1",
+      "url": "https://static.crates.io/crates/hashbrown/hashbrown-0.16.1.crate",
+      "sha256_expected": "841d1cc9bed7f9236f321df977030373f4a4163ae1a7dbfe1a51a2c1a51d9100",
+      "bytes": 147785,
+      "sha256": "841d1cc9bed7f9236f321df977030373f4a4163ae1a7dbfe1a51a2c1a51d9100",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-hashbrown-0.16.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/hashbrown-0.16.1/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 10847,
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/hashbrown-0.16.1/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1060,
+          "sha256": "ff8f68cb076caf8cefe7a6430d4ac086ce6af2ca8ce2c4e5a2004d4552ef52a2"
+        }
+      ],
+      "declared_license": "MIT OR Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "itoa",
+      "version": "1.0.17",
+      "url": "https://static.crates.io/crates/itoa/itoa-1.0.17.crate",
+      "sha256_expected": "92ecc6618181def0457392ccd0ee51198e065e016d1d527a7ac1b6dc7c1f09d2",
+      "bytes": 15905,
+      "sha256": "92ecc6618181def0457392ccd0ee51198e065e016d1d527a7ac1b6dc7c1f09d2",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-itoa-1.0.17.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/itoa-1.0.17/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 9723,
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/itoa-1.0.17/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1023,
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ],
+      "declared_license": "MIT OR Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "libc",
+      "version": "0.2.179",
+      "url": "https://static.crates.io/crates/libc/libc-0.2.179.crate",
+      "sha256_expected": "c5a2d376baa530d1238d133232d15e239abad80d05838b4b59354e5268af431f",
+      "bytes": 810442,
+      "sha256": "c5a2d376baa530d1238d133232d15e239abad80d05838b4b59354e5268af431f",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-libc-0.2.179.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/libc-0.2.179/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 9723,
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/libc-0.2.179/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1076,
+          "sha256": "a8d47ff51ca256f56a8932dba07660672dbfe3004257ca8de708aac1415937a1"
+        }
+      ],
+      "declared_license": "MIT OR Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "log",
+      "version": "0.4.29",
+      "url": "https://static.crates.io/crates/log/log-0.4.29.crate",
+      "sha256_expected": "5e5032e24019045c762d3c0f28f5b6b8bbf38563a65908389bf7978758920897",
+      "bytes": 51515,
+      "sha256": "5e5032e24019045c762d3c0f28f5b6b8bbf38563a65908389bf7978758920897",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-log-0.4.29.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/log-0.4.29/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 10847,
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/log-0.4.29/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1071,
+          "sha256": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+        }
+      ],
+      "declared_license": "MIT OR Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "memchr",
+      "version": "2.7.6",
+      "url": "https://static.crates.io/crates/memchr/memchr-2.7.6.crate",
+      "sha256_expected": "f52b00d39961fc5b2736ea853c9cc86238e165017a493d1d5c8eac6bdc4cc273",
+      "bytes": 97616,
+      "sha256": "f52b00d39961fc5b2736ea853c9cc86238e165017a493d1d5c8eac6bdc4cc273",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-memchr-2.7.6.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/memchr-2.7.6/COPYING",
+          "upstream_path": "COPYING",
+          "bytes": 126,
+          "sha256": "01c266bced4a434da0051174d6bee16a4c82cf634e2679b6155d40d75012390f"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/memchr-2.7.6/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1081,
+          "sha256": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f"
+        }
+      ],
+      "declared_license": "Unlicense OR MIT",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "mime",
+      "version": "0.3.17",
+      "url": "https://static.crates.io/crates/mime/mime-0.3.17.crate",
+      "sha256_expected": "6877bb514081ee2a7ff5ef9de3281f14a4dd4bceac4c09388074a6b5df8a139a",
+      "bytes": 15712,
+      "sha256": "6877bb514081ee2a7ff5ef9de3281f14a4dd4bceac4c09388074a6b5df8a139a",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-mime-0.3.17.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/mime-0.3.17/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 10847,
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/mime-0.3.17/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1058,
+          "sha256": "df9cfd06d8a44d9a671eadd39ffd97f166481da015a30f45dfd27886209c5922"
+        }
+      ],
+      "declared_license": "MIT OR Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "new_debug_unreachable",
+      "version": "1.0.6",
+      "url": "https://static.crates.io/crates/new_debug_unreachable/new_debug_unreachable-1.0.6.crate",
+      "sha256_expected": "650eef8c711430f1a879fdd01d4745a7deea475becfb90269c06775983bbf086",
+      "bytes": 2582,
+      "sha256": "650eef8c711430f1a879fdd01d4745a7deea475becfb90269c06775983bbf086",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-new_debug_unreachable-1.0.6.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/new_debug_unreachable-1.0.6/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1057,
+          "sha256": "f7715d38a3fa1b4ac97c5729740752505a39cb92ee83ab5b102aeb5eaa7cdea4"
+        }
+      ],
+      "declared_license": "MIT",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "phf",
+      "version": "0.13.1",
+      "url": "https://static.crates.io/crates/phf/phf-0.13.1.crate",
+      "sha256_expected": "c1562dc717473dbaa4c1f85a36410e03c047b2e7df7f45ee938fbef64ae7fadf",
+      "bytes": 24786,
+      "sha256": "c1562dc717473dbaa4c1f85a36410e03c047b2e7df7f45ee938fbef64ae7fadf",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-phf-0.13.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/phf-0.13.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1099,
+          "sha256": "0ab4d106b6faac07fb6a051815fd1b4d862d730895e2d7d7358c2f13565e7a38"
+        }
+      ],
+      "declared_license": "MIT",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "phf_codegen",
+      "version": "0.13.1",
+      "url": "https://static.crates.io/crates/phf_codegen/phf_codegen-0.13.1.crate",
+      "sha256_expected": "49aa7f9d80421bca176ca8dbfebe668cc7a2684708594ec9f3c0db0805d5d6e1",
+      "bytes": 14774,
+      "sha256": "49aa7f9d80421bca176ca8dbfebe668cc7a2684708594ec9f3c0db0805d5d6e1",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-phf_codegen-0.13.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/phf_codegen-0.13.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1099,
+          "sha256": "0ab4d106b6faac07fb6a051815fd1b4d862d730895e2d7d7358c2f13565e7a38"
+        }
+      ],
+      "declared_license": "MIT",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "phf_generator",
+      "version": "0.13.1",
+      "url": "https://static.crates.io/crates/phf_generator/phf_generator-0.13.1.crate",
+      "sha256_expected": "135ace3a761e564ec88c03a77317a7c6b80bb7f7135ef2544dbe054243b89737",
+      "bytes": 15952,
+      "sha256": "135ace3a761e564ec88c03a77317a7c6b80bb7f7135ef2544dbe054243b89737",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-phf_generator-0.13.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/phf_generator-0.13.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1099,
+          "sha256": "0ab4d106b6faac07fb6a051815fd1b4d862d730895e2d7d7358c2f13565e7a38"
+        }
+      ],
+      "declared_license": "MIT",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "phf_macros",
+      "version": "0.13.1",
+      "url": "https://static.crates.io/crates/phf_macros/phf_macros-0.13.1.crate",
+      "sha256_expected": "812f032b54b1e759ccd5f8b6677695d5268c588701effba24601f6932f8269ef",
+      "bytes": 21732,
+      "sha256": "812f032b54b1e759ccd5f8b6677695d5268c588701effba24601f6932f8269ef",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-phf_macros-0.13.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/phf_macros-0.13.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1099,
+          "sha256": "0ab4d106b6faac07fb6a051815fd1b4d862d730895e2d7d7358c2f13565e7a38"
+        }
+      ],
+      "declared_license": "MIT",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "phf_shared",
+      "version": "0.13.1",
+      "url": "https://static.crates.io/crates/phf_shared/phf_shared-0.13.1.crate",
+      "sha256_expected": "e57fef6bc5981e38c2ce2d63bfa546861309f875b8a75f092d1d54ae2d64f266",
+      "bytes": 16141,
+      "sha256": "e57fef6bc5981e38c2ce2d63bfa546861309f875b8a75f092d1d54ae2d64f266",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-phf_shared-0.13.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/phf_shared-0.13.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1099,
+          "sha256": "0ab4d106b6faac07fb6a051815fd1b4d862d730895e2d7d7358c2f13565e7a38"
+        }
+      ],
+      "declared_license": "MIT",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "precomputed-hash",
+      "version": "0.1.1",
+      "url": "https://static.crates.io/crates/precomputed-hash/precomputed-hash-0.1.1.crate",
+      "sha256_expected": "925383efa346730478fb4838dbe9137d2a47675ad789c546d150a6e1dd4ab31c",
+      "bytes": 1640,
+      "sha256": "925383efa346730478fb4838dbe9137d2a47675ad789c546d150a6e1dd4ab31c",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-precomputed-hash-0.1.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/precomputed-hash-0.1.1/LICENSE",
+          "upstream_path": "LICENSE",
+          "bytes": 1078,
+          "sha256": "7ca6700600dfa9c9497bf5556365067daa802c871ea78239f129309c7a2048f7"
+        }
+      ],
+      "declared_license": "MIT",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "proc-macro2",
+      "version": "1.0.105",
+      "url": "https://static.crates.io/crates/proc-macro2/proc-macro2-1.0.105.crate",
+      "sha256_expected": "535d180e0ecab6268a3e718bb9fd44db66bbbc256257165fc699dadf70d16fe7",
+      "bytes": 60319,
+      "sha256": "535d180e0ecab6268a3e718bb9fd44db66bbbc256257165fc699dadf70d16fe7",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-proc-macro2-1.0.105.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/proc-macro2-1.0.105/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 9723,
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/proc-macro2-1.0.105/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1023,
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ],
+      "declared_license": "MIT OR Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "quote",
+      "version": "1.0.43",
+      "url": "https://static.crates.io/crates/quote/quote-1.0.43.crate",
+      "sha256_expected": "dc74d9a594b72ae6656596548f56f667211f8a97b3d4c3d467150794690dc40a",
+      "bytes": 31587,
+      "sha256": "dc74d9a594b72ae6656596548f56f667211f8a97b3d4c3d467150794690dc40a",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-quote-1.0.43.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/quote-1.0.43/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 9723,
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/quote-1.0.43/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1023,
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ],
+      "declared_license": "MIT OR Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "rustc-hash",
+      "version": "2.1.1",
+      "url": "https://static.crates.io/crates/rustc-hash/rustc-hash-2.1.1.crate",
+      "sha256_expected": "357703d41365b4b27c590e3ed91eabb1b663f07c4c084095e60cbed4362dff0d",
+      "bytes": 14154,
+      "sha256": "357703d41365b4b27c590e3ed91eabb1b663f07c4c084095e60cbed4362dff0d",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-rustc-hash-2.1.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/rustc-hash-2.1.1/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 9722,
+          "sha256": "95bd3988beee069fa2848f648dab43cc6e0b2add2ad6bcb17360caf749802bcc"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/rustc-hash-2.1.1/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1022,
+          "sha256": "30fefc3a7d6a0041541858293bcbea2dde4caa4c0a5802f996a7f7e8c0085652"
+        }
+      ],
+      "declared_license": "Apache-2.0 OR MIT",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "rustc_version",
+      "version": "0.4.1",
+      "url": "https://static.crates.io/crates/rustc_version/rustc_version-0.4.1.crate",
+      "sha256_expected": "cfcb3a22ef46e85b45de6ee7e79d063319ebb6594faafcf1c225ea92ab6e9b92",
+      "bytes": 12245,
+      "sha256": "cfcb3a22ef46e85b45de6ee7e79d063319ebb6594faafcf1c225ea92ab6e9b92",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-rustc_version-0.4.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/rustc_version-0.4.1/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 10847,
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/rustc_version-0.4.1/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1071,
+          "sha256": "c9a75f18b9ab2927829a208fc6aa2cf4e63b8420887ba29cdb265d6619ae82d5"
+        }
+      ],
+      "declared_license": "MIT OR Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "selectors",
+      "version": "0.33.0",
+      "url": "https://static.crates.io/crates/selectors/selectors-0.33.0.crate",
+      "sha256_expected": "feef350c36147532e1b79ea5c1f3791373e61cbd9a6a2615413b3807bb164fb7",
+      "bytes": 65530,
+      "sha256": "feef350c36147532e1b79ea5c1f3791373e61cbd9a6a2615413b3807bb164fb7",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-selectors-0.33.0.tgz",
+      "licenses": [],
+      "license_evidence": [
+        {
+          "path": "docs/licenses/bun/cargo/selectors-0.33.0/Cargo.toml",
+          "sha256": "aaa975493791920faa23d43daaae4e035f25ffe7e1488491c6ff9a909fc722f5",
+          "bytes": 1705
+        },
+        {
+          "path": "docs/licenses/bun/cargo/selectors-0.33.0/Cargo.toml.orig",
+          "sha256": "7b43a0508c126204728d6687b6e0ca32f199fec5dbd574802726fb6e2ec45a2d",
+          "bytes": 868
+        },
+        {
+          "path": "docs/licenses/bun/cargo/selectors-0.33.0/README.md",
+          "sha256": "6865c6a9b30ddcb86ce7cd8ac95c8d9eb7b5062c05e499e4b8f53267be70a91a",
+          "bytes": 1171
+        }
+      ],
+      "declared_license": "MPL-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "semver",
+      "version": "1.0.27",
+      "url": "https://static.crates.io/crates/semver/semver-1.0.27.crate",
+      "sha256_expected": "d767eb0aabc880b29956c35734170f26ed551a859dbd361d140cdbeca61ab1e2",
+      "bytes": 30081,
+      "sha256": "d767eb0aabc880b29956c35734170f26ed551a859dbd361d140cdbeca61ab1e2",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-semver-1.0.27.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/semver-1.0.27/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 9723,
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/semver-1.0.27/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1023,
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ],
+      "declared_license": "MIT OR Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "serde",
+      "version": "1.0.228",
+      "url": "https://static.crates.io/crates/serde/serde-1.0.228.crate",
+      "sha256_expected": "9a8e94ea7f378bd32cbbd37198a4a91436180c5bb472411e48b5ec2e2124ae9e",
+      "bytes": 83652,
+      "sha256": "9a8e94ea7f378bd32cbbd37198a4a91436180c5bb472411e48b5ec2e2124ae9e",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-serde-1.0.228.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/serde-1.0.228/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 9723,
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/serde-1.0.228/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1023,
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ],
+      "declared_license": "MIT OR Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "serde_core",
+      "version": "1.0.228",
+      "url": "https://static.crates.io/crates/serde_core/serde_core-1.0.228.crate",
+      "sha256_expected": "41d385c7d4ca58e59fc732af25c3983b67ac852c1a25000afe1175de458b67ad",
+      "bytes": 63111,
+      "sha256": "41d385c7d4ca58e59fc732af25c3983b67ac852c1a25000afe1175de458b67ad",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-serde_core-1.0.228.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/serde_core-1.0.228/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 9723,
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/serde_core-1.0.228/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1023,
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ],
+      "declared_license": "MIT OR Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "serde_derive",
+      "version": "1.0.228",
+      "url": "https://static.crates.io/crates/serde_derive/serde_derive-1.0.228.crate",
+      "sha256_expected": "d540f220d3187173da220f885ab66608367b6574e925011a9353e4badda91d79",
+      "bytes": 59605,
+      "sha256": "d540f220d3187173da220f885ab66608367b6574e925011a9353e4badda91d79",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-serde_derive-1.0.228.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/serde_derive-1.0.228/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 9723,
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/serde_derive-1.0.228/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1023,
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ],
+      "declared_license": "MIT OR Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "servo_arc",
+      "version": "0.4.3",
+      "url": "https://static.crates.io/crates/servo_arc/servo_arc-0.4.3.crate",
+      "sha256_expected": "170fb83ab34de17dc69aa7c67482b22218ddb85da56546f9bd6b929e32a05930",
+      "bytes": 17887,
+      "sha256": "170fb83ab34de17dc69aa7c67482b22218ddb85da56546f9bd6b929e32a05930",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-servo_arc-0.4.3.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/servo_arc-0.4.3/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 10847,
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/servo_arc-0.4.3/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1023,
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ],
+      "declared_license": "MIT OR Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "siphasher",
+      "version": "1.0.1",
+      "url": "https://static.crates.io/crates/siphasher/siphasher-1.0.1.crate",
+      "sha256_expected": "56199f7ddabf13fe5074ce809e7d3f42b42ae711800501b5b16ea82ad029c39d",
+      "bytes": 10351,
+      "sha256": "56199f7ddabf13fe5074ce809e7d3f42b42ae711800501b5b16ea82ad029c39d",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-siphasher-1.0.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/siphasher-1.0.1/COPYING",
+          "upstream_path": "COPYING",
+          "bytes": 281,
+          "sha256": "4d40ffd1478e61d103063fe87b133d13b6784688b8855acd7ebc2aeb64095c6d"
+        }
+      ],
+      "declared_license": "MIT/Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "smallvec",
+      "version": "1.15.1",
+      "url": "https://static.crates.io/crates/smallvec/smallvec-1.15.1.crate",
+      "sha256_expected": "67b1b7a3b5fe4f1376887184045fcf45c69e92af734b7aaddc05fb777b6fbd03",
+      "bytes": 38116,
+      "sha256": "67b1b7a3b5fe4f1376887184045fcf45c69e92af734b7aaddc05fb777b6fbd03",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-smallvec-1.15.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/smallvec-1.15.1/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 10847,
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/smallvec-1.15.1/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1072,
+          "sha256": "0b28172679e0009b655da42797c03fd163a3379d5cfa67ba1f1655e974a2a1a9"
+        }
+      ],
+      "declared_license": "MIT OR Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "stable_deref_trait",
+      "version": "1.2.1",
+      "url": "https://static.crates.io/crates/stable_deref_trait/stable_deref_trait-1.2.1.crate",
+      "sha256_expected": "6ce2be8dc25455e1f91df71bfa12ad37d7af1092ae736f3a6cd0e37bc7810596",
+      "bytes": 8186,
+      "sha256": "6ce2be8dc25455e1f91df71bfa12ad37d7af1092ae736f3a6cd0e37bc7810596",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-stable_deref_trait-1.2.1.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/stable_deref_trait-1.2.1/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 10847,
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/stable_deref_trait-1.2.1/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1056,
+          "sha256": "5e05b024f653a5ce199e77cbbbd42fb5553562ec714b819421ed0c3e552a75d7"
+        }
+      ],
+      "declared_license": "MIT OR Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "syn",
+      "version": "2.0.114",
+      "url": "https://static.crates.io/crates/syn/syn-2.0.114.crate",
+      "sha256_expected": "d4d107df263a3013ef9b1879b0df87d706ff80f65a86ea879bd9c31f9b307c2a",
+      "bytes": 304636,
+      "sha256": "d4d107df263a3013ef9b1879b0df87d706ff80f65a86ea879bd9c31f9b307c2a",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-syn-2.0.114.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/syn-2.0.114/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 9723,
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/syn-2.0.114/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1023,
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ],
+      "declared_license": "MIT OR Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "thiserror",
+      "version": "2.0.17",
+      "url": "https://static.crates.io/crates/thiserror/thiserror-2.0.17.crate",
+      "sha256_expected": "f63587ca0f12b72a0600bcba1d40081f830876000bb46dd2337a3051618f4fc8",
+      "bytes": 28857,
+      "sha256": "f63587ca0f12b72a0600bcba1d40081f830876000bb46dd2337a3051618f4fc8",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-thiserror-2.0.17.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/thiserror-2.0.17/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 9723,
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/thiserror-2.0.17/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1023,
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ],
+      "declared_license": "MIT OR Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "thiserror-impl",
+      "version": "2.0.17",
+      "url": "https://static.crates.io/crates/thiserror-impl/thiserror-impl-2.0.17.crate",
+      "sha256_expected": "3ff15c8ecd7de3849db632e14d18d2571fa09dfc5ed93479bc4485c7a517c913",
+      "bytes": 21344,
+      "sha256": "3ff15c8ecd7de3849db632e14d18d2571fa09dfc5ed93479bc4485c7a517c913",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-thiserror-impl-2.0.17.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/thiserror-impl-2.0.17/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 9723,
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/thiserror-impl-2.0.17/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1023,
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        }
+      ],
+      "declared_license": "MIT OR Apache-2.0",
+      "license_file": null
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "unicode-ident",
+      "version": "1.0.22",
+      "url": "https://static.crates.io/crates/unicode-ident/unicode-ident-1.0.22.crate",
+      "sha256_expected": "9312f7c4f6ff9069b165498234ce8be658059c6728633667c526e27dc2cf1df5",
+      "bytes": 47919,
+      "sha256": "9312f7c4f6ff9069b165498234ce8be658059c6728633667c526e27dc2cf1df5",
+      "integrity_verified": true,
+      "path": "sources/packages/cargo-unicode-ident-1.0.22.tgz",
+      "licenses": [
+        {
+          "path": "docs/licenses/bun/cargo/unicode-ident-1.0.22/LICENSE-APACHE",
+          "upstream_path": "LICENSE-APACHE",
+          "bytes": 9723,
+          "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/unicode-ident-1.0.22/LICENSE-MIT",
+          "upstream_path": "LICENSE-MIT",
+          "bytes": 1023,
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        },
+        {
+          "path": "docs/licenses/bun/cargo/unicode-ident-1.0.22/LICENSE-UNICODE",
+          "upstream_path": "LICENSE-UNICODE",
+          "bytes": 1995,
+          "sha256": "f7db81051789b729fea528a63ec4c938fdcb93d9d61d97dc8cc2e9df6d47f2a1"
+        }
+      ],
+      "declared_license": "(MIT OR Apache-2.0) AND Unicode-3.0",
+      "license_file": null
+    }
+  ]
+}

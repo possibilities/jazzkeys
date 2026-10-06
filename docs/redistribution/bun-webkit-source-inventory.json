@@ -1,0 +1,46 @@
+{
+  "repository": "oven-sh/WebKit",
+  "revision": "4a6a32c32c11ffb9f5a94c310b10f50130bfe6de",
+  "upstream_url": "https://github.com/oven-sh/WebKit/tree/4a6a32c32c11ffb9f5a94c310b10f50130bfe6de",
+  "archive_path": "sources/WebKit-4a6a32c32c11ffb9f5a94c310b10f50130bfe6de-jsconly-source.tar.gz",
+  "sha256": "d4f43d689ec5549f1be07f30364dcfe47b85afed62fcd66b50750c6354ffc6ca",
+  "bytes": 94620867,
+  "uncompressed_source_bytes": 274167626,
+  "retained_blob_count": 11261,
+  "upstream_tree_blob_count": 456787,
+  "omitted_blob_count": 445526,
+  "gitlink_count": 0,
+  "verified_against_git": true,
+  "verification_mismatch_count": 0,
+  "scope": "JSCOnly source subset: Source/JavaScriptCore, WTF, bmalloc, cmake; ThirdParty/unifdef,gtest,capstone; all Tools, Configurations, resources, metadata, .github and ancestor/root files. Unrelated browser engine/layout/web-platform sources and optional DEVELOPER_MODE-only PerformanceTests omitted.",
+  "sparse_paths": [
+    ".github",
+    "Configurations",
+    "Source/JavaScriptCore",
+    "Source/ThirdParty/capstone",
+    "Source/ThirdParty/gtest",
+    "Source/ThirdParty/unifdef",
+    "Source/WTF",
+    "Source/bmalloc",
+    "Source/cmake",
+    "Tools",
+    "metadata",
+    "resources"
+  ],
+  "elapsed_seconds": 16.6,
+  "omitted_top_level_directories": [
+    "JSTests",
+    "LayoutTests",
+    "ManualTests",
+    "PerformanceTests",
+    "WebDriverTests",
+    "WebKit.xcworkspace",
+    "WebKitLibraries",
+    "Websites"
+  ],
+  "build_validation": "Static input review only; no configuration, compilation, or relink execution",
+  "retained_file_map": {
+    "retained_path": "docs/redistribution/upstream/WebKit-retained-files.json",
+    "sha256": "618a7d9d93d0b75a4b62cb9694b02b09fa4c9a0b41bc7ec9c4c0551c21f02bce"
+  }
+}

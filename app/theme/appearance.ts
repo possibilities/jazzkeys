@@ -29,7 +29,7 @@ export function createAppearanceController({ source }: { source?: SystemAppearan
       effectiveAppearance: observed ?? 'light',
       availabilityLabel: !observed ? 'System appearance unavailable · using light'
         : system.availability === 'live' ? 'Following system appearance'
-        : 'System appearance read at launch · live updates unavailable',
+        : 'Last observed system appearance · live updates unavailable',
     };
   };
   let snapshot = resolve();

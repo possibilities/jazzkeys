@@ -19,7 +19,7 @@ concurrency:
   group: linux-native-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  live-x11:
+  live-wayland:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
@@ -35,7 +35,7 @@ jobs:
           sudo apt-get install --no-install-recommends -y xvfb xauth x11-utils xdotool \
             imagemagick dbus-x11 libvulkan1 mesa-vulkan-drivers vulkan-tools \
             libxkbcommon0 libxkbcommon-x11-0 libfontconfig1 fonts-dejavu-core \
-            strace python3-pil gcc libglib2.0-dev pkg-config python3-gi
+            strace python3-pil gcc libglib2.0-dev pkg-config python3-gi weston
       - name: Pinned toolchain and frozen published packages
         run: |
           rustup toolchain install 1.90.0 --profile minimal --component rustfmt --component clippy
@@ -47,7 +47,7 @@ jobs:
           bun packaging/smoke.ts dist/jazzkeys-linux-x64-gnu
           mkdir -p "$RUNNER_TEMP/Jazzkeys installed test"
           cp -a dist/jazzkeys-linux-x64-gnu "$RUNNER_TEMP/Jazzkeys installed test/Jazzkeys"
-      - name: Exercise compiled app and stock live native fixtures in private Xvfb
+      - name: Exercise stock Wayland app in dedicated Weston outputs on private Xvfb
         run: bash packaging/linux-xvfb.sh "$RUNNER_TEMP/Jazzkeys installed test/Jazzkeys"
       - name: Retain native pixels and trace evidence, never release binaries
         if: always()

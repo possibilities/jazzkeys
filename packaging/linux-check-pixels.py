@@ -23,7 +23,9 @@ with Image.open(path) as image:
             raise SystemExit("Invalid expected canvas color")
         expected = tuple(int(color[index:index + 2], 16) for index in (1, 3, 5))
         # The production disconnected layout leaves this margin as solid canvas.
-        # This checks actual window pixels, independent of retained style metadata.
+        # This checks actual dedicated native compositor-output pixels,
+        # independent of retained style metadata. Surface ownership and full
+        # output geometry are checked separately before and after each capture.
         sample = ImageStat.Stat(rgb.crop((4, 64, 12, 72))).mean
         if max(abs(actual - wanted) for actual, wanted in zip(sample, expected)) > 2:
             raise SystemExit(f"Canvas color mismatch: {sample}, expected {expected}")

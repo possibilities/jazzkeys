@@ -1,9 +1,11 @@
 # Third-party notices and provenance
 
 Jazzkeys source is GPL-3.0-or-later; see [LICENSE](LICENSE). Individual dependencies
-and retained third-party material keep their own licenses. This is a reviewed
-initial inventory, **not a completed binary-distribution compliance manifest**.
-Required upstream texts collected so far are in [docs/licenses](docs/licenses).
+and retained third-party material keep their own licenses. The pinned dependency notices and source inventories are retained in
+[docs/licenses](docs/licenses) and [docs/redistribution](docs/redistribution).
+The inventories deliberately include unused-target/build inputs; they are not a
+claim that every listed component is embedded. A release still needs its actual
+source companion and the integration checks described below.
 
 ## Protocol references
 
@@ -41,16 +43,27 @@ build manifest; listing them here does not assert they are embedded in an app.
 
 The 0.10.0 React/native release tags resolve to
 [`9fcd628863e354e9c58019fc3bf38981a1e64158`](https://github.com/remorses/gpuix/tree/9fcd628863e354e9c58019fc3bf38981a1e64158).
-The inspected npm metadata supplies no `gitHead` or `dist.attestations`, so tag
-agreement alone does not prove how the downloaded addon was built. The later
+The official [release-commit CI run](https://github.com/remorses/gpuix/actions/runs/35834240883)
+built both target addons and completed its native-publish step successfully; a
+later React build failed. Exact npm tarball integrity and addon digests are in
+[npm inventory](docs/redistribution/npm-inventory.json). The registry supplies no
+`gitHead` or `dist.attestations`; this documented provenance is not a claim of a
+byte-reproducible or independently attested build. The later
 source-reference pin `4ecca30f68057b4d9830d32675ba4ed999eeeaaa` is not treated as the
 published React API contract.
 
 The release source pins its Zed/GPUI submodule to
 [`81c99f816b4a5f69d3c014774068034c24d1d7af`](https://github.com/remorses/zed/tree/81c99f816b4a5f69d3c014774068034c24d1d7af).
 Retained [GPUI Apache text](docs/licenses/GPUI-Apache-2.0.txt) credits Zed Industries.
-The installed Linux addon references IBM Plex Sans and Lilex asset paths; it ships
-no loose font/license files. Matching release-source font notices are retained:
+The complete native closure is not Apache-only: `zlog`, `ztracing`, and
+`ztracing_macro` declare GPL-3.0-or-later, and the pinned Zed repository applies
+that default to unmarked source. Its [GPL text](docs/licenses/Zed-GPL-3.0.txt) and
+[exact path-crate inventory](docs/redistribution/native-source-inventory.json) are retained.
+
+Font-path strings in the Linux addon are asset lookup names, not proof of
+embedded fonts. None of the eight release-source TTFs occurs verbatim in it.
+Matching source-font notices are retained for the source companion and any
+package that actually includes those fonts:
 
 - [IBM Plex Sans OFL 1.1](docs/licenses/IBM-Plex-Sans-OFL.txt): Copyright © 2017
   IBM Corp.; reserved font name “Plex”
@@ -59,39 +72,81 @@ no loose font/license files. Matching release-source font notices are retained:
 See the [upstream GPUIX notices](docs/licenses/GPUIX-THIRD-PARTY-NOTICES.md) for
 Comet-derived components, updater code, syntax definitions, and dependencies. This
 upstream notice is retained unmodified, including components/examples Jazzkeys may
-not use; it is not a claim that every listed component ships in Jazzkeys.
+not use. The exact [two-face grammar notices](docs/licenses/two-face-0.5.2-acknowledgements.md),
+[Comet license](docs/licenses/native-git/comet/LICENSE), and
+[updater notices](docs/licenses/cargo-packager-updater) are also retained. Desktop
+0.10.0 uses Oniguruma; the upstream notice describes fancy-regex too broadly.
 
 ## Bun and Rust worker
 
 Bun 1.3.10 resolves to
 [`30e609e08073cf7114bfb278506962a5b19d0677`](https://github.com/oven-sh/bun/tree/30e609e08073cf7114bfb278506962a5b19d0677).
 Its [retained official notice](docs/licenses/Bun-LICENSE.md) describes MIT Bun
-source, statically linked LGPL JavaScriptCore/WebCore, TinyCC LGPL-2.1, other
-linked libraries, and embedded polyfills. A compiled Bun application includes
-runtime material; the source/runtime and relinking obligations must be resolved
-before distributing one. The Bun notice alone is not a complete bundle of all
-those licenses or a compliance determination.
+source and statically linked LGPL JavaScriptCore/WebCore and TinyCC. The actual
+pinned build configuration and expanded native/polyfill notice inventory are in
+[redistribution materials](docs/redistribution). The old notice's build commands
+and some library versions/licenses are stale; use the pinned-source recipe.
 
-The worker directly pins `serde` 1.0.228, `serde_json` 1.0.145, and `sha2` 0.10.9.
-Its Cargo lockfile identifies the exact transitive closure. Collect and review
-that closure's copyright/license texts for the built targets before distribution.
+The worker's complete **21-crate** locked source/notice inventory is in
+[worker-inventory.json](docs/redistribution/worker-inventory.json), with original
+texts under [worker notices](docs/licenses/worker). Rust 1.90.0 worker and 1.97.1
+upstream-native standard-library notices are retained under
+[Rust runtime notices](docs/licenses/rust-runtime). These inventories include
+build/proc-macro inputs without claiming they are linked into every binary.
+
+## Appearance helper and host system libraries
+
+The first-party appearance helper uses host-provided GLib, GIO and GObject on
+Linux, under LGPL-2.1-or-later. It dynamically links those shared libraries;
+Jazzkeys does not copy them into its current package. The
+[system-library inventory](docs/redistribution/system-library-inventory.json)
+records an existing local helper's exact hash, measured ELF dependencies, and the
+GLib 2.84.4 development metadata used for that build. The library version loaded
+on a recipient's machine is host-dependent; the local metadata is not a claim
+about the separate Ubuntu CI runner or every supported installation.
+
+The [upstream LGPL text](docs/licenses/system/GLib-2.84.4-LGPL-2.1-or-later.txt)
+and [distribution copyright notices](docs/licenses/system/GLib-2.84.4-Debian-copyright)
+are retained. The latter cover the distribution's broader GLib package, including
+tools not shipped by Jazzkeys. The helper has no RPATH/RUNPATH; ordinary dynamic
+loading permits ABI-compatible replacement libraries. Recipients may also rebuild
+the GPL helper/application using their chosen GLib build through pkg-config.
+No restriction on library modification, relinking, or debugging is imposed.
+If a future package copies or statically links these libraries, review that
+changed distribution and its source obligations separately.
+
+On macOS the helper uses the system Foundation framework; its build script does
+not copy Apple framework binaries into Jazzkeys. Exact final-package linkage and
+platform support remain release checks.
 
 ## Remaining binary-release inventory
 
-1. Establish the npm addon build's source correspondence and provenance; retain
-   its exact target and digest. Release tags plus wrapper metadata are insufficient.
-2. Reconcile the target-specific GPUIX/GPUI Rust/native dependency closure and
-   embedded assets against the actual addon. The release lockfile includes
-   Syntect 5.3.0, `two-face` 0.5.2+bat-0.26.1, Oniguruma bindings, napi, and
-   Zed HTTP/TLS dependencies. Grammar assets have independent licenses, not merely
-   the `two-face` crate's MIT/Apache choice; collect the matching acknowledgements.
-   Preserve applicable Comet and updater-derived source notices as well.
-3. Complete Bun's matching linked-library/polyfill notices and the corresponding
-   source/relinking materials needed for a compiled distribution.
-4. Complete the worker's locked dependency license inventory and include the
-   result with the actual packaged files/SBOM.
+The dependency **notice/source inventory work is now concrete**, rather than a
+request to investigate unspecified native licenses: 784 checksum-verified native
+registry sources, six pinned Git dependency repositories, release-pinned Zed
+path crates, exact embedded grammar acknowledgements, both addon digests, the
+worker closure, and pinned Bun/library materials are recorded. See the
+[redistribution record](docs/redistribution/README.md) for scope and evidence.
 
-Until these are resolved, CI may build and validate locally but should publish
-only source, inspected screenshots, and manifests, not downloadable executables.
-No vendor logos, product-label photos, or upstream example artwork are licensed
-for reuse merely because they appear in a reference repository.
+Before publishing executables:
+
+1. Include this notice, the project GPL, and the complete retained notice tree in
+   the actual artifact, with working links and nested-file checksums.
+2. Assemble the exact release's complete corresponding-source companion and
+   provide equivalent access beside the binary. Upstream links and an SBOM alone
+   are not the source delivery. Include GPL native components and MPL/LGPL
+   library sources, not just Jazzkeys' own files.
+3. Supply the pinned build/relink recipe and practical replacement-runtime path.
+   LGPL 2.1 §6(a) accepts application source as an alternative to object files;
+   complete GPL Jazzkeys/Bun/library source plus usable build instructions is the
+   chosen route. A demonstrated modified-library build on every platform or
+   byte-for-byte reproduction is additional engineering confidence, not an added
+   license condition. Do not restrict modifying/relinking or debugging those
+   modifications. Resolve any concrete missing build input if review finds one.
+4. Complete the independent runtime, installation, signing-status and security
+   gates. Notice collection does not establish those results or hardware support.
+
+CI may build and validate locally. No downloadable binary is approved merely
+because this inventory exists. Source bundles may retain upstream assets under
+their own licenses; vendor logos, product-label photos, or example artwork are
+not licensed for separate Jazzkeys branding merely by appearing upstream.

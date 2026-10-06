@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "scope": "Bun lockfile packages for scoped macOS ARM64/Linux x86_64 artifacts; Windows native payload excluded. Development/type/browser inputs retained separately from runtime attribution.",
+  "packages": [
+    {
+      "name": "@gpuix/native",
+      "version": "0.10.0",
+      "license_expression": "Apache-2.0",
+      "tarball_url": "https://registry.npmjs.org/@gpuix/native/-/native-0.10.0.tgz",
+      "integrity": "sha512-hBvQ0vT1ybOoRDQu6JASgRfdcWFbHTRQ0Fr3oiTxdclvzdR8v9fBUQVYfVtgZnnL4pl1LS02eNrQx8//E6/Xjw==",
+      "sha256": "04f9c4e001dc38a25886a21d729eeaf8a48027604dcf72ce145122c6467146a7",
+      "registry_git_head": null,
+      "registry_attestations_present": false,
+      "scope": "JavaScript/source package archive; includes optional/browser/build material, not a linked assertion"
+    },
+    {
+      "name": "@gpuix/native-darwin-arm64",
+      "version": "0.10.0",
+      "license_expression": "Apache-2.0",
+      "tarball_url": "https://registry.npmjs.org/@gpuix/native-darwin-arm64/-/native-darwin-arm64-0.10.0.tgz",
+      "integrity": "sha512-Uu1aiZsKBPuk9llFkoaFU95k1t+drG3txv97SgZZZ2x4LKqvy5c0bmklhCG1r7Ypm62qY/NKY0Sl553r/G34Tg==",
+      "sha256": "58114cdf8955f2dbc83d1f504554edb3c0b36d0e4b3e985655755d23d0d718e6",
+      "registry_git_head": null,
+      "registry_attestations_present": false,
+      "scope": "platform native binary (provenance only; excluded from source-only archive)",
+      "binary": {
+        "name": "package/gpuix-native.darwin-arm64.node",
+        "sha256": "76018707ee53f38044ea5a77a56b5c80ff4b755150a826aff07a8992431c9213",
+        "size_bytes": 23605088
+      }
+    },
+    {
+      "name": "@gpuix/native-linux-x64-gnu",
+      "version": "0.10.0",
+      "license_expression": "Apache-2.0",
+      "tarball_url": "https://registry.npmjs.org/@gpuix/native-linux-x64-gnu/-/native-linux-x64-gnu-0.10.0.tgz",
+      "integrity": "sha512-HNLL+jp+FA5qvdHq52MDGnj6LmsbkVXojwalGgNYA+iJlffFGfzHkCRmoM21Z+TNKa5cvuRTPgnfP6FGr8KxIw==",
+      "sha256": "8a55581e7a821f27aa72f2c921321020fd4a8c5e0e16faad67b8c165d6e3ef89",
+      "registry_git_head": null,
+      "registry_attestations_present": false,
+      "scope": "platform native binary (provenance only; excluded from source-only archive)",
+      "binary": {
+        "name": "package/gpuix-native.linux-x64-gnu.node",
+        "sha256": "a907deb0557f57d698599d635b02bd1452eeeeb0af44a0fe5029e4d4a70ea44d",
+        "size_bytes": 50137840,
+        "matches_installed_bytes": true
+      }
+    },
+    {
+      "name": "@gpuix/react",
+      "version": "0.10.0",
+      "license_expression": "Apache-2.0",
+      "tarball_url": "https://registry.npmjs.org/@gpuix/react/-/react-0.10.0.tgz",
+      "integrity": "sha512-RB//IrYBghiso0K0h8V+K9huwzONtEhwdpXoCs/rZjqN1F4RGxjhaeChtAwTt/JnjTSM1rcLi5cicM1xy8kr+g==",
+      "sha256": "a9b70b6f80eb8969565477b3eee4f9c2125d24274397ede759daa254c5550bc2",
+      "registry_git_head": null,
+      "registry_attestations_present": false,
+      "scope": "JavaScript/source package archive; includes optional/browser/build material, not a linked assertion"
+    },
+    {
+      "name": "@types/bun",
+      "version": "1.3.10",
+      "license_expression": "MIT",
+      "tarball_url": "https://registry.npmjs.org/@types/bun/-/bun-1.3.10.tgz",
+      "integrity": "sha512-0+rlrUrOrTSskibryHbvQkDOWRJwJZqZlxrUs1u4oOoTln8+WIXBPmAuCF35SWB2z4Zl3E84Nl/D0P7803nigQ==",
+      "sha256": "7ad82d5ea1d008b808f32f6f865086233e7c2a7cd5883aada5c64ac4350dec20",
+      "registry_git_head": null,
+      "registry_attestations_present": false,
+      "scope": "JavaScript/source package archive; includes optional/browser/build material, not a linked assertion"
+    },
+    {
+      "name": "@types/node",
+      "version": "26.6.4",
+      "license_expression": "MIT",
+      "tarball_url": "https://registry.npmjs.org/@types/node/-/node-26.6.4.tgz",
+      "integrity": "sha512-ldVPDCzj7fsaGZrLB0NuHuTvJcsNasysBAqMolr/cgxrLd1xbqxIr3XJiPnHHJUCxj5sNF1vnRj9aWnrVh5Jcg==",
+      "sha256": "bf2dbf11cfccd34681fc4d5e4d150afce77fd6610224757dbe6c92c8e5149700",
+      "registry_git_head": null,
+      "registry_attestations_present": false,
+      "scope": "JavaScript/source package archive; includes optional/browser/build material, not a linked assertion"
+    },
+    {
+      "name": "@types/react",
+      "version": "19.0.0",
+      "license_expression": "MIT",
+      "tarball_url": "https://registry.npmjs.org/@types/react/-/react-19.0.0.tgz",
+      "integrity": "sha512-MY3oPudxvMYyesqs/kW1Bh8y9VqSmf+tzqw3ae8a9DZW68pUe3zAdHeI1jc6iAysuRdACnVknHP8AhwD4/dxtg==",
+      "sha256": "5276568c090199f1ae30f9266bfe5a45cf49aab3ef0804bc48e633397d4ce002",
+      "registry_git_head": null,
+      "registry_attestations_present": false,
+      "scope": "JavaScript/source package archive; includes optional/browser/build material, not a linked assertion"
+    },
+    {
+      "name": "bun-types",
+      "version": "1.3.10",
+      "license_expression": "MIT",
+      "tarball_url": "https://registry.npmjs.org/bun-types/-/bun-types-1.3.10.tgz",
+      "integrity": "sha512-tcpfCCl6XWo6nCVnpcVrxQ+9AYN1iqMIzgrSKYMB/fjLtV2eyAVEg7AxQJuCq/26R6HpKWykQXuSOq/21RYcbg==",
+      "sha256": "18d17ad50cfd674d08902d43df27f554ba0ca624defd064a081650207ea8f0da",
+      "registry_git_head": "30e609e08073cf7114bfb278506962a5b19d0677",
+      "registry_attestations_present": false,
+      "scope": "JavaScript/source package archive; includes optional/browser/build material, not a linked assertion"
+    },
+    {
+      "name": "csstype",
+      "version": "3.2.3",
+      "license_expression": "MIT",
+      "tarball_url": "https://registry.npmjs.org/csstype/-/csstype-3.2.3.tgz",
+      "integrity": "sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==",
+      "sha256": "f3501f8ee1c73f7568fecb22c11231162c0467e59262461da5579519307427a3",
+      "registry_git_head": "f2162b534ea539bb32cb26365aa2511ac391762d",
+      "registry_attestations_present": false,
+      "scope": "JavaScript/source package archive; includes optional/browser/build material, not a linked assertion"
+    },
+    {
+      "name": "eventsource-parser",
+      "version": "4.1.1",
+      "license_expression": "MIT",
+      "tarball_url": "https://registry.npmjs.org/eventsource-parser/-/eventsource-parser-4.1.1.tgz",
+      "integrity": "sha512-zaWNqeSLeyzEAAt2Q6aDBRDRk/VnPmsKqvToyGvv6aahvLv71A4Jw7jG93Hckf11zXurbqgsffvpSgKPoeU1Qw==",
+      "sha256": "edf3a939e2648cd941d3d55989341da71edf568fc01df3c52ccdfa635ceb5979",
+      "registry_git_head": "a7885df23221b3d3ce814e18948d37e54a90101c",
+      "registry_attestations_present": true,
+      "scope": "JavaScript/source package archive; includes optional/browser/build material, not a linked assertion"
+    },
+    {
+      "name": "react",
+      "version": "19.0.0",
+      "license_expression": "MIT",
+      "tarball_url": "https://registry.npmjs.org/react/-/react-19.0.0.tgz",
+      "integrity": "sha512-V8AVnmPIICiWpGfm6GLzCR/W5FXLchHop40W4nXBmdlEceh16rCN8O8LNWm5bh5XUX91fh7KpA+W0TgMKmgTpQ==",
+      "sha256": "2178ec02d41c09f60b5a7dc21844787afd0a41f268faa6ea9ac7a06ccf64eca6",
+      "registry_git_head": "63cde684f5340b1ca73f6244501aac1c3d2c92a8",
+      "registry_attestations_present": false,
+      "scope": "JavaScript/source package archive; includes optional/browser/build material, not a linked assertion"
+    },
+    {
+      "name": "react-reconciler",
+      "version": "0.31.0",
+      "license_expression": "MIT",
+      "tarball_url": "https://registry.npmjs.org/react-reconciler/-/react-reconciler-0.31.0.tgz",
+      "integrity": "sha512-7Ob7Z+URmesIsIVRjnLoDGwBEG/tVitidU0nMsqX/eeJaLY89RISO/10ERe0MqmzuKUUB1rmY+h1itMbUHg9BQ==",
+      "sha256": "9f41ac53213ff6cfab8be60cea2513572893a15b0e976c63f42571a97b494323",
+      "registry_git_head": "63cde684f5340b1ca73f6244501aac1c3d2c92a8",
+      "registry_attestations_present": false,
+      "scope": "JavaScript/source package archive; includes optional/browser/build material, not a linked assertion"
+    },
+    {
+      "name": "scheduler",
+      "version": "0.25.0",
+      "license_expression": "MIT",
+      "tarball_url": "https://registry.npmjs.org/scheduler/-/scheduler-0.25.0.tgz",
+      "integrity": "sha512-xFVuu11jh+xcO7JOAGJNOXld8/TcEHK/4CituBUeUb5hqxJLj9YuemAEuvm9gQ/+pgXYfbQuqAkiYu+u7YEsNA==",
+      "sha256": "8aac2da6decb09c1dacf8c106f62d2fb4454fbb1fdf2f6fe6d4ef1a57b7c6914",
+      "registry_git_head": "63cde684f5340b1ca73f6244501aac1c3d2c92a8",
+      "registry_attestations_present": false,
+      "scope": "JavaScript/source package archive; includes optional/browser/build material, not a linked assertion"
+    },
+    {
+      "name": "typescript",
+      "version": "5.9.3",
+      "license_expression": "Apache-2.0",
+      "tarball_url": "https://registry.npmjs.org/typescript/-/typescript-5.9.3.tgz",
+      "integrity": "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==",
+      "sha256": "10e108c9cf7d5f2879053dff18515fb405abf2ccef63eaaf017d9c571687a1d3",
+      "registry_git_head": "c63de15a992d37f0d6cec03ac7631872838602cb",
+      "registry_attestations_present": false,
+      "scope": "JavaScript/source package archive; includes optional/browser/build material, not a linked assertion"
+    },
+    {
+      "name": "undici-types",
+      "version": "8.9.0",
+      "license_expression": "MIT",
+      "tarball_url": "https://registry.npmjs.org/undici-types/-/undici-types-8.9.0.tgz",
+      "integrity": "sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg==",
+      "sha256": "3a587851ccbf1021b20eac8a38eb819d7e2a1ab77aa477cb24cae5473a3e78c6",
+      "registry_git_head": "21a8e1ed1843e74c3004a2926c12bb0ceaca6b71",
+      "registry_attestations_present": true,
+      "scope": "JavaScript/source package archive; includes optional/browser/build material, not a linked assertion"
+    },
+    {
+      "name": "zod",
+      "version": "4.6.5",
+      "license_expression": "MIT",
+      "tarball_url": "https://registry.npmjs.org/zod/-/zod-4.6.5.tgz",
+      "integrity": "sha512-v5l/aFXZQeai4awLbOpSoHecE9UiMrnfx75tEXLjNonXVARxQ5mOeipTjROUchszUNCqnE+hqAMujRsRHsut2Q==",
+      "sha256": "a78c0c533de30dc1c4afc259ac43ac06e390cb0da8d2e32eae355301b50b36fc",
+      "registry_git_head": null,
+      "registry_attestations_present": true,
+      "scope": "JavaScript/source package archive; includes optional/browser/build material, not a linked assertion"
+    }
+  ]
+}

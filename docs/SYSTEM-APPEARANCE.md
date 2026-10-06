@@ -141,6 +141,13 @@ A passing fake-portal/synthetic-domain suite proves the adapter and OS IPC paths
 not actual desktop theme-change acceptance or the native UI's reaction. Record
 those separately after authorized platform testing.
 
+On October 6, 2026, both platforms passed these native and compiled-host suites
+in [CI for exact commit 7008652](https://github.com/possibilities/jazzkeys/actions/runs/37459777643).
+The test production-helper binary matched the packaged binary byte-for-byte.
+The separate Linux live-window run failed before capturing pixels; it does not
+yet establish portal signals repainting the app. Actual macOS OS preference
+changes remain an explicit separate acceptance step.
+
 ## References
 
 - [XDG Settings portal specification](https://flatpak.github.io/xdg-desktop-portal/docs/doc-org.freedesktop.portal.Settings.html)
