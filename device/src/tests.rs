@@ -2,7 +2,10 @@ use crate::{
     domain::*,
     engine::{Cancellation, Engine},
     ipc,
-    protocol::{Clock, Framing, Transport, TransportError, WireReply},
+    protocol::{
+        Clock, Framing, Operation, ReadOnlyTransport, ReadOperation, ReadTransport, Scheduler,
+        Transport, TransportError, WireReply,
+    },
     storage::{FsStore, JournalEvent, JournalIntent, Store},
 };
 use serde_json::{Value, json};
@@ -67,15 +70,16 @@ impl Transport for Fake {
     }
     fn exchange(
         &mut self,
-        packet: &[u8; 64],
-        expects_reply: bool,
+        operation: Operation,
     ) -> std::result::Result<Option<WireReply>, TransportError> {
+        let packet = operation.packet().map_err(|_| TransportError::Protocol)?;
+        let expects_reply = !operation.is_write();
         let mut state = self.state.borrow_mut();
         let started = self.time.get();
         self.time.set(started + state.latency_ms);
         let completed = self.time.get();
         state.trace.push(Trace {
-            packet: *packet,
+            packet,
             started,
             completed,
         });
@@ -442,6 +446,245 @@ fn candidate_read_only_has_no_write_plan_or_wire_report() {
     );
     assert!(writes(&owner).is_empty());
 }
+
+#[test]
+fn read_scheduler_and_transport_signatures_keep_operation_types() {
+    // These assignments are compile-time regressions: widening read() back to
+    // Operation, or transport exchange back to raw bytes + a flag, fails to build.
+    let _: fn(&mut Scheduler<Fake, FakeClock>, ReadOperation) -> Result<[u8; 64]> = Scheduler::read;
+    let _: fn(&mut Fake, Operation) -> std::result::Result<Option<WireReply>, TransportError> =
+        <Fake as Transport>::exchange;
+}
+
+#[test]
+fn read_only_adapter_refuses_direct_writes_before_any_backend_dispatch() {
+    struct QueryOnly {
+        fake: Fake,
+        calls: Rc<Cell<usize>>,
+    }
+    impl ReadTransport for QueryOnly {
+        fn interface(&self) -> std::result::Result<Interface, TransportError> {
+            self.fake.interface()
+        }
+        fn read(
+            &mut self,
+            operation: ReadOperation,
+        ) -> std::result::Result<WireReply, TransportError> {
+            self.calls.set(self.calls.get() + 1);
+            self.fake
+                .exchange(Operation::Read(operation))?
+                .ok_or(TransportError::Protocol)
+        }
+    }
+    let _: fn(&mut QueryOnly, ReadOperation) -> std::result::Result<WireReply, TransportError> =
+        <QueryOnly as ReadTransport>::read;
+    let cap = capability();
+    let (fake, clock, _) = parts(&cap);
+    let state = fake.state.clone();
+    let before = state.borrow().map.clone();
+    let calls = Rc::new(Cell::new(0));
+    let mut transport = ReadOnlyTransport::new(QueryOnly {
+        fake,
+        calls: calls.clone(),
+    });
+    let profile = Profile::observed(4).unwrap();
+    for layer in [Layer::Base, Layer::Fn] {
+        let error = transport
+            .exchange(Operation::WriteSlot {
+                layer,
+                profile,
+                slot: Slot::new(7).unwrap(),
+                entry: Target::Escape.entry(),
+            })
+            .unwrap_err();
+        assert_eq!(error, TransportError::ReadOnly);
+        assert_eq!(error.fault(), READ_ONLY);
+    }
+    // Even calls that bypass the scheduler cannot forward invalid page values.
+    for page in [8, 255] {
+        assert_eq!(
+            transport
+                .exchange(Operation::Read(ReadOperation::ReadPage {
+                    layer: Layer::Base,
+                    profile,
+                    page,
+                }))
+                .unwrap_err(),
+            TransportError::Protocol
+        );
+    }
+    assert_eq!(calls.get(), 0);
+    assert!(state.borrow().trace.is_empty());
+    assert_eq!(transport.interface().unwrap(), cap.identity.interface);
+    assert!(state.borrow().trace.is_empty());
+
+    let mut scheduler = Scheduler::new(transport, clock, cap.identity.interface.clone());
+    let identify = scheduler.read(ReadOperation::Identify).unwrap();
+    assert_eq!(identify[0], 0x8f);
+    assert_eq!(
+        u32::from_le_bytes(identify[1..5].try_into().unwrap()),
+        cap.identity.internal_id
+    );
+    assert_eq!(calls.get(), 1);
+    assert_eq!(state.borrow().trace.len(), 1);
+    assert_eq!(state.borrow().write_count, 0);
+    assert_eq!(state.borrow().map, before);
+
+    // The combined scheduler/adapter path also fails closed, with no extra
+    // native-facing read or packet, and poisons this scheduler lifetime.
+    assert_eq!(
+        scheduler
+            .execute(Operation::WriteSlot {
+                layer: Layer::Base,
+                profile,
+                slot: Slot::new(7).unwrap(),
+                entry: Target::Escape.entry(),
+            })
+            .unwrap_err(),
+        READ_ONLY
+    );
+    assert_eq!(scheduler.read(ReadOperation::Identify).unwrap_err(), STALE);
+    assert_eq!(calls.get(), 1);
+    assert_eq!(state.borrow().trace.len(), 1);
+    assert_eq!(state.borrow().write_count, 0);
+    assert_eq!(state.borrow().map, before);
+}
+
+#[test]
+fn typed_read_operations_match_independent_wire_fixtures_without_writes() {
+    let cap = capability();
+    let (fake, clock, _) = parts(&cap);
+    let before = fake.state.borrow().map.clone();
+    let mut scheduler = Scheduler::new(fake, clock, cap.identity.interface.clone());
+    let profile = Profile::observed(4).unwrap();
+    // Independent, synthetic reference headers. No expected byte is generated
+    // by Operation::packet; these are not captures from a physical keyboard.
+    let fixtures = [
+        (ReadOperation::Identify, [0x8f, 0, 0, 0, 0, 0, 0, 0x70]),
+        (ReadOperation::Revision, [0x80, 0, 0, 0, 0, 0, 0, 0x7f]),
+        (
+            ReadOperation::CurrentProfile,
+            [0x85, 0, 0, 0, 0, 0, 0, 0x7a],
+        ),
+        (
+            ReadOperation::ReadPage {
+                layer: Layer::Base,
+                profile,
+                page: 0,
+            },
+            [0x89, 4, 0, 0, 0, 0, 0, 0x72],
+        ),
+        (
+            ReadOperation::ReadPage {
+                layer: Layer::Base,
+                profile,
+                page: 7,
+            },
+            [0x89, 4, 7, 0, 0, 0, 0, 0x6b],
+        ),
+        (
+            ReadOperation::ReadPage {
+                layer: Layer::Fn,
+                profile,
+                page: 0,
+            },
+            [0x90, 4, 0, 0, 0, 0, 0, 0x6b],
+        ),
+        (
+            ReadOperation::ReadPage {
+                layer: Layer::Fn,
+                profile,
+                page: 7,
+            },
+            [0x90, 4, 7, 0, 0, 0, 0, 0x64],
+        ),
+    ];
+    for (operation, header) in fixtures {
+        scheduler.read(operation).unwrap();
+        let state = scheduler.transport.state.borrow();
+        let packet = state.trace.last().unwrap().packet;
+        assert_eq!(&packet[..8], &header);
+        assert_eq!(&packet[8..], &[0; 56]);
+    }
+    let state = scheduler.transport.state.borrow();
+    assert_eq!(state.trace.len(), fixtures.len());
+    assert_eq!(state.write_count, 0);
+    assert_eq!(state.map, before);
+    assert!(
+        state
+            .trace
+            .windows(2)
+            .all(|pair| pair[1].started >= pair[0].completed + 8)
+    );
+}
+
+#[test]
+fn invalid_read_page_is_rejected_before_typed_transport() {
+    let cap = capability();
+    let (fake, clock, _) = parts(&cap);
+    let mut scheduler = Scheduler::new(fake, clock, cap.identity.interface.clone());
+    for page in [8, 255] {
+        let error = scheduler
+            .read(ReadOperation::ReadPage {
+                layer: Layer::Base,
+                profile: Profile::observed(4).unwrap(),
+                page,
+            })
+            .unwrap_err();
+        assert_eq!(error.code, "invalid_page");
+    }
+    assert!(scheduler.transport.state.borrow().trace.is_empty());
+    assert_eq!(scheduler.transport.state.borrow().write_count, 0);
+}
+
+#[test]
+fn typed_transport_reply_mismatch_still_poisons_scheduler() {
+    struct WrongReply(Fake);
+    impl Transport for WrongReply {
+        fn interface(&self) -> std::result::Result<Interface, TransportError> {
+            self.0.interface()
+        }
+        fn exchange(
+            &mut self,
+            operation: Operation,
+        ) -> std::result::Result<Option<WireReply>, TransportError> {
+            self.0.exchange(operation)?;
+            Ok(if operation.is_write() {
+                Some(WireReply {
+                    bytes: vec![0; 64],
+                    framing: Framing::Payload,
+                })
+            } else {
+                None
+            })
+        }
+    }
+    for operation in [
+        Operation::Read(ReadOperation::Identify),
+        Operation::WriteSlot {
+            layer: Layer::Base,
+            profile: Profile::observed(4).unwrap(),
+            slot: Slot::new(7).unwrap(),
+            entry: Target::Escape.entry(),
+        },
+    ] {
+        let cap = capability();
+        let (fake, clock, _) = parts(&cap);
+        let mut scheduler = Scheduler::new(WrongReply(fake), clock, cap.identity.interface.clone());
+        assert_eq!(
+            scheduler.execute(operation).unwrap_err().code,
+            "unexpected_reply"
+        );
+        assert_eq!(scheduler.read(ReadOperation::Identify).unwrap_err(), STALE);
+        assert_eq!(scheduler.transport.0.state.borrow().trace.len(), 1);
+        if operation.is_write() {
+            let completed = scheduler.transport.0.state.borrow().trace[0].completed;
+            scheduler.settle();
+            assert!(scheduler.now() >= completed + 2000);
+        }
+    }
+}
+
 #[test]
 fn independent_wire_fixture_minimal_diff_preserves_every_other_byte() {
     let (mut owner, session, hash) = setup();
@@ -1308,6 +1551,7 @@ fn metadata_failures_poison_owner_even_when_interface_later_recovers() {
         TransportError::Timeout,
         TransportError::Stall,
         TransportError::Protocol,
+        TransportError::ReadOnly,
     ] {
         let (mut owner, session, hash) = setup();
         let plan = one_plan(&mut owner, &session, &hash);

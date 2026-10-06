@@ -2,6 +2,8 @@
 //! Device operations are deliberately private; only bounded semantic IPC is public.
 #![forbid(unsafe_code)]
 #[allow(dead_code)]
+mod discovery;
+#[allow(dead_code)]
 mod domain;
 #[allow(dead_code)]
 mod engine;

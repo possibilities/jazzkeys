@@ -1,10 +1,11 @@
 # Mac demo releases
 
-Current launch investigation: the exact published demo.2 ZIP and the renamed
-JazzKeys archive both passed a real Launch Services open/window/quit check on a
-clean macOS 26.6.2 runner. The reported macOS 26.5.2 opening failure (-10827) has
-not been reproduced there and remains unresolved on that host. No registration
-reset, quarantine removal, or OS security change is implied by the CI result.
+The exact published demo.2 ZIP and the renamed JazzKeys archive both passed a
+real Launch Services open/window/quit check on a clean macOS 26.6.2 runner.
+This is not Gatekeeper acceptance of a downloaded copy: the experimental app
+has an ad-hoc signature, without Developer ID authentication or notarization,
+and macOS may block it. No registration reset, quarantine removal, or OS
+security change is implied by the CI result.
 
 The new release gate tests the **same archive produced by the release build**
 after extraction on a separate Mac runner, rather than treating signatures or
@@ -92,8 +93,8 @@ See [third-party notices](../THIRD-PARTY-NOTICES.md) and
 
 ## Remaining acceptance work
 
-- Resolve the reported host-specific opening failure without assuming that a
-  successful CI launch proves that host has been repaired
+- Establish ordinary downloaded-app distribution acceptance without treating
+  a successful clean-runner launch as Gatekeeper or notarization evidence
 - Observe bounded runtime network/device access, permission behavior, uninstall,
   and system-appearance changes with coordinated interaction where required
 - Test VoiceOver on the native app; static roles and keyboard checks do not imply

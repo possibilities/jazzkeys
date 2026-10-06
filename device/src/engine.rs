@@ -1,7 +1,7 @@
 //! One mutable owner spans preflight, storage, wire writes, read-back and settling.
 use crate::{
     domain::*,
-    protocol::{Clock, Operation, Scheduler, Transport},
+    protocol::{Clock, Operation, ReadOperation, Scheduler, Transport},
     storage::{JournalChange, JournalEvent, JournalIntent, Store},
 };
 use serde::Serialize;
@@ -158,7 +158,7 @@ impl<T: Transport, C: Clock, S: Store> Engine<T, C, S> {
             .ok_or(STALE)
     }
     fn probe(&mut self) -> Result<(Identity, Profile)> {
-        let identify = self.scheduler.read(Operation::Identify)?;
+        let identify = self.scheduler.read(ReadOperation::Identify)?;
         if identify[0] != 0x8f {
             return self.identity_error();
         }
@@ -166,7 +166,7 @@ impl<T: Transport, C: Clock, S: Store> Engine<T, C, S> {
         if id != self.capability.identity.internal_id {
             return self.identity_error();
         }
-        let revision = self.scheduler.read(Operation::Revision)?;
+        let revision = self.scheduler.read(ReadOperation::Revision)?;
         if revision[0] != 0x80 {
             return self.identity_error();
         }
@@ -174,7 +174,7 @@ impl<T: Transport, C: Clock, S: Store> Engine<T, C, S> {
         if revision != self.capability.identity.revision {
             return self.identity_error();
         }
-        let profile = self.scheduler.read(Operation::CurrentProfile)?;
+        let profile = self.scheduler.read(ReadOperation::CurrentProfile)?;
         if profile[0] != 0x85 {
             return self.identity_error();
         }
@@ -207,7 +207,7 @@ impl<T: Transport, C: Clock, S: Store> Engine<T, C, S> {
         }
         let mut bytes = [0_u8; LAYER_BYTES];
         for page in 0..8_u8 {
-            let response = self.scheduler.read(Operation::ReadPage {
+            let response = self.scheduler.read(ReadOperation::ReadPage {
                 layer,
                 profile: session.profile,
                 page,

@@ -1,7 +1,7 @@
 # Hardware status
 
-**No device is currently verified writable by JazzKeys.** No physical keyboard has
-been accessed during this implementation. Production HID access is not yet
+**No device is currently verified writable by JazzKeys.** JazzKeys has not sent
+reports to a physical keyboard. Production HID access is not yet
 implemented. Candidate IDs and simulated success cannot enable public writes.
 
 ## Candidate evidence, not support
@@ -23,6 +23,10 @@ implemented. Candidate IDs and simulated success cannot enable public writes.
 
 See [pinned protocol sources](PROTOCOL.md). Similarly named Pro, HE, Ultra, Max
 Plus, or other variants are unsupported. No QMK/VIA compatibility is asserted.
+
+See [read-only integration groundwork](READ-ONLY-INTEGRATION.md) for the separate
+metadata policy, typed read boundary, alternate official controller evidence,
+and conditional one-query proposal. None of those enable hardware access.
 
 ## Authorization and validation ladder
 

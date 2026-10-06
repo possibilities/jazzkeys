@@ -1,10 +1,10 @@
 //! Independently authored narrow encoding from the documented yc500 subset.
 //! Reference: Sharkfin 4860eafbcb543d93ce09285204b91f6d853f54b1 docs/PROTOCOL.md.
 //! Constants are candidate evidence, NOT authorization for a real unit.
-use crate::domain::{Entry, Fault, Interface, Layer, Profile, Result, STALE, Slot};
+use crate::domain::{Entry, Fault, Interface, Layer, Profile, READ_ONLY, Result, STALE, Slot};
 
 #[derive(Debug, Clone, Copy)]
-pub(crate) enum Operation {
+pub(crate) enum ReadOperation {
     Identify,
     Revision,
     CurrentProfile,
@@ -13,6 +13,13 @@ pub(crate) enum Operation {
         profile: Profile,
         page: u8,
     },
+}
+
+/// A transport receives intent with its read/write classification intact, never
+/// arbitrary bytes paired with a caller-selected reply flag.
+#[derive(Debug, Clone, Copy)]
+pub(crate) enum Operation {
+    Read(ReadOperation),
     WriteSlot {
         layer: Layer,
         profile: Profile,
@@ -25,22 +32,17 @@ impl Operation {
         matches!(self, Self::WriteSlot { .. })
     }
     pub(crate) fn packet(self) -> Result<[u8; 64]> {
+        self.validate()?;
         let mut packet = [0; 64];
         match self {
-            Self::Identify => packet[0] = 0x8f,
-            Self::Revision => packet[0] = 0x80,
-            Self::CurrentProfile => packet[0] = 0x85,
-            Self::ReadPage {
+            Self::Read(ReadOperation::Identify) => packet[0] = 0x8f,
+            Self::Read(ReadOperation::Revision) => packet[0] = 0x80,
+            Self::Read(ReadOperation::CurrentProfile) => packet[0] = 0x85,
+            Self::Read(ReadOperation::ReadPage {
                 layer,
                 profile,
                 page,
-            } => {
-                if page >= 8 {
-                    return Err(Fault::new(
-                        "invalid_page",
-                        "Page is outside the fixed layer",
-                    ));
-                }
+            }) => {
                 packet[0] = match layer {
                     Layer::Base => 0x89,
                     Layer::Fn => 0x90,
@@ -69,6 +71,15 @@ impl Operation {
                 .fold(0_u8, |sum, byte| sum.wrapping_add(*byte)),
         );
         Ok(packet)
+    }
+    fn validate(self) -> Result<()> {
+        if matches!(self, Self::Read(ReadOperation::ReadPage { page: 8.., .. })) {
+            return Err(Fault::new(
+                "invalid_page",
+                "Page is outside the fixed layer",
+            ));
+        }
+        Ok(())
     }
 }
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -106,6 +117,7 @@ pub(crate) enum TransportError {
     Stall,
     Disconnected,
     Protocol,
+    ReadOnly,
 }
 impl TransportError {
     pub(crate) fn fault(self) -> Fault {
@@ -120,17 +132,55 @@ impl TransportError {
                 "transport_protocol",
                 "Transport reported an invalid exchange",
             ),
+            Self::ReadOnly => READ_ONLY,
         }
     }
 }
-// Raw bytes are private to this crate boundary. No production implementation opens HID.
+// Only the transport implementation encodes wire bytes. No production
+// implementation opens HID.
 pub(crate) trait Transport {
     fn interface(&self) -> std::result::Result<Interface, TransportError>;
     fn exchange(
         &mut self,
-        packet: &[u8; 64],
-        expects_reply: bool,
+        operation: Operation,
     ) -> std::result::Result<Option<WireReply>, TransportError>;
+}
+
+/// The native-facing contract for a future read-only implementation. No write
+/// operation or arbitrary report buffer can cross this boundary.
+pub(crate) trait ReadTransport {
+    fn interface(&self) -> std::result::Result<Interface, TransportError>;
+    fn read(&mut self, operation: ReadOperation) -> std::result::Result<WireReply, TransportError>;
+}
+
+/// Bridges the common core to a read-only implementation. Keep the inner
+/// transport private so callers cannot bypass the operation check.
+pub(crate) struct ReadOnlyTransport<T> {
+    inner: T,
+}
+impl<T: ReadTransport> ReadOnlyTransport<T> {
+    pub(crate) fn new(inner: T) -> Self {
+        Self { inner }
+    }
+}
+impl<T: ReadTransport> Transport for ReadOnlyTransport<T> {
+    fn interface(&self) -> std::result::Result<Interface, TransportError> {
+        self.inner.interface()
+    }
+    fn exchange(
+        &mut self,
+        operation: Operation,
+    ) -> std::result::Result<Option<WireReply>, TransportError> {
+        match operation {
+            Operation::Read(read) => {
+                // Direct callers receive the same page bounds as the scheduler;
+                // validation does not encode or dispatch any report.
+                operation.validate().map_err(|_| TransportError::Protocol)?;
+                self.inner.read(read).map(Some)
+            }
+            Operation::WriteSlot { .. } => Err(TransportError::ReadOnly),
+        }
+    }
 }
 pub(crate) trait Clock {
     fn now_ms(&self) -> u64;
@@ -207,8 +257,8 @@ impl<T: Transport, C: Clock> Scheduler<T, C> {
     }
     pub(crate) fn execute(&mut self, operation: Operation) -> Result<Option<[u8; 64]>> {
         self.wait_ready()?;
-        let packet = operation.packet()?;
-        let response = self.transport.exchange(&packet, !operation.is_write());
+        operation.validate()?;
+        let response = self.transport.exchange(operation);
         // Deadlines derive from actual completion, including failed and slow calls.
         let completed = self.clock.now_ms();
         self.next_wire_ms = completed.saturating_add(if operation.is_write() { 1000 } else { 8 });
@@ -229,8 +279,8 @@ impl<T: Transport, C: Clock> Scheduler<T, C> {
         }
         result
     }
-    pub(crate) fn read(&mut self, operation: Operation) -> Result<[u8; 64]> {
-        self.execute(operation)?.ok_or(Fault::new(
+    pub(crate) fn read(&mut self, operation: ReadOperation) -> Result<[u8; 64]> {
+        self.execute(Operation::Read(operation))?.ok_or(Fault::new(
             "missing_reply",
             "Read operation produced no reply",
         ))
